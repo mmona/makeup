@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+	<persistence-unit name="makeup"  transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.mona.makeup.pojo.User</class>
+		<class>com.mona.makeup.pojo.Admin</class>
+		<class>com.mona.makeup.pojo.Brand</class>
+		<class>com.mona.makeup.pojo.Order</class>
+		<class>com.mona.makeup.pojo.Product</class>
+		<class>com.mona.makeup.pojo.Question</class>
+		<class>com.mona.makeup.pojo.Review</class>
+		<class>com.mona.makeup.pojo.Type</class>
+		
+		
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+	</persistence-unit>
+</persistence>
