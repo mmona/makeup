@@ -3,8 +3,8 @@ package com.mona.makeup.dao;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mona.makeup.pojo.Admin;
 import com.mona.makeup.pojo.User;
@@ -24,5 +24,26 @@ public class AdminDao extends CommonDao{
 			return query.get(0);
 		}
 		return null;
+	}
+	public Admin selectAdminById(int id ){
+		/*String sql="select a from Admin where id=:id";
+		Map<String,Object> params=new HashMap<>();
+		params.put("id", id);
+		this.query(clazz)*/
+		Admin admin = this.get(Admin.class, id);
+		return admin;
+	}
+@Transactional
+	public boolean updateAdmin(Admin admin){
+		String sql="update Admin set name=:name,password=:password where id=:id"; 
+		Map<String,Object> params=new HashMap<>();
+		params.put("name", admin.getName());
+		params.put("password", admin.getPassword());
+		params.put("id", admin.getId());
+		int isUpdate = this.execRawSql(sql, params);
+		if(isUpdate>0){
+			return true;
+		}
+		return false;
 	}
 }

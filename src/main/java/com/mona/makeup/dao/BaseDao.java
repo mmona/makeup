@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 public abstract class BaseDao {
 
@@ -34,6 +35,7 @@ public abstract class BaseDao {
 	 * @param obj The entity object
 	 * @return True if update successfully, otherwise false.
 	 */
+
 	public <T> boolean update(T obj) {
 		em.merge(obj);
 		em.flush();
@@ -44,6 +46,7 @@ public abstract class BaseDao {
 	 * @param obj The entity object
 	 * @return True if update successfully, otherwise false.
 	 */
+
 	public <T> boolean merge(T obj) {
 		em.merge(obj);
 		em.flush();

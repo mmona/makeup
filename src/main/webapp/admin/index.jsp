@@ -33,8 +33,10 @@ body {
 			return false;
 		}
 	}
+	
 </script>
-
+<script type="text/javascript">
+</script>
 <link href="images/skin.css" rel="stylesheet" type="text/css">
 </head>
 

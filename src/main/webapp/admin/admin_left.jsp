@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-
+ <base
+	href="${pageContext.request.scheme }://${pageContext.request.serverName }:${pageContext.request.serverPort }${pageContext.request.contextPath }/"> 
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -186,7 +187,7 @@ H1 a {
       </div>
     </div>
 
-    <h1 class="type"><a href="../admin/admin_update.jsp" target="main">系统用户管理</a></h1>
+    <h1 class="type"><a href="admin/admin_update.jsp" target="main">系统用户管理</a></h1>
     <h1 class="type"><a href="#" target="main">注销退出</a></h1>
       </td>
   </tr>
