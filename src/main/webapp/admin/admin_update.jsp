@@ -68,10 +68,10 @@ body {
 	<table width="100%" height="1" border="0" cellpadding="0"
 		cellspacing="0">
 		<tr>
-			<td valign="top" bgcolor="#F7F8F9">
+			<td valign="center" bgcolor="#F7F8F9">
 
 
-				<div align="center">
+				<div align="center" >
 
 					<form name="form1"  id="update"   action="updateAdmin.do?id=${admin.id}"
 						method="post" onSubmit="return check11()">
@@ -95,7 +95,7 @@ body {
 									<td class="line_table" align="right" width="45%"><span
 										class="left_bt2">管理员密码</span></td>
 									<td class="line_table" align="left" width="55%"><input
-										type="password" name="pwd" size="20" value=${admin.password }/>
+										type="password" name="pwd" size="20" value="${admin.password }"/>
 										
 									</td>
 								</tr>

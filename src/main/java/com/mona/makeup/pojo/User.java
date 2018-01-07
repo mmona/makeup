@@ -25,13 +25,13 @@ public class User {
 	private String password;
 	private String realname;
 	private String sex;
-	private int age;
+	private Integer age;
 	private String card;
 	private String address;
 	private String telephone;
 	private String email;
 	private String code;
-	private int status;
+	private Integer status;
 	private List<Question> questions = new ArrayList<>();
 	private List<Review> reviews = new ArrayList<>();
 	private List<Order> order = new ArrayList<>();
@@ -68,10 +68,10 @@ public class User {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 	public String getCard() {
@@ -104,10 +104,10 @@ public class User {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public int getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
-	public void setStatus(int status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 	@OneToMany(mappedBy="users")
@@ -131,6 +131,13 @@ public class User {
 	}
 	public void setOrder(List<Order> order) {
 		this.order = order;
+	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", realname=" + realname
+				+ ", sex=" + sex + ", age=" + age + ", card=" + card + ", address=" + address + ", telephone="
+				+ telephone + ", email=" + email + ", code=" + code + ", status=" + status + ", questions=" + questions
+				+ ", reviews=" + reviews + ", order=" + order + "]";
 	}
 
 	

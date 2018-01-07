@@ -13,6 +13,7 @@ import org.aspectj.weaver.reflect.ReflectionBasedReferenceTypeDelegate;
 import org.hibernate.sql.Update;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -69,10 +70,20 @@ public class AdminController extends BaseController {
 		PrintWriter out = response.getWriter();
 		boolean updateAdmin = adminService.updateAdmin(admin);
 		if(updateAdmin){
-			out.println("<script>alert('修改成功');</script>");
+			out.println("<script>alert('修改成功,欢迎下次登录');</script>");
 			modelAndView.setViewName("/admin/index.jsp");
 		}else {
 			out.println("<script>alert('修改失败');</script>");
+		}
+		return modelAndView;
+	}
+	@RequestMapping(value="/logout")
+	public ModelAndView logout(HttpSession session){
+		ModelAndView modelAndView = new ModelAndView();
+		Admin admin = (Admin) session.getAttribute("admin");
+		if(admin!=null){
+			session.removeAttribute("admin");
+			modelAndView.setViewName("/admin/index.jsp");
 		}
 		return modelAndView;
 	}

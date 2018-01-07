@@ -135,7 +135,7 @@ H1 a {
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
         </table>
         <ul class="MM">
-        <li><a href="../admin/userManager.jsp" target="main">会员信息列表</a></li>
+        <li><a href="seletAllUser.do" target="main">会员信息列表</a></li>
       
         </ul>
       </div>
@@ -181,14 +181,14 @@ H1 a {
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
         </table>
         <ul class="MM">
-            <li><a href="../admin/question.jsp" target="main">提问信息列表</a></li>
+            <li><a href="admin/question.jsp" target="main">提问信息列表</a></li>
             
         </ul>
       </div>
     </div>
 
-    <h1 class="type"><a href="admin/admin_update.jsp" target="main">系统用户管理</a></h1>
-    <h1 class="type"><a href="#" target="main">注销退出</a></h1>
+    <h1 class="type"><a href="admin/admin_update.jsp" target="index">系统用户管理</a></h1>
+    <h1 class="type"><a href="admin/logout.do" target="index">注销退出</a></h1>
       </td>
   </tr>
 </table>

@@ -17,6 +17,10 @@ public class Result<T> {
 	public void setList(List<T> list) {
 		this.list = list;
 	}
+	@Override
+	public String toString() {
+		return "Result [page=" + page + ", list=" + list + "]";
+	}
 	
 	
 	

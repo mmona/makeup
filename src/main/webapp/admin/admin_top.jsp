@@ -1,6 +1,7 @@
 <%@page import="java.util.*"%>
 <%@ page import="com.mona.makeup.pojo.User" %>
 <%@ page language="java"  pageEncoding="utf-8"%>
+
 <html>
 <title>网上订餐后台- 管理页面</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
@@ -16,7 +17,7 @@
     <td width="39%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="74%" height="38" class="admin_txt">管理员：<b>${admin.name}</b> 您好,感谢登陆使用！</td>
-        <td width="22%"><a href="../admin/index.jsp" style="text-decoration: none;color: #fff">系统退出</a></td>
+        <td width="22%"><a href="../admin/logout.do" style="text-decoration: none;color: #fff"  target="index">系统退出</a></td>
       </tr>
       <tr>
         <td height="19" colspan="3">&nbsp;</td>
