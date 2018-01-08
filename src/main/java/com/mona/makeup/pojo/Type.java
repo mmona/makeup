@@ -12,7 +12,7 @@ public class Type {
 	private int id;
 	private String tname;
 	private String description;
-	private Product product;
+	/*private Product product;*/
 	@Id
 	@TableGenerator(name = "PK_GENERATOR_TYPE", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "TYPE", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "PK_GENERATOR_TYPE")
@@ -34,12 +34,13 @@ public class Type {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	@OneToOne(mappedBy="type")
+	/*@OneToOne(mappedBy="type")
 	public Product getProduct() {
 		return product;
 	}
 	public void setProduct(Product product) {
 		this.product = product;
-	}
+	}*/
+	
 	
 }

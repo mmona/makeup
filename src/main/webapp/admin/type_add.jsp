@@ -45,7 +45,7 @@ body {
 
 				<div align="center">
 
-					<form action="#" method="post" name="form1"
+					<form action="addType.do" method="post" name="form1"
 						onSubmit="return check11()">
 
 
@@ -57,7 +57,7 @@ body {
 								<td class="line_table" height="25" align="right" width="40%"><span
 									class="left_bt2">化妆品类别：</span></td>
 								<td class="line_table" height="25" width="60%"><input
-									type="text" name="name" size="45" value=""></td>
+									type="text" name="tname" size="45" value=""></td>
 							</tr>
 							<tr>
 								<td class="line_table" height="25" align="right" width="40%"><span

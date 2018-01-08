@@ -90,6 +90,7 @@ body {
 																	<img src="images/luck.gif" width="19" height="18">
 																</td>
 															</tr>
+															
 															<tr>
 																<td height="35">&nbsp;</td>
 																<td width="20%" height="35"><input name="Submit"
@@ -99,9 +100,11 @@ body {
 																	name="cs" type="button" class="button" id="cs"
 																	value="取 消" onClick="showConfirmMsg1()"></td>
 															</tr>
+																
 														</table>
 														<br>
 													</form>
+													<span  style="color:red" align="center">	${error }</span>
 
 												</td>
 											</tr>
@@ -126,5 +129,6 @@ body {
 				</table></td>
 		</tr>
 	</table>
+
 </body>
 </html>

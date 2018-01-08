@@ -145,7 +145,7 @@ H1 a {
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
         </table>
         <ul class="MM">
-            <li><a href="../admin/product.jsp" target="main">商品信息列表</a></li>
+            <li><a href="admin/product.jsp" target="main">商品信息列表</a></li>
         </ul>
       </div>
        <h1 class="type"><a href="javascript:void(0)">化妆品类别管理</a></h1>
@@ -153,8 +153,8 @@ H1 a {
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
         </table>
         <ul class="MM">
-            <li><a href="../admin/type_add.jsp" target="main">添加新类别</a></li>
-            <li><a href="../admin/type.jsp" target="main">类别信息列表</a></li>
+            <li><a href="admin/type_add.jsp" target="main">添加新类别</a></li>
+            <li><a href="selectType.do" target="main">类别信息列表</a></li>
         </ul>
       </div>
        <h1 class="type"><a href="javascript:void(0)">化妆品品牌管理</a></h1>
@@ -162,8 +162,8 @@ H1 a {
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
         </table>
         <ul class="MM">
-            <li><a href="../admin/brand_add.jsp" target="main">添加新品牌</a></li>
-            <li><a href="../admin/brand.jsp" target="main">品牌信息列表</a></li>
+            <li><a href="admin/brand_add.jsp" target="main">添加新品牌</a></li>
+            <li><a href="admin/brand.jsp" target="main">品牌信息列表</a></li>
         </ul>
       </div>
       <h1 class="type"><a href="javascript:void(0)">销售订单管理</a></h1>
@@ -171,9 +171,9 @@ H1 a {
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
         </table>
         <ul class="MM">
-          <li><a href="../admin/order.jsp" target="main">销售订单信息列表</a></li>
-          <li><a href="../admin/order_search.jsp" target="main">销售订单查询</a></li>
-          <li><a href="../admin/order_statistic.jsp" target="main">本日销售额统计</a></li>
+          <li><a href="admin/order.jsp" target="main">销售订单信息列表</a></li>
+          <li><a href="admin/order_search.jsp" target="main">销售订单查询</a></li>
+          <li><a href="admin/order_statistic.jsp" target="main">本日销售额统计</a></li>
         </ul>
       </div>
        <h1 class="type"><a href="javascript:void(0)">客服管理</a></h1>
