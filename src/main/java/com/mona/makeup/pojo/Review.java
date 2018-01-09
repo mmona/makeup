@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.TableGenerator;
 
@@ -19,7 +18,7 @@ public class Review {
 	private String time;
 	@Id
 	@TableGenerator(name = "PK_GENERATOR_REVIEW", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "REVIEW", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "PK_GENERATOR_REVIEW")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_GENERATOR_REVIEW")
 	public int getId() {
 		return id;
 	}

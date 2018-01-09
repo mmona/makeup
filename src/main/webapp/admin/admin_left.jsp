@@ -163,7 +163,7 @@ H1 a {
         </table>
         <ul class="MM">
             <li><a href="admin/brand_add.jsp" target="main">添加新品牌</a></li>
-            <li><a href="admin/brand.jsp" target="main">品牌信息列表</a></li>
+            <li><a href="selectBrand.do" target="main">品牌信息列表</a></li>
         </ul>
       </div>
       <h1 class="type"><a href="javascript:void(0)">销售订单管理</a></h1>
@@ -181,7 +181,7 @@ H1 a {
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
         </table>
         <ul class="MM">
-            <li><a href="admin/question.jsp" target="main">提问信息列表</a></li>
+            <li><a href="selectQuestion.do" target="main">提问信息列表</a></li>
             
         </ul>
       </div>

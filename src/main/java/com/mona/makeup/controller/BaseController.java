@@ -3,6 +3,8 @@ package com.mona.makeup.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mona.makeup.service.AdminService;
+import com.mona.makeup.service.BrandService;
+import com.mona.makeup.service.QuestionService;
 import com.mona.makeup.service.TypeService;
 import com.mona.makeup.service.UserService;
 
@@ -16,6 +18,9 @@ public class BaseController {
 	protected UserService userService;
 	@Autowired
 	protected TypeService typeService;
-	
+	@Autowired
+	protected BrandService brandService;
+	@Autowired
+	protected QuestionService questionService;
 	
 }

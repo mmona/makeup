@@ -5,12 +5,14 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %> --%>
+<base
+	href="${pageContext.request.scheme }://${pageContext.request.serverName }:${pageContext.request.serverPort }${pageContext.request.contextPath }/"> 
 <html>
 <head>
 <script language="JavaScript">
 	function check11() {
 
-		if (document.form1.name.value == "") {
+		if (document.form1.bname.value == "") {
 			alert("类别名称不能为空!");
 			document.form1.name.focus();
 			return false;
@@ -20,7 +22,7 @@
 </script>
 
 
-<link href="images/skin.css" rel="stylesheet" type="text/css" />
+<link href="admin/images/skin.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
 <!--
@@ -45,7 +47,7 @@ body {
 
 				<div align="center">
 
-					<form action="#" method="post" name="form1"
+					<form action="addBrand.do" method="post" name="form1"
 						onSubmit="return check11()">
 
 
@@ -57,13 +59,13 @@ body {
 								<td class="line_table" height="25" align="right" width="40%"><span
 									class="left_bt2">化妆品品牌：</span></td>
 								<td class="line_table" height="25" width="60%"><input
-									type="text" name="name" size="45" value=""></td>
+									type="text" name="bname" size="45" value="" placeholder="品牌名称"></td>
 							</tr>
 							<tr>
 								<td class="line_table" height="25" align="right" width="40%"><span
 									class="left_bt2">化妆品品牌描述：</span></td>
 								<td class="line_table" height="25" width="60%">
-								<textarea rows="12" cols="100" name="description"></textarea>
+								<textarea rows="12" cols="100" name="description"  placeholder="作为对化妆品品牌的描述，可选填"></textarea>
 							</tr>
 
 							<tr>

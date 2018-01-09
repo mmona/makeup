@@ -24,7 +24,7 @@ public class Order {
 	private int delivery;
 	@Id
 	@TableGenerator(name = "PK_GENERATOR_ORDER", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "ORDER", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "PK_GENERATOR_ORDER")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_GENERATOR_ORDER")
 	public int getId() {
 		return id;
 	}

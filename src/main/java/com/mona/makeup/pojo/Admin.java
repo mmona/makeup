@@ -13,7 +13,7 @@ public class Admin {
 	private String password;
 	@Id
 	@TableGenerator(name = "PK_GENERATOR_ADMIN", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "ADMIN", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "PK_GENERATOR_ADMIN")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_GENERATOR_ADMIN")
 	public int getId() {
 		return id;
 	}

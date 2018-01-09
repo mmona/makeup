@@ -31,7 +31,7 @@ public class Product {
 	
 	@Id
 	@TableGenerator(name = "PK_GENERATOR_PRODUCT", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "PRODUCT", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "PK_GENERATOR_PRODUCT")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_GENERATOR_PRODUCT")
 	public int getId() {
 		return id;
 	}

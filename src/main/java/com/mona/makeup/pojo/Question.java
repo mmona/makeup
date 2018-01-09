@@ -19,10 +19,10 @@ public class Question {
 	private String  content;
 	private String times;
 	private User users;
-	private Review review;
+	/*private Review review;*/
 	@Id
 	@TableGenerator(name = "PK_GENERATOR_QUESTION", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "QUESTION", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "PK_GENERATOR_QUESTION")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_GENERATOR_QUESTION")
 	public int getId() {
 		return id;
 	}
@@ -50,12 +50,13 @@ public class Question {
 	public void setUsers(User users) {
 		this.users = users;
 	}
-	@OneToOne(mappedBy="question")
+	/*@OneToOne(mappedBy="question")
+	@JoinColumn(name="reviewid")
 	public Review getReview() {
 		return review;
 	}
 	public void setReview(Review review) {
 		this.review = review;
-	}
+	}*/
 	
 }

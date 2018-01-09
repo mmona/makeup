@@ -1,10 +1,11 @@
 <%@page import="java.util.*" %>
 <%@ page language="java" pageEncoding="utf-8"%>
+
 <html>
 <head>
 <script language="JavaScript">
 	function check11() {
-		if (document.form1.name.value == "") {
+		if (document.form1.bname.value == "") {
 			alert("品牌名称不能为空!");
 			document.form1.name.focus();
 			return false;
@@ -34,7 +35,7 @@ body {
 				<p>修改品牌</p>
 
 				<div align="center">
-					<form action="#" method="post"
+					<form action="updateBrand.do" method="post"
 						name="form1" onSubmit="return check11()">
 						<table id="table2" class="line_table"
 							style="width: 100%; margin: 0; padding: 0" cellSpacing="0"
@@ -44,15 +45,15 @@ body {
 								<td class="line_table" height="25" align="right" width="40%"><span
 									class="left_bt2">品牌类别：</span></td>
 								<td class="line_table" height="25" width="60%"><input
-									type="text" name="name" size="45" value="凉拌菜">
-									<input type="hidden" name="id" value="1" /></td>
+									type="text" name="bname" size="45" value="${brand.bname }">
+									<input type="hidden" name="id" value="${brand.id }" /></td>
 							</tr>
 							<tr>
 								<td class="line_table" height="25" align="right" width="40%"><span
 									class="left_bt2">品牌描述：</span></td>
 								<td class="line_table" height="25" width="60%">
-								<textarea rows="12" cols="100" name="content"  value="dfasdfs"></textarea>
-									<input type="hidden" name="id" value="1" /></td>
+								<textarea rows="12" cols="100" name="description"  >${brand.description }</textarea>
+									
 							</tr>
 							
 

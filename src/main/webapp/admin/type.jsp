@@ -51,9 +51,9 @@ body {
 								<td class="line_table" align="center" width="20%"><span
 									class="left_txt">${type.description}</span></td>
 								<td class="line_table" align="center" ><a
-									href="type_update.jsp" target="main" width="20%">修改</a></td>
+									href="selectTypeById.do?id=${type.id }" target="main" width="20%">修改</a></td>
 								<td class="line_table" align="center"  width="20%"><a
-									href="#" target="main">删除</a></td>
+									href="deleteType.do?id=${type.id }" target="main">删除</a></td>
 							</tr>
 							</c:forEach>
 					</table>
@@ -92,6 +92,7 @@ body {
 					</c:choose> 
 					
 				</td>
+				</tr>
 		</table> 
 				</div>
 			</td>

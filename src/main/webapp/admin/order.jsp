@@ -86,23 +86,44 @@ body {
 								<td class="line_table" align="center"><a
 									href="#">取消</a></td>
 							</tr>
-							
-							
-							
-							<tr>
-								<td class="line_table" align="center" colspan="12" height="20">
-								<span class="left_bt2">第1页
-										&nbsp;&nbsp;共4页
-								</span>&nbsp;&nbsp; 
-								    <a href="#">[首页]</a>
-								    <a href="#">[尾页]</a>&nbsp;&nbsp; 
-								    <a href="#">[上一页]</a>
-									<a href="#">[下一页]</a>
-									
-								</td>
-							</tr>
-							
 					</table>
+					<table width="90%" border="0" align="center" cellpadding="0"
+			cellspacing="0" class="page">
+			<tr>
+				<td width="50%" align="left">共有${result.page.totalCount }条记录，<span
+					style="font-family: 宋体; font-size: 9.0pt; color: black;">第</span><span
+					style="font-family: Tahoma; font-size: 9.0pt; color: black;">
+						${result.page.currentPage}/${result.page.totalPage} </span><span
+					style="font-family: 宋体; font-size: 9.0pt; color: black;">页</span></td>
+				<td width="50%" align="right">
+				<c:choose>
+						<c:when test="${result.page.currentPage eq 1}">首页</c:when>
+						<c:otherwise>
+							<a href="selectType.do">首页</a>
+						</c:otherwise>
+					</c:choose> 
+						<c:choose>
+							<c:when test="${result.page.currentPage eq 1 }">上一页</c:when>
+							<c:otherwise>
+								<a href="selectType.do?curPage=${result.page.currentPage-1}">上一页</a>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+							<c:when test="${result.page.currentPage eq result.page.totalPage }">下一页</c:when>
+							<c:otherwise>
+								<a href="selectType.do?curPage=${result.page.currentPage+1 }">下一页</a>
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+						<c:when test="${result.page.currentPage eq result.page.totalPage }">尾页</c:when>
+						<c:otherwise>
+							<a href="selectType.do?curPage=${result.page.totalPage }">尾页</a>
+						</c:otherwise>
+					</c:choose> 
+					
+				</td>
+				</tr>
+		</table> 
 				</div>
 				
 				

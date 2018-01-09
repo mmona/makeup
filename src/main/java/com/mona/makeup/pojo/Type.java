@@ -15,7 +15,7 @@ public class Type {
 	/*private Product product;*/
 	@Id
 	@TableGenerator(name = "PK_GENERATOR_TYPE", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "TYPE", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "PK_GENERATOR_TYPE")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_GENERATOR_TYPE")
 	public int getId() {
 		return id;
 	}

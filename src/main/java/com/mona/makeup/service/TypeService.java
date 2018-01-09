@@ -38,9 +38,28 @@ public class TypeService extends BaseService{
 	
 	@Transactional
 	public boolean addType(Type type){
-		boolean save = commonDao.save(type);
-		return save;
+		/*int addtype = typeDao.addtype(type);
+		if(addtype>0){
+			return true;
+		}
+		return false;*/
+		return typeDao.addtype(type);
 	}
-	
-	
+	//select type by id
+	public Type selectTypeById(int id ){
+		return typeDao.selectTypeById(id);
+	}
+	//update type 
+	@Transactional
+	public boolean updateType(Type type){
+		int isUpdate = typeDao.updateType(type);
+		if(isUpdate>0){
+			return true;
+		}
+		return false;
+	}
+	@Transactional
+	public boolean deleteType(int id){
+		return typeDao.deleteType(id);
+	}
 }

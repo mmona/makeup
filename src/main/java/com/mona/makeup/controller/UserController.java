@@ -4,24 +4,23 @@ import javax.websocket.Session;
 
 import org.apache.catalina.manager.util.SessionUtils;
 import org.apache.poi.util.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mona.makeup.dao.UserDao;
 import com.mona.makeup.page.utils.Page;
 import com.mona.makeup.page.utils.Result;
 import com.mona.makeup.pojo.User;
 import com.mona.makeup.service.UserService;
 import com.mona.makeup.utils.StringUtils;
 import com.mysql.jdbc.StreamingNotifiable;
-
-
-
-
-
 @Controller
 public class UserController extends BaseController{
+	@Autowired
+	private UserDao usrDao;
 	@RequestMapping(value="seletAllUser")
 	public ModelAndView selectUser(String curPage,HttpSession session){
 		ModelAndView modelAndView = new ModelAndView();
@@ -32,8 +31,6 @@ public class UserController extends BaseController{
 			int beginIndex = selectUser.getPage().getBeginIndex();
 			int totalPage = selectUser.getPage().getTotalPage();
 			session.setAttribute("pageSize", pageSize);
-			session.setAttribute("beginIndex", beginIndex);
-			session.setAttribute("totalPage", totalPage);
 			modelAndView.addObject("result", selectUser);
 			modelAndView.setViewName("admin/userManager.jsp");
 			session.setAttribute("curPage",curPage);
@@ -79,9 +76,8 @@ public class UserController extends BaseController{
 		if(isDelete){
 			String  curPage  = (String)session.getAttribute("curPage");
 			int  pageSize = (int) session.getAttribute("pageSize");
-			int   beginIndex = (int) session.getAttribute("beginIndex");
-			int  totalPage = (int) session.getAttribute("totalPage");
-			if(beginIndex<pageSize*totalPage-1){
+			int userCount = usrDao.selectUserCount();
+			if(userCount%pageSize==0){
 				int a = Integer.parseInt(curPage)-1;
 				curPage = String.valueOf(a);
 			}else {

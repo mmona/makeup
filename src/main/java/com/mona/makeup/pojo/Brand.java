@@ -12,10 +12,10 @@ public class Brand {
 	private int id ;
 	private String bname;
 	private String description;
-	private Product product;
+	/*private Product product;*/
 	@Id
 	@TableGenerator(name = "PK_GENERATOR_BRAND", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "BRAND", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "PK_GENERATOR_BRAND")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_GENERATOR_BRAND")
 	
 	public int getId() {
 		return id;
@@ -35,13 +35,13 @@ public class Brand {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	@OneToOne(mappedBy="brand")
+	/*@OneToOne(mappedBy="brand")
 	public Product getProduct() {
 		return product;
 	}
 	public void setProduct(Product product) {
 		this.product = product;
-	}
+	}*/
 	
 	
 	

@@ -37,7 +37,7 @@ public class User {
 	private List<Order> order = new ArrayList<>();
 	@Id
 	@TableGenerator(name = "PK_GENERATOR_USER", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "USER", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "PK_GENERATOR_USER")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_GENERATOR_USER")
 	public int getId() {
 		return id;
 	}
