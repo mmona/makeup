@@ -27,34 +27,33 @@ body {
 			<td valign="top" bgcolor="#F7F8F9">
 
 				<div align="center" width="120">
-					<form action="../OrderServlet" name="form1"
-						method="post">
+					<form action="../OrderServlet" name="form1" method="post">
 						<table id="table1" class="line_table"
 							style="width: 100%; margin: 0; padding: 0" cellSpacing="0"
 							cellPadding="0">
 							<tbody style="margin: 0; padding: 0">
-
-								<tr>
-									<td class="line_table" align="right" width="40%"><span
-										class="left_bt2">按用户ID查询</span></td>
-									<td class="line_table" align="left" width="60%"><input
-										type="text" name="userid" size="20"> <input
-										type="submit" value="查询"></td>
-								</tr>
-								<tr>
-									<td class="line_table" align="right" width="40%"><span
-										class="left_bt2">按化妆品名称查询</span></td>
-									<td class="line_table" align="left" width="60%"><input
-										type="text" name="menuname" size="20"> <input
-										type="submit" value="查询"></td>
 								<tr>
 									<td class="line_table" align="right" width="40%"><span
 										class="left_bt2">按销售日期查询</span></td>
 									<td class="line_table" align="left" width="60%"><input
-										type="text" name="date" size="20" readOnly
-										onClick="setDay(this);"> <input type="submit"
-										value="查询"></td>
+										type="text" name="times" size="20" readOnly
+										onClick="setDay(this);"></td>
+								</tr>
+								<tr>
+									<td class="line_table" align="right" width="40%"><span
+										class="left_bt2">按是否派送查询</span></td>
+									<td class="line_table" align="left" width="60%"><select>
+											<option name="delivery" value="1" size="20">是</option>
+											<option name="delivery" value="0" size="20">否</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td class="line_table" align="right" width="40%"><input
+										type="submit" value="查询"></td>
+
+								</tr>
 						</table>
+
 					</form>
 				</div>
 
@@ -71,7 +70,7 @@ body {
 							</tr>
 							<tr>
 								<td class="line_table" align="center"><span
-									class="left_bt2">用户ID</span></td>
+									class="left_bt2">用户名</span></td>
 								<td class="line_table" align="center"><span
 									class="left_bt2">真实姓名</span></td>
 								<td class="line_table" align="center"><span
@@ -90,7 +89,7 @@ body {
 									class="left_bt2">订购时间</span></td>
 								<td class="line_table" align="center"><span
 									class="left_bt2">是否派送</span></td>
-								
+
 							</tr>
 
 							<tr>
@@ -115,52 +114,39 @@ body {
 								<td class="line_table" align="center"><span
 									class="left_txt">是</span></td>
 							</tr>
-							
-							<tr>
-								<td class="line_table" align="center"><span
-									class="left_txt">4</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">咸肉菜饭</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">12.0</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">12.0</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">2017-06-20 16:35:40</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">是</span></td>
-							</tr>
-
-							<tr>
-								<td class="line_table" align="center"><span
-									class="left_txt">4</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">水煮鱼</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">3</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">32.0</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">96.0</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">2017-06-21 13:57:36</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">否</span></td>
-							</tr>
+					</table>
+					<table width="90%" border="0" align="center" cellpadding="0"
+						cellspacing="0" class="page">
+						<tr>
+							<td width="50%" align="left">共有${result.page.totalCount }条记录，<span
+								style="font-family: 宋体; font-size: 9.0pt; color: black;">第</span><span
+								style="font-family: Tahoma; font-size: 9.0pt; color: black;">
+									${result.page.currentPage}/${result.page.totalPage} </span><span
+								style="font-family: 宋体; font-size: 9.0pt; color: black;">页</span></td>
+							<td width="50%" align="right"><c:choose>
+									<c:when test="${result.page.currentPage eq 1}">首页</c:when>
+									<c:otherwise>
+										<a href="selectType.do">首页</a>
+									</c:otherwise>
+								</c:choose> <c:choose>
+									<c:when test="${result.page.currentPage eq 1 }">上一页</c:when>
+									<c:otherwise>
+										<a href="selectType.do?curPage=${result.page.currentPage-1}">上一页</a>
+									</c:otherwise>
+								</c:choose> <c:choose>
+									<c:when
+										test="${result.page.currentPage eq result.page.totalPage }">下一页</c:when>
+									<c:otherwise>
+										<a href="selectType.do?curPage=${result.page.currentPage+1 }">下一页</a>
+									</c:otherwise>
+								</c:choose> <c:choose>
+									<c:when
+										test="${result.page.currentPage eq result.page.totalPage }">尾页</c:when>
+									<c:otherwise>
+										<a href="selectType.do?curPage=${result.page.totalPage }">尾页</a>
+									</c:otherwise>
+								</c:choose></td>
+						</tr>
 					</table>
 				</div>
 

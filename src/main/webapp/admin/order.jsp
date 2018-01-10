@@ -1,5 +1,6 @@
 <%@page import="java.util.*"%>
 <%@ page language="java" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <link href="images/skin.css" rel="stylesheet" type="text/css" />
@@ -31,12 +32,14 @@ body {
 						cellPadding="0">
 						<tbody style="margin: 0; padding: 0">
 							<tr>
-								<td class="line_table" align="center" colspan="12"><span
+								<td class="line_table" align="center" colspan="13"><span
 									class="left_bt2">销售订单查询结果信息列表</span></td>
 							</tr>
 							<tr>
-								<td class="line_table" align="center"><span
+							<td class="line_table" align="center"><span
 									class="left_bt2">用户ID</span></td>
+								<td class="line_table" align="center"><span
+									class="left_bt2">用户名</span></td>
 								<td class="line_table" align="center"><span
 									class="left_bt2">真实姓名</span></td>
 								<td class="line_table" align="center"><span
@@ -58,34 +61,37 @@ body {
 								<td class="line_table" align="center" colspan="2"><span
 									class="left_bt2">确认订单</span></td>
 							</tr>
-						
+								 <c:forEach items="${result.list}" var="order">
                              <tr>
 								<td class="line_table" align="center"><span
-									class="left_txt">4</span></td>
+									class="left_txt">${order.user.id}</span></td>
+									<td class="line_table" align="center"><span
+									class="left_txt">${order.user.username }</span></td>
 								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
+									class="left_txt">${order.user.realname }</span></td>
 								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
+									class="left_txt">${order.user.telephone }</span></td>
 								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
+									class="left_txt">${order.user.adderss }</span></td>
 								<td class="line_table" align="center"><span
-									class="left_txt">糖醋排骨</span></td>
+									class="left_txt">${order.products.name }</span></td>
 								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
+									class="left_txt">${order.productsum }</span></td>
 								<td class="line_table" align="center"><span
-									class="left_txt">24</span></td>
+									class="left_txt">${order.products.price1 }</span></td>
 								<td class="line_table" align="center"><span
-									class="left_txt">24</span></td>
+									class="left_txt">${order.products.price1 }*${order.products.sum1 }</span></td>
 								<td class="line_table" align="center"><span
-									class="left_txt">2017-06-20 16:35:40</span></td>
+									class="left_txt">${order.times }</span></td>
 								<td class="line_table" align="center"><span
-									class="left_txt">否</span></td>
-
+									class="left_txt">${order.delivery}</span></td>
+									
 								<td class="line_table" align="center"><a
 									href="#">确认</a></td>
 								<td class="line_table" align="center"><a
 									href="#">取消</a></td>
 							</tr>
+							</c:forEach>
 					</table>
 					<table width="90%" border="0" align="center" cellpadding="0"
 			cellspacing="0" class="page">
@@ -99,25 +105,25 @@ body {
 				<c:choose>
 						<c:when test="${result.page.currentPage eq 1}">首页</c:when>
 						<c:otherwise>
-							<a href="selectType.do">首页</a>
+							<a href="selectOrder.do">首页</a>
 						</c:otherwise>
 					</c:choose> 
 						<c:choose>
 							<c:when test="${result.page.currentPage eq 1 }">上一页</c:when>
 							<c:otherwise>
-								<a href="selectType.do?curPage=${result.page.currentPage-1}">上一页</a>
+								<a href="selectOrder.do?curPage=${result.page.currentPage-1}">上一页</a>
 							</c:otherwise>
 						</c:choose>
 						<c:choose>
 							<c:when test="${result.page.currentPage eq result.page.totalPage }">下一页</c:when>
 							<c:otherwise>
-								<a href="selectType.do?curPage=${result.page.currentPage+1 }">下一页</a>
+								<a href="selectOrder.do?curPage=${result.page.currentPage+1 }">下一页</a>
 							</c:otherwise>
 						</c:choose>
 						<c:choose>
 						<c:when test="${result.page.currentPage eq result.page.totalPage }">尾页</c:when>
 						<c:otherwise>
-							<a href="selectType.do?curPage=${result.page.totalPage }">尾页</a>
+							<a href="selectOrder.do?curPage=${result.page.totalPage }">尾页</a>
 						</c:otherwise>
 					</c:choose> 
 					

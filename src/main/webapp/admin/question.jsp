@@ -46,14 +46,14 @@ body {
 								 <c:forEach items="${result.list}" var="question">
 							<tr>
 								<td class="line_table" align="center"><a
-									href="menus_update.jsp?">${question.users.username }</a></td>
+									href="selectQuestionById.do?id=${question.id}">${question.users.username }</a></td>
 								<td class="line_table" align="center"><span
 									class="left_txt">${question.content }</span></td>
 								<td class="line_table" align="center"><span
 									class="left_txt">${question.times }</span></td>
 								<td class="line_table" align="center"><a
-									href="question_update.jsp">回复</a></td>
-								<td class="line_table" align="center"><a href="#">删除</a></td>
+									href="selectQuestionById.do?id=${question.id}">回复</a></td>
+								<td class="line_table" align="center"><a href="deleteQuestion.do?id=${question.id}">删除</a></td>
 							</tr>
 							</c:forEach>
 					</table>
@@ -68,24 +68,24 @@ body {
 							<td width="50%" align="right"><c:choose>
 									<c:when test="${result.page.currentPage eq 1}">首页</c:when>
 									<c:otherwise>
-										<a href="selectType.do">首页</a>
+										<a href="selectQuestion.do">首页</a>
 									</c:otherwise>
 								</c:choose> <c:choose>
 									<c:when test="${result.page.currentPage eq 1 }">上一页</c:when>
 									<c:otherwise>
-										<a href="selectType.do?curPage=${result.page.currentPage-1}">上一页</a>
+										<a href="selectQuestion.do?curPage=${result.page.currentPage-1}">上一页</a>
 									</c:otherwise>
 								</c:choose> <c:choose>
 									<c:when
 										test="${result.page.currentPage eq result.page.totalPage }">下一页</c:when>
 									<c:otherwise>
-										<a href="selectType.do?curPage=${result.page.currentPage+1 }">下一页</a>
+										<a href="selectQuestion.do?curPage=${result.page.currentPage+1 }">下一页</a>
 									</c:otherwise>
 								</c:choose> <c:choose>
 									<c:when
 										test="${result.page.currentPage eq result.page.totalPage }">尾页</c:when>
 									<c:otherwise>
-										<a href="selectType.do?curPage=${result.page.totalPage }">尾页</a>
+										<a href="selectQuestion.do?curPage=${result.page.totalPage }">尾页</a>
 									</c:otherwise>
 								</c:choose></td>
 						</tr>

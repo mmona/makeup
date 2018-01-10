@@ -1,5 +1,6 @@
 package com.mona.makeup.pojo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ public class Question {
 	private String  content;
 	private String times;
 	private User users;
-	/*private Review review;*/
+	private List<Review> reviews= new ArrayList<>();
 	@Id
 	@TableGenerator(name = "PK_GENERATOR_QUESTION", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "QUESTION", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_GENERATOR_QUESTION")
@@ -50,13 +51,15 @@ public class Question {
 	public void setUsers(User users) {
 		this.users = users;
 	}
-	/*@OneToOne(mappedBy="question")
-	@JoinColumn(name="reviewid")
-	public Review getReview() {
-		return review;
+	@OneToMany(mappedBy="question")
+	public List<Review> getReview() {
+		return reviews;
 	}
-	public void setReview(Review review) {
-		this.review = review;
-	}*/
+	public void setReview(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+	
+	
+	
 	
 }

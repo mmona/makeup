@@ -1,9 +1,13 @@
 package com.mona.makeup.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.mchange.v2.async.StrandedTaskReporting;
 import com.mona.makeup.page.utils.Page;
 import com.mona.makeup.pojo.Question;
 
@@ -26,6 +30,21 @@ public class QuestionDao extends CommonDao {
 		return null;
 		
 	}
-	
+	//select question by id
+	public Question selectQuestionById(int id){
+		String sql="select q from Question q where q.id=:id";
+		Map<String,Object> params= new HashMap<>();
+		params.put("id", id);
+		List<Question> query = (List<Question>) this.query(sql,params);
+		if(query!=null&&!query.isEmpty()){
+			return query.get(0);
+		}
+		return null;
+	}
+	//delete　ｑｕｅｓｔｉｏｎ　ｂｙ　ｉｄ
+	@Transactional
+	public boolean deleteQuestion(int id){
+		return this.delete(id, Question.class);
+	}
 	
 }

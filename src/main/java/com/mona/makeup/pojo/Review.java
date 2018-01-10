@@ -25,8 +25,8 @@ public class Review {
 	public void setId(int id) {
 		this.id = id;
 	}
-	@OneToOne
-	@JoinColumn(name="reviewid")
+	@ManyToOne
+	@JoinColumn(name ="questionid")
 	public Question getQuestion() {
 		return question;
 	}

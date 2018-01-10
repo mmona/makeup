@@ -4,7 +4,7 @@
 <head>
 <script language="JavaScript">
 	function check11() {
-		if (document.form1.name.value == "") {
+		if (document.form1.content.value == "") {
 			alert("回复内容不能为空!");
 			document.form1.name.focus();
 			return false;
@@ -34,7 +34,7 @@ body {
 				<p>回复问题</p>
 
 				<div align="center">
-					<form action="#" method="post"
+					<form action="reviewQuestion.do" method="post"
 						name="form1" onSubmit="return check11()">
 						<table id="table2" class="line_table"
 							style="width: 100%; margin: 0; padding: 0" cellSpacing="0"
@@ -44,15 +44,16 @@ body {
 								<td class="line_table" height="25" align="right" width="40%"><span
 									class="left_bt2">问题：</span></td>
 								<td class="line_table" height="25" width="60%">
-								<textarea rows="12" cols="100" name="content"  value="这是个问题"> 这是个问题</textarea>
-									<input type="hidden" name="id" value="1" /></td>
+								<textarea rows="12" cols="100" name="question" placeholder="${question.content }" ></textarea>
+									
+								</td>
 							</tr>
 							<tr>
 								<td class="line_table" height="25" align="right" width="40%"><span
-									class="left_bt2">品牌描述：</span></td>
+									class="left_bt2">回复：</span></td>
 								<td class="line_table" height="25" width="60%">
-								<textarea rows="12" cols="100" name="content"  value="dfasdfs"></textarea>
-									<input type="hidden" name="id" value="1" /></td>
+								<textarea rows="12" cols="100" name="content"  value=""></textarea>
+								</td>
 							</tr>
 							
 
