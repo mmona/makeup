@@ -34,7 +34,7 @@ public class User {
 	private Integer status;
 	private List<Question> questions = new ArrayList<>();
 	private List<Review> reviews = new ArrayList<>();
-	private List<Order> order = new ArrayList<>();
+	private List<Orderr> orderr = new ArrayList<>();
 	@Id
 	@TableGenerator(name = "PK_GENERATOR_USER", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "USER", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_GENERATOR_USER")
@@ -126,18 +126,18 @@ public class User {
 	}
 	
     @OneToMany(mappedBy="user")
-    public List<Order> getOrder() {
-		return order;
+    public List<Orderr> getMorder() {
+		return orderr;
 	}
-	public void setOrder(List<Order> order) {
-		this.order = order;
+	public void setMorder(List<Orderr> order) {
+		this.orderr = order;
 	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", realname=" + realname
 				+ ", sex=" + sex + ", age=" + age + ", card=" + card + ", address=" + address + ", telephone="
 				+ telephone + ", email=" + email + ", code=" + code + ", status=" + status + ", questions=" + questions
-				+ ", reviews=" + reviews + ", order=" + order + "]";
+				+ ", reviews=" + reviews + ", order=" + orderr + "]";
 	}
 
 	

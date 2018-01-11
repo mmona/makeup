@@ -8,7 +8,7 @@
 		<class>com.mona.makeup.pojo.User</class>
 		<class>com.mona.makeup.pojo.Admin</class>
 		<class>com.mona.makeup.pojo.Brand</class>
-		<class>com.mona.makeup.pojo.Order</class>
+		<class>com.mona.makeup.pojo.Orderr</class>
 		<class>com.mona.makeup.pojo.Product</class>
 		<class>com.mona.makeup.pojo.Question</class>
 		<class>com.mona.makeup.pojo.Review</class>

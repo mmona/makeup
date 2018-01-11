@@ -1,10 +1,11 @@
 <%@page import="java.util.*"%>
 <%@ page language="java" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="images/skin.css" rel="stylesheet" type="text/css" />
-<script src="js/date.js" type="text/javascript"></script>
+<link href="admin/images/skin.css" rel="stylesheet" type="text/css" />
+<script src="admin/js/date.js" type="text/javascript"></script>
 <style type="text/css">
 <!--
 body {
@@ -27,7 +28,7 @@ body {
 			<td valign="top" bgcolor="#F7F8F9">
 
 				<div align="center" width="120">
-					<form action="../OrderServlet" name="form1" method="post">
+					<form action="searchOrder.do" name="form1" method="get">
 						<table id="table1" class="line_table"
 							style="width: 100%; margin: 0; padding: 0" cellSpacing="0"
 							cellPadding="0">
@@ -35,16 +36,19 @@ body {
 								<tr>
 									<td class="line_table" align="right" width="40%"><span
 										class="left_bt2">按销售日期查询</span></td>
-									<td class="line_table" align="left" width="60%"><input
+									<td class="line_table" align="left" width="60%">
+									<input
 										type="text" name="times" size="20" readOnly
-										onClick="setDay(this);"></td>
+										onClick="setDay(this);"></input></td>
 								</tr>
 								<tr>
 									<td class="line_table" align="right" width="40%"><span
 										class="left_bt2">按是否派送查询</span></td>
-									<td class="line_table" align="left" width="60%"><select>
-											<option name="delivery" value="1" size="20">是</option>
-											<option name="delivery" value="0" size="20">否</option>
+									<td class="line_table" align="left" width="60%">
+									<select name="delivery">
+									    <option  value="" size="20">无</option>
+											<option  value="1" size="20">是</option>
+											<option  value="0" size="20">否</option>
 									</select></td>
 								</tr>
 								<tr>
@@ -65,10 +69,14 @@ body {
 						cellPadding="0">
 						<tbody style="margin: 0; padding: 0">
 							<tr>
-								<td class="line_table" align="center" colspan="12"><span
+								<td class="line_table" align="center" colspan="13"><span
 									class="left_bt2">销售订单查询结果信息列表</span></td>
 							</tr>
 							<tr>
+							<td class="line_table" align="center"><span
+									class="left_bt2">订单ID</span></td>
+								<td class="line_table" align="center"><span
+									class="left_bt2">用户ID</span></td>
 								<td class="line_table" align="center"><span
 									class="left_bt2">用户名</span></td>
 								<td class="line_table" align="center"><span
@@ -89,31 +97,55 @@ body {
 									class="left_bt2">订购时间</span></td>
 								<td class="line_table" align="center"><span
 									class="left_bt2">是否派送</span></td>
+									<td class="line_table" align="center"><span
+									class="left_bt2">是否送达</span></td>
 
 							</tr>
+							<c:forEach items="${result.list}" var="order">
+								<tr>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.id}</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.user.id}</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.user.username }</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.user.realname }</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.user.telephone }</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.user.address }</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.product.name }</span></td>
 
-							<tr>
-								<td class="line_table" align="center"><span
-									class="left_txt">4</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">糖醋排骨</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">1</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">24.0</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">24.0</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">2017-06-20 16:35:40</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">是</span></td>
-							</tr>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.product.price2 }</span></td>
+										<td class="line_table" align="center"><span
+										class="left_txt">${order.product.sum2 }</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.product.price2*order.product.sum2  }</span></td>
+										<td class="line_table" align="center"><span
+										class="left_txt">${order.times }</span></td>
+									<td class="line_table" align="center"><c:choose>
+											<c:when test="${order.delivery==1 }">
+												<span class="left_txt">是</span>
+											</c:when>
+											<c:otherwise>
+												<span class="left_txt">否</span>
+											</c:otherwise>
+											</c:choose>
+										</td>
+										<td class="line_table" align="center"><c:choose>
+											<c:when test="${order.reach==1 }">
+												<span class="left_txt">是</span>
+											</c:when>
+											<c:otherwise>
+													<span class="left_txt">否</span>
+											</c:otherwise>
+											</c:choose>
+										</td>
+								</tr>
+							</c:forEach>
 					</table>
 					<table width="90%" border="0" align="center" cellpadding="0"
 						cellspacing="0" class="page">

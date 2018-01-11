@@ -172,7 +172,7 @@ H1 a {
         </table>
         <ul class="MM">
           <li><a href="selectOrder.do" target="main">销售订单信息列表</a></li>
-          <li><a href="admin/order_search.jsp" target="main">销售订单查询</a></li>
+          <li><a href="searchOrder.do" target="main">销售订单查询</a></li>
           <li><a href="admin/order_statistic.jsp" target="main">本日销售额统计</a></li>
         </ul>
       </div>

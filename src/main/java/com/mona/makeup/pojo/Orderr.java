@@ -10,21 +10,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.TableGenerator;
 
 import org.apache.catalina.LifecycleListener;
 
 @Entity
-public class Order {
+public class Orderr {
 	private int id;
 	private User user;
-	private List<Product> products =new ArrayList<Product>();
+	private Product product ;
 	private int productsum;
 	private String  times;
 	private int delivery;
+	private int reach;
 	@Id
-	@TableGenerator(name = "PK_GENERATOR_ORDER", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "ORDER", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_GENERATOR_ORDER")
+	@TableGenerator(name = "PK_GENERATOR_ORDERR", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "ORDERR", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_GENERATOR_ORDERR")
 	public int getId() {
 		return id;
 	}
@@ -39,14 +41,7 @@ public class Order {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	@OneToMany(mappedBy="order")
 	
-	public List<Product> getProducts() {
-		return products;
-	}
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
 	public int getProductsum() {
 		return productsum;
 	}
@@ -65,6 +60,19 @@ public class Order {
 	public void setDelivery(int delivery) {
 		this.delivery = delivery;
 	}
-	
+	@OneToOne
+	@JoinColumn(name="productid")
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	public int getReach() {
+		return reach;
+	}
+	public void setReach(int reach) {
+		this.reach = reach;
+	}
 	
 }

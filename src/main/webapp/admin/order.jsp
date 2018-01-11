@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<link href="images/skin.css" rel="stylesheet" type="text/css" />
+<link href="admin/images/skin.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
 <!--
@@ -32,11 +32,13 @@ body {
 						cellPadding="0">
 						<tbody style="margin: 0; padding: 0">
 							<tr>
-								<td class="line_table" align="center" colspan="13"><span
+								<td class="line_table" align="center" colspan="15"><span
 									class="left_bt2">销售订单查询结果信息列表</span></td>
 							</tr>
 							<tr>
-							<td class="line_table" align="center"><span
+								<td class="line_table" align="center"><span
+									class="left_bt2">订单ID</span></td>
+								<td class="line_table" align="center"><span
 									class="left_bt2">用户ID</span></td>
 								<td class="line_table" align="center"><span
 									class="left_bt2">用户名</span></td>
@@ -49,92 +51,130 @@ body {
 								<td class="line_table" align="center"><span
 									class="left_bt2">化妆品名称</span></td>
 								<td class="line_table" align="center"><span
-									class="left_bt2">订购数量</span></td>
-								<td class="line_table" align="center"><span
 									class="left_bt2">单价(元)</span></td>
 								<td class="line_table" align="center"><span
 									class="left_bt2">合计(元)</span></td>
 								<td class="line_table" align="center"><span
 									class="left_bt2">订购时间</span></td>
 								<td class="line_table" align="center"><span
+									class="left_bt2">订购数量</span></td>
+								<td class="line_table" align="center"><span
 									class="left_bt2">是否派送</span></td>
+									<td class="line_table" align="center"><span
+									class="left_bt2">是否送达</span></td>
 								<td class="line_table" align="center" colspan="2"><span
 									class="left_bt2">确认订单</span></td>
 							</tr>
-								 <c:forEach items="${result.list}" var="order">
-                             <tr>
-								<td class="line_table" align="center"><span
-									class="left_txt">${order.user.id}</span></td>
+							<c:forEach items="${result.list}" var="order">
+								<tr>
 									<td class="line_table" align="center"><span
-									class="left_txt">${order.user.username }</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">${order.user.realname }</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">${order.user.telephone }</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">${order.user.adderss }</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">${order.products.name }</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">${order.productsum }</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">${order.products.price1 }</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">${order.products.price1 }*${order.products.sum1 }</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">${order.times }</span></td>
-								<td class="line_table" align="center"><span
-									class="left_txt">${order.delivery}</span></td>
-									
-								<td class="line_table" align="center"><a
-									href="#">确认</a></td>
-								<td class="line_table" align="center"><a
-									href="#">取消</a></td>
-							</tr>
+										class="left_txt">${order.id}</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.user.id}</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.user.username }</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.user.realname }</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.user.telephone }</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.user.address }</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.product.name }</span></td>
+
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.product.price2 }</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.product.price2*order.product.sum2  }</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.times }</span></td>
+									<td class="line_table" align="center"><span
+										class="left_txt">${order.product.sum2 }</span></td>
+									<td class="line_table" align="center"><c:choose>
+											<c:when test="${order.delivery==1 }">
+												<span class="left_txt">是</span>
+											</c:when>
+											<c:otherwise>
+												<span class="left_txt">否</span>
+											</c:otherwise>
+											</c:choose>
+										</td>
+										<td class="line_table" align="center"><c:choose>
+											<c:when test="${order.reach==1 }">
+												<span class="left_txt">是</span>
+											</c:when>
+											<c:when test="${order.delivery==0}">
+												<span class="left_txt">否</span>
+											</c:when>
+											<c:otherwise>
+												<a href="updateReach.do?id=${order.id}">否</a>
+											</c:otherwise>
+											</c:choose>
+										</td>
+									<td class="line_table" align="center">
+									<c:choose>
+									<c:when test="${order.delivery==1 }">
+									<span class="left_txt">已确认</span>
+											</c:when>
+											<c:otherwise>
+												<a href="updateOrder.do?id=${order.id}">确认</a>
+											</c:otherwise>
+									</c:choose>
+									</td>
+									<td class="line_table" align="center">
+									<c:choose>
+									<c:when test="${order.delivery==1&&order.reach==1}">
+										<a href="deleteOrder.do?id=${order.id}">删除</a></td>
+											</c:when>
+										<c:when test="${order.delivery==1&&order.reach==0}">
+										<a href="updatedelivery.do?id=${order.id}">取消</a></td>
+											</c:when>
+											<c:otherwise>
+													<a href="deleteOrder.do?id=${order.id}">取消</a></td>
+											</c:otherwise>
+									</c:choose>
+								
+								</tr>
 							</c:forEach>
 					</table>
 					<table width="90%" border="0" align="center" cellpadding="0"
-			cellspacing="0" class="page">
-			<tr>
-				<td width="50%" align="left">共有${result.page.totalCount }条记录，<span
-					style="font-family: 宋体; font-size: 9.0pt; color: black;">第</span><span
-					style="font-family: Tahoma; font-size: 9.0pt; color: black;">
-						${result.page.currentPage}/${result.page.totalPage} </span><span
-					style="font-family: 宋体; font-size: 9.0pt; color: black;">页</span></td>
-				<td width="50%" align="right">
-				<c:choose>
-						<c:when test="${result.page.currentPage eq 1}">首页</c:when>
-						<c:otherwise>
-							<a href="selectOrder.do">首页</a>
-						</c:otherwise>
-					</c:choose> 
-						<c:choose>
-							<c:when test="${result.page.currentPage eq 1 }">上一页</c:when>
-							<c:otherwise>
-								<a href="selectOrder.do?curPage=${result.page.currentPage-1}">上一页</a>
-							</c:otherwise>
-						</c:choose>
-						<c:choose>
-							<c:when test="${result.page.currentPage eq result.page.totalPage }">下一页</c:when>
-							<c:otherwise>
-								<a href="selectOrder.do?curPage=${result.page.currentPage+1 }">下一页</a>
-							</c:otherwise>
-						</c:choose>
-						<c:choose>
-						<c:when test="${result.page.currentPage eq result.page.totalPage }">尾页</c:when>
-						<c:otherwise>
-							<a href="selectOrder.do?curPage=${result.page.totalPage }">尾页</a>
-						</c:otherwise>
-					</c:choose> 
-					
-				</td>
-				</tr>
-		</table> 
+						cellspacing="0" class="page">
+						<tr>
+							<td width="50%" align="left">共有${result.page.totalCount }条记录，<span
+								style="font-family: 宋体; font-size: 9.0pt; color: black;">第</span><span
+								style="font-family: Tahoma; font-size: 9.0pt; color: black;">
+									${result.page.currentPage}/${result.page.totalPage} </span><span
+								style="font-family: 宋体; font-size: 9.0pt; color: black;">页</span></td>
+							<td width="50%" align="right"><c:choose>
+									<c:when test="${result.page.currentPage eq 1}">首页</c:when>
+									<c:otherwise>
+										<a href="selectOrder.do">首页</a>
+									</c:otherwise>
+								</c:choose> <c:choose>
+									<c:when test="${result.page.currentPage eq 1 }">上一页</c:when>
+									<c:otherwise>
+										<a href="selectOrder.do?curPage=${result.page.currentPage-1}">上一页</a>
+									</c:otherwise>
+								</c:choose> <c:choose>
+									<c:when
+										test="${result.page.currentPage eq result.page.totalPage }">下一页</c:when>
+									<c:otherwise>
+										<a href="selectOrder.do?curPage=${result.page.currentPage+1 }">下一页</a>
+									</c:otherwise>
+								</c:choose> <c:choose>
+									<c:when
+										test="${result.page.currentPage eq result.page.totalPage }">尾页</c:when>
+									<c:otherwise>
+										<a href="selectOrder.do?curPage=${result.page.totalPage }">尾页</a>
+									</c:otherwise>
+								</c:choose></td>
+						</tr>
+					</table>
 				</div>
-				
-				
-				
-				
+
+
+
+
 			</td>
 		</tr>
 	</table>

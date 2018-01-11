@@ -5,19 +5,21 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mona.makeup.page.utils.Page;
-import com.mona.makeup.pojo.Order;
+import com.mona.makeup.pojo.Orderr;
 @Repository
 public class OrderDao extends CommonDao{
 	//count order
 	public Integer countOrder(String times,Integer delivery){
-		StringBuffer buffer =  new StringBuffer("Select Count(*) from Order o  where 1=1");
+		StringBuffer buffer =  new StringBuffer("Select Count(*) from Orderr o where 1=1");
 		Map<String,Object> params= new HashMap<>();
 		if(!"".equals(times)&&times!=null){
 			buffer.append(" and o.times=:times ");
 			params.put("times", times);
-		}else  if(null != delivery){
+		}
+		if(null != delivery){
 			buffer.append(" and o.delivery=:delivery ");
 			params.put("delivery",delivery);
 		}
@@ -26,23 +28,56 @@ public class OrderDao extends CommonDao{
 		return Integer.parseInt(query.get(0).toString());
 	}
 	//seelct Order by Page 
-	public List<Order> selectOrder(Page page,String times,Integer delivery){
-		StringBuffer buffer =  new StringBuffer("Select o from Order o where 1=1");
+	public List<Orderr> selectOrder(Page page,String times,Integer delivery){
+		StringBuffer buffer =  new StringBuffer("Select o from Orderr o where 1=1");
 		
 		Map<String,Object> params= new HashMap<>();
-		if(!"".equals(times)&&times!=null){
+		if(null != times){
 			buffer.append(" and o.times=:times ");
 			params.put("times", times);
-		}else  if(null != delivery){
-			buffer.append(" and o.delivery=:delivery ");
+		}
+		if(null != delivery){
+			buffer.append(" and o.delivery=:delivery");
 			params.put("delivery",delivery);
 		}
+		buffer.append(" order by o.times desc");
 		String sql = buffer.toString();
-		List<Order> query=this.query(sql, Order.class,page.getBeginIndex(), page.getPageSize(),params);
+		List<Orderr> query=this.query(sql,Orderr.class,page.getBeginIndex(), page.getPageSize(),params);
 
 		if(query!=null&&!query.isEmpty()){
 			return query;
 		}
 		return null;
+	}
+	//update delivery
+	@Transactional
+	public int updateOrder(Orderr orderr){
+		String sql="update Orderr o set o.delivery=:delivery where o.id=:id";
+		Map<String, Object> params= new HashMap<>();
+		params.put("delivery", orderr.getDelivery());
+		params.put("id", orderr.getId());
+		int count = this.execRawSql(sql, params);
+		if(count>0){
+			return count;
+		}
+		return 0;
+	}
+	//update reach
+	@Transactional
+	public int updateReach(Orderr orderr){
+		String sql="update Orderr o set o.reach=:reach where o.id=:id";
+		Map<String, Object> params= new HashMap<>();
+		params.put("reach", orderr.getReach());
+		params.put("id", orderr.getId());
+		int count = this.execRawSql(sql, params);
+		if(count>0){
+			return count;
+		}
+		return 0;
+	}
+	//delete order
+	@Transactional
+	public boolean deleteOrder(int id){
+		return this.delete(id, Orderr.class);
 	}
 }

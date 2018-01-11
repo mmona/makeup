@@ -27,8 +27,6 @@ public class Product {
 	private float price2;
 	private int sum2;
 	private String imgpath;
-	private Order order;
-	
 	@Id
 	@TableGenerator(name = "PK_GENERATOR_PRODUCT", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "PRODUCT", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_GENERATOR_PRODUCT")
@@ -102,14 +100,7 @@ public class Product {
 	public void setImgpath(String imgpath) {
 		this.imgpath = imgpath;
 	}
-	@ManyToOne
-	@JoinColumn(name="productid")
-	public Order getOrder() {
-		return order;
-	}
-	public void setOrder(Order order) {
-		this.order = order;
-	}
+                                                 
 	
 	
 }
