@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.mona.makeup.service.AdminService;
 import com.mona.makeup.service.BrandService;
 import com.mona.makeup.service.OrderService;
+import com.mona.makeup.service.ProductService;
 import com.mona.makeup.service.QuestionService;
 import com.mona.makeup.service.ReviewService;
 import com.mona.makeup.service.TypeService;
@@ -28,5 +29,6 @@ public class BaseController {
 	protected ReviewService reviewService;
 	@Autowired
 	protected OrderService orderService;
-	
+	@Autowired
+	protected ProductService productService;
 }

@@ -77,5 +77,13 @@ public class TypeDao extends CommonDao {
 		boolean delete = this.delete(id, Type.class);
 		return delete;
 	}
+	//select type
+	public List<Type> typeInfo(){
+		List<Type> query = this.query(Type.class);
+		if( query!=null){
+			return query;
+		}
+		return null;
+	}
 
 }

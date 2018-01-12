@@ -1,6 +1,6 @@
 package com.mona.makeup.controller;
 
-import java.awt.Dialog.ModalityType;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.mona.makeup.bean.jsonresponse.JSONResponseBody;
 import com.mona.makeup.dao.BrandDao;
 import com.mona.makeup.page.utils.Result;
 import com.mona.makeup.pojo.Brand;
@@ -19,6 +22,7 @@ import com.mona.makeup.utils.StringUtils;
 public class BrandController extends BaseController {
 	@Autowired
 	private BrandDao brandDao;
+
 	@RequestMapping(value = "selectBrand")
 	public ModelAndView selectBrand(String curPage, HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -62,7 +66,7 @@ public class BrandController extends BaseController {
 		brand.setId(Integer.parseInt(id));
 		boolean updateBrand = brandService.updateBrand(brand);
 		if (updateBrand) {
-			String  curPage = (String) session.getAttribute("curPage");
+			String curPage = (String) session.getAttribute("curPage");
 			modelAndView.setViewName("selectBrand.do?curPage=" + curPage + "");
 		}
 		return modelAndView;
@@ -76,7 +80,7 @@ public class BrandController extends BaseController {
 			int countBrand = brandDao.countBrand();
 			String curPage = (String) session.getAttribute("curPage");
 			int pageSize = (int) session.getAttribute("pageSize");
-			if (countBrand%pageSize==0) {
+			if (countBrand % pageSize == 0) {
 				int a = Integer.parseInt(curPage) - 1;
 				curPage = String.valueOf(a);
 			} else {
@@ -86,17 +90,28 @@ public class BrandController extends BaseController {
 		}
 		return modelAndView;
 	}
-	@RequestMapping(value="addBrand")
+
+	@RequestMapping(value = "addBrand")
 	@Transactional
-	public ModelAndView addBrand(String bname,String description,HttpSession session){
+	public ModelAndView addBrand(String bname, String description, HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
 		Brand brand = new Brand();
 		brand.setBname(bname);
 		brand.setDescription(description);
 		boolean addBrand = brandService.addBrand(brand);
-		if(addBrand ){
+		if (addBrand) {
 			modelAndView.setViewName("selectBrand.do");
 		}
 		return modelAndView;
 	}
+
+	@RequestMapping(value = "brandInfo")
+	@ResponseBody
+	public String  brandInfo() {
+		List<Brand> brandinfo = brandService.brandinfo();
+		Gson gson = new Gson();
+		String  json  = gson.toJson(brandinfo);
+		return json;
+	}
+
 }

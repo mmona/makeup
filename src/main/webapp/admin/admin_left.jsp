@@ -145,7 +145,10 @@ H1 a {
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
         </table>
         <ul class="MM">
-            <li><a href="admin/product.jsp" target="main">商品信息列表</a></li>
+            <li><a href="selectProduct.do" target="main">商品信息列表</a></li>
+        </ul>
+        <ul class="MM">
+            <li><a href="admin/addproduct.jsp" target="main">添加商品信息</a></li>
         </ul>
       </div>
        <h1 class="type"><a href="javascript:void(0)">化妆品类别管理</a></h1>
@@ -173,7 +176,7 @@ H1 a {
         <ul class="MM">
           <li><a href="selectOrder.do" target="main">销售订单信息列表</a></li>
           <li><a href="searchOrder.do" target="main">销售订单查询</a></li>
-          <li><a href="admin/order_statistic.jsp" target="main">本日销售额统计</a></li>
+          <li><a href="selectOrderByTimes.do" target="main">本日销售额统计</a></li>
         </ul>
       </div>
        <h1 class="type"><a href="javascript:void(0)">客服管理</a></h1>

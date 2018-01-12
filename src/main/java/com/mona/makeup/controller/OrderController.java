@@ -1,5 +1,9 @@
 package com.mona.makeup.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,6 +155,21 @@ public class OrderController extends BaseController {
 			modelAndView.addObject("result", selectOrder);
 			
 		}
+		return modelAndView;
+	}
+	@RequestMapping(value="selectOrderByTimes")
+	public ModelAndView selectOrderByTimes(){
+		ModelAndView modelAndView = new ModelAndView();
+		
+		Date now = new Date(); 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//可以方便地修改日期格式
+		String times=dateFormat.format( now );
+		List<Orderr> orderByTimes = orderService.selectOrderByTimes(times);
+		if(orderByTimes!=null){
+			modelAndView.setViewName("admin/order_statistic.jsp");
+			modelAndView.addObject("order", orderByTimes);
+		}
+		
 		return modelAndView;
 	}
 	

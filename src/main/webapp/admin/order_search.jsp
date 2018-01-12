@@ -121,9 +121,9 @@ body {
 									<td class="line_table" align="center"><span
 										class="left_txt">${order.product.price2 }</span></td>
 										<td class="line_table" align="center"><span
-										class="left_txt">${order.product.sum2 }</span></td>
+										class="left_txt">${order.productsum }</span></td>
 									<td class="line_table" align="center"><span
-										class="left_txt">${order.product.price2*order.product.sum2  }</span></td>
+										class="left_txt">${order.product.price2*order.productsum  }</span></td>
 										<td class="line_table" align="center"><span
 										class="left_txt">${order.times }</span></td>
 									<td class="line_table" align="center"><c:choose>

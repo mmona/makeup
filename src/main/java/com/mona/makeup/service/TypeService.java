@@ -2,6 +2,7 @@ package com.mona.makeup.service;
 
 import java.util.List;
 
+import org.aspectj.weaver.reflect.ReflectionBasedReferenceTypeDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,4 +63,8 @@ public class TypeService extends BaseService{
 	public boolean deleteType(int id){
 		return typeDao.deleteType(id);
 	}
+	//select type 
+	public List<Type> typeInfo(){
+		return typeDao.typeInfo();
+			}
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.aop.framework.autoproxy.target.QuickTargetSourceCreator;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -79,5 +80,16 @@ public class OrderDao extends CommonDao{
 	@Transactional
 	public boolean deleteOrder(int id){
 		return this.delete(id, Orderr.class);
+	}
+	//select order by times
+	public List<Orderr> selectOrderByTimes(String times){
+		String sql="Select o from Orderr o where o.times=:times";
+		Map<String,Object> params = new HashMap<>();
+		params.put("times", times);
+		List<Orderr> query = this.query(sql, Orderr.class, params);
+		if(query!=null){
+			return query;
+		}
+		return null;
 	}
 }

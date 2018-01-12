@@ -23,9 +23,9 @@ public class Product {
 	private Brand brand;
 	private String description;
 	private float price1;
-	private int sum1;
+	
 	private float price2;
-	private int sum2;
+	
 	private String imgpath;
 	@Id
 	@TableGenerator(name = "PK_GENERATOR_PRODUCT", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "PRODUCT", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
@@ -76,24 +76,14 @@ public class Product {
 	public void setPrice1(float price1) {
 		this.price1 = price1;
 	}
-	public int getSum1() {
-		return sum1;
-	}
-	public void setSum1(int sum1) {
-		this.sum1 = sum1;
-	}
+	
 	public float getPrice2() {
 		return price2;
 	}
 	public void setPrice2(float price2) {
 		this.price2 = price2;
 	}
-	public int getSum2() {
-		return sum2;
-	}
-	public void setSum2(int sum2) {
-		this.sum2 = sum2;
-	}
+	
 	public String getImgpath() {
 		return imgpath;
 	}

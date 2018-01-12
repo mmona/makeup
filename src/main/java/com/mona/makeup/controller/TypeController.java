@@ -1,14 +1,20 @@
 package com.mona.makeup.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.sql.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.mona.makeup.bean.jsonresponse.JSONResponseBody;
 import com.mona.makeup.dao.TypeDao;
 import com.mona.makeup.page.utils.Result;
 import com.mona.makeup.pojo.Type;
@@ -100,5 +106,13 @@ public class TypeController extends BaseController{
 		}
 
 		return modelAndView;
+	}
+	@RequestMapping(value="typeInfo")
+	@ResponseBody
+	public String typeInfo(){
+		List<Type> typeInfo = typeService.typeInfo();
+			Gson gson = new Gson();
+			String  json  = gson.toJson(typeInfo);
+			return json;
 	}
 }

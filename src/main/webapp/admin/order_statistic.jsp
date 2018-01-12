@@ -1,7 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<link href="images/skin.css" rel="stylesheet" type="text/css" />
+<link href="admin/images/skin.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <style type="text/css">
 <!--
@@ -31,6 +32,7 @@ body {
 									<span class="left_bt2">本日销售额统计</span>
 								</td>
 							</tr>
+						
 							<tr>
 								<td class="line_table" align="center" width="25%"><span
 									class="left_bt2">化妆品名称</span></td>
@@ -43,22 +45,24 @@ body {
 							</tr>
 
 
-							
+							<c:forEach items="${order}" var="order">
 
 							<tr>
 								<td class="line_table" align="center" width="25%"><span
-									class="left_txt">咸肉菜饭	</span></td>
+									class="left_txt">${order.product.name }	</span></td>
 								<td class="line_table" align="center" width="25%"><span
-									class="left_txt">1</span></td>
+									class="left_txt">${order.productsum}</span></td>
 								<td class="line_table" align="center" width="25%"><span
-									class="left_txt">12.0</span></td>
+									class="left_txt">${order.product.price2 }</span></td>
 								<td class="line_table" align="center" width="25%"><span
-									class="left_txt">12.0元</span></td>
+									class="left_txt">${order.product.price2*order.productsum  }</span></td>
+									<c:set value="${sum + order.product.price2*order.productsum}" var="sum" />
 							</tr>
-							
+						 </c:forEach> 
+						 
 							<tr>
 								<td class="line_table" align="center" colspan="8"><span
-									class="left_bt2">本日销售总额：60元
+									class="left_bt2">本日销售总额：${sum}元
 								</span></td>
 							</tr>
 						

@@ -55,4 +55,8 @@ public class BrandService extends BaseService {
 	 public boolean addBrand(Brand brand){
 		 return brandDao.addBrand(brand);
 	 }
+	 //select brand
+	 public List<Brand> brandinfo(){
+		 return brandDao.brandInfo();
+	 }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mona.makeup.dao.OrderDao;
 import com.mona.makeup.page.utils.Page;
@@ -38,6 +39,7 @@ public class OrderService {
 		return false;
 	}
 	//update reach
+	@Transactional
 		public boolean updateReach(Orderr orderr){
 			int updateOrder = orderDao.updateReach(orderr);
 			if(updateOrder>0){
@@ -46,7 +48,12 @@ public class OrderService {
 			return false;
 		}
 	//delete order
+		@Transactional
 		public boolean deleteOrder(int id ){
 			return orderDao.deleteOrder(id);
+		}
+		//select order by times
+		public List<Orderr> selectOrderByTimes(String times){
+			return orderDao.selectOrderByTimes(times);
 		}
 }

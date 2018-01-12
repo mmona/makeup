@@ -62,4 +62,12 @@ public class BrandDao  extends CommonDao{
 	public boolean addBrand(Brand brand ){
 		return  this.save(brand);
 	}
+	//select brandInfo
+	public List<Brand> brandInfo(){
+		List<Brand> query = this.query(Brand.class);
+		if(query!=null){
+			return query;
+		}
+		return null;
+	}
 }
