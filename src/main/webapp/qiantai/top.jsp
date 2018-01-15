@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
 <head>
@@ -37,11 +38,19 @@
 
 							<div id="topmenu">
 
-								<a href="login.jsp" target="_self">会员登录</a>| 
-								<a href="reg.jsp" target="_self">会员注册</a>| 
-								<a href="#">注销退出</a>| 
-								<a href="carry.jsp" target="_self">配送说明</a>| 
-								<a href="answer.jsp" target="_self">客服中心</a>
+								<a href="login.jsp" target="_self">会员登录</a>| <a href="reg.jsp"
+									target="_self">会员注册</a>|
+								<c:choose>
+									<c:when test="${user!=null }">
+										<a href="logout.do">注销退出</a>|
+									</c:when>
+									<c:otherwise>
+										<a href="login.jsp">注销退出</a>|
+									</c:otherwise>
+								</c:choose>
+
+								<a href="carry.jsp" target="_self">配送说明</a>| <a
+									href="answer.jsp" target="_self">客服中心</a>
 							</div>
 
 						</div>
@@ -82,16 +91,49 @@
 
 										<li><a href="index.jsp" target="_self">首页</a></li>
 
-										<li><a href="shoppingcar.jsp" target="_self">购物车</a></li>
-
-										<li><a href="order.jsp" target="_self">我的订单</a></li>
-										<li><a href="center.jsp" target="_self">用户中心</a></li>
+										<li><c:choose>
+												<c:when test="${user!=null }">
+													<a href="shoppingcar.jsp" target="_self">购物车</a>
+												</c:when>
+												<c:otherwise>
+													<a href="login.jsp">购物车</a>|
+									</c:otherwise>
+											</c:choose></li>
+											<li><c:choose>
+												<c:when test="${user!=null }">
+													<a href="selectuserorder.do?id=${user.id}" target="_self">我的订单</a>
+												</c:when>
+												<c:otherwise>
+													<a href="login.jsp">我的订单</a>|
+									</c:otherwise>
+											</c:choose></li>
+											<li><c:choose>
+												<c:when test="${user!=null }">
+													<a href="center.jsp" target="_self">用户中心</a>
+												</c:when>
+												<c:otherwise>
+												<a href="login.jsp" target="_self">用户中心</a>>|
+									</c:otherwise>
+											</c:choose></li>
+										
 
 										<li><a href="carry.jsp" target="_self">配送说明</a></li>
-
-										<li><a href="answer.jsp" target="_self">客服中心</a></li>
-
-										<li><a href="index.jsp">注销退出</a></li>
+										<li><c:choose>
+												<c:when test="${user!=null }">
+													<a href="answer.jsp" target="_self">客服中心</a>
+												</c:when>
+												<c:otherwise>
+													<a href="login.jsp">客服中心</a>|
+									</c:otherwise>
+											</c:choose></li>
+										<li><c:choose>
+												<c:when test="${user!=null }">
+													<a href="logout.do">注销退出</a>|
+									</c:when>
+												<c:otherwise>
+													<a href="login.jsp">注销退出</a>|
+									</c:otherwise>
+											</c:choose></li>
 
 									</ul>
 								</div>
@@ -163,9 +205,8 @@
 							</div>
 						</div>
 						<div
-							style="padding: 0px; font: bold 13px/43px 'Microsoft YaHei', 'SimSun', Arial, Sans-Serif; color:#FF69B4;
-;">
-							亲爱的John您好!&nbsp;&nbsp;欢迎光临!</div>
+							style="padding: 0px; font: bold 13px/43px 'Microsoft YaHei', 'SimSun', Arial, Sans-Serif; color: #FF69B4;">
+							亲爱的${user.username }您好!&nbsp;&nbsp;欢迎光临!</div>
 					</div>
 				</div>
 			</div>

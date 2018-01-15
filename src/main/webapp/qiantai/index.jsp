@@ -1,4 +1,5 @@
 <%@page language="java" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -59,10 +60,11 @@
 																			<tr>
 																				<td rowspan="5" class="bookPic"><img
 																					src="../img/m_fenzhengrou.gif"
-																					style="border: 1px solid #300;"/></td>
+																					style="border: 1px solid #300;" /></td>
 																				<td><span>化妆品名称:</span></td>
 																				<td><span><strong
-																						style="color: HotPink;"><a href="show.jsp" style="color: HotPink; ">粉蒸肉</a></strong></span></td>
+																						style="color: HotPink;"><a
+																							href="show.jsp" style="color: HotPink;">粉蒸肉</a></strong></span></td>
 																			</tr>
 																			<tr>
 																				<td><span>原价:</span></td>
@@ -81,8 +83,16 @@
 																				<td><span style="color: HotPink;">蒸菜</span></td>
 																			</tr>
 																			<tr>
-																				<td colspan="2" style="height: 40px;"><a
-																					href="#" style="color: HotPink;">加入购物车</a></td>
+																				<td colspan="2" style="height: 40px;">
+																				<c:choose>
+																						<c:when test="${user!=null }">
+																							<a href="#" style="color: HotPink;">加入购物车</a>
+																						</c:when>
+																						<c:otherwise>
+																							<a href="login.do" style="color: HotPink;">加入购物车</a>
+																						
+																						</c:otherwise>
+																					</c:choose> </td>
 																				<td></td>
 																			</tr>
 																		</table>
@@ -337,16 +347,15 @@
 																	</table>
 																</form>
 															</div>
-								</div>
-								</div>
-								</div>
-								<div
-									style="margin-top: -10px; height: 10px; line-height: 10px; background: url(images/bg.jpg) 0px -220px no-repeat">&nbsp;</div>
-								<div
-									style="float: right; margin-top: -10px; width: 10px; height: 10px; line-height: 10px; background: url(images/bg.jpg) -890px -220px no-repeat">&nbsp;</div>
-								</div>
-								</div>
-								</td>
+														</div>
+													</div>
+												</div>
+												<div
+													style="margin-top: -10px; height: 10px; line-height: 10px; background: url(images/bg.jpg) 0px -220px no-repeat">&nbsp;</div>
+												<div
+													style="float: right; margin-top: -10px; width: 10px; height: 10px; line-height: 10px; background: url(images/bg.jpg) -890px -220px no-repeat">&nbsp;</div>
+											</div>
+										</div></td>
 								</tr>
 								<tr>
 									<td height="10">&nbsp;</td>
@@ -465,7 +474,7 @@
 													<div
 														style="height: 25px; margin: 1px; display: none; background:;">
 														<div
-															style="float: left; margin-left: 12px; line-height: 25px; font-weight: bold;color: #FF69B4;">
+															style="float: left; margin-left: 12px; line-height: 25px; font-weight: bold; color: #FF69B4;">
 															店长推荐</div>
 														<div style="float: right; margin-right: 10px; display:">
 															<a href="-1" style="line-height: 25px; color:">更多</a>
@@ -477,7 +486,8 @@
 														<div id="dingcanweekmenu">
 															<div id="dingcanweekmenu2">
 																<div id="dingcanweekmenu_top">
-																	<div id="dingcanweekmenu_top_left"  style="color: #FF69B4;">店长推荐</div>
+																	<div id="dingcanweekmenu_top_left"
+																		style="color: #FF69B4;">店长推荐</div>
 																	<div id="dingcanweekmenu_top_right">&nbsp;</div>
 																	<div
 																		style="float: right; width: 60px; height: 43px; text-align: right; background: url(images/bg.jpg) -840px 0px no-repeat">

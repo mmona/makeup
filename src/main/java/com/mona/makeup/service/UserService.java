@@ -49,4 +49,29 @@ public class UserService extends BaseService {
 		boolean delete = commonDao.delete(id, User.class);
 		return delete;
 	}
+	//login user 
+	public User login(String username,String password){
+		return userDao.login(username, password);
+	}
+	//select user by name
+	public User selectuserByname(String username){
+		return userDao.selectUserByUsername(username);
+	}
+	//update password
+	public boolean updatePassword(User user){
+		return userDao.updatePassword(user);
+	}
+	//add user 
+	public boolean addUser(User user){
+	/*	User selectUserByUsername = userDao.selectUserByUsername(user.getUsername());
+		if(selectUserByUsername==null){*/
+			return userDao.addUser(user);
+		/*}
+		return  false;*/
+	}
+	//update user
+	public boolean updateUser(User user){
+		return userDao.updateUser(user);
+	}
 }
+

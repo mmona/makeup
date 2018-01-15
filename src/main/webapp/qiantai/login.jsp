@@ -17,16 +17,16 @@
    function login11()
 	{
 		
-		if (document.form1.name.value == "" ) 
+		if (document.form1.username.value == "" ) 
 		{
 			alert("请输入用户名!");
-			document.form1.name.focus();
+			document.form1.username.focus();
 			return false;
 		}
-		if (document.form1.pwd.value == ""  )  
+		if (document.form1.password.value == ""  )  
 		{
 			alert("请输入密码!");
-			document.form1.pwd.focus();
+			document.form1.password.focus();
 			return false;
 		}
 	}
@@ -38,7 +38,7 @@
     <td align="left" valign="top">
   
     
- <jsp:include flush="fasle" page="top.jsp"/>
+ <jsp:include flush="fasle" page="top.jsp"/> 
     
     </td>
   </tr>
@@ -61,16 +61,16 @@
             <link href="../member/templates/css/memberlogin_c.css" rel="stylesheet" type="text/css" />
             <div style="width:600px; height:210px;text-align:left;border:1px #f59d5e solid; background-color:#fdebd5;padding:30px;margin:0px">
               <div style="width:210px;float:left;text-align:left;border:1px #f59d5e solid;padding:20px;background-color:#ffffff;">
-                <form method="post" action="./index.jsp" name="form1" onSubmit="return login11()">
+                <form method="post" action="login.do" name="form1" onSubmit="return login11()">
                   <div  id="notice" class="noticediv"></div>
                   <table width="100%"  border="0" cellspacing="0" cellpadding="3">
                     <tr>
                       <td>登录账号</td>
-                      <td ><input type="text" id="muser" name="name"  class="input" maxlength="20" style="width:135px" /></td>
+                      <td ><input type="text" id="muser" name="username"  class="input" maxlength="20" style="width:135px" /></td>
                     </tr>
                     <tr>
                       <td>登录密码</td>
-                      <td><input type="password" id="mpass" name="pwd" class="input"  style="width:135px" maxlength="20" /></td>
+                      <td><input type="password" id="mpass" name="password" class="input"  style="width:135px" maxlength="20" /></td>
                     </tr>
                     <tr>
                       <td height="40"><input name="act" type="hidden" id="act" value="memberlogin" /></td>
@@ -84,7 +84,7 @@
                 <ul style="margin:0px;padding:0px">
                   <li style=" list-style-type: none;line-height:30px; background:url(images/cateitems.gif) left no-repeat;padding-left:20px"> 如果您已经是会员，请在左侧登录 </li>
                   <li style="list-style-type: none;line-height:30px; background:url(images/cateitems.gif) left no-repeat;padding-left:20px"> 如果您还没有注册会员，<a href="reg.jsp" target="_self"><font color="#FF6600">点这里注册新会员</font></a></li>
-                  <li style="list-style-type: none;line-height:30px; background:url(images/cateitems.gif) left no-repeat;padding-left:20px"> 如果您忘记了密码， <a href="../member/lostpass.php" ><font color="#99CC00">点这里重设一个密码</font></a></li>
+                  <li style="list-style-type: none;line-height:30px; background:url(images/cateitems.gif) left no-repeat;padding-left:20px"> 如果您忘记了密码， <a href="selectUserByUsername.do" ><font color="#99CC00">点这里重设一个密码</font></a></li>
                 </ul>
               </div>
             </div>
@@ -104,8 +104,9 @@
   </tr>
   
 </table>
-
-
+${success}
+${password}
+${isupdate }
  
 </body>
 </html>

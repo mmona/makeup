@@ -9,6 +9,7 @@ import com.mona.makeup.service.ProductService;
 import com.mona.makeup.service.QuestionService;
 import com.mona.makeup.service.ReviewService;
 import com.mona.makeup.service.TypeService;
+import com.mona.makeup.service.UserOrderService;
 import com.mona.makeup.service.UserService;
 
 
@@ -31,4 +32,6 @@ public class BaseController {
 	protected OrderService orderService;
 	@Autowired
 	protected ProductService productService;
+	@Autowired
+	protected UserOrderService userOrderService;
 }

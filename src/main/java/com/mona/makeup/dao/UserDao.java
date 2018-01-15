@@ -67,4 +67,42 @@ public class UserDao extends CommonDao {
 		boolean delete = this.delete(id, User.class);
 		return delete;
 	}
+	//login user 
+	public User login(String username,String password){
+		String sql="select u from User u where u.username=:username and u.password=:password";
+		Map<String, Object> params = new HashMap<>();
+		params.put("username", username);
+		params.put("password", password);
+		List<User> query = this.query(sql, User.class, params);
+		if(query!=null&&!query.isEmpty()){
+			return query.get(0);
+		}
+		return null;
+	}
+	//select user by name
+	public User  selectUserByUsername(String username){
+		String sql="select u from User u where u.username=:username";
+		Map< String, Object> params  = new HashMap<>();
+		params.put("username", username);
+		List<User> query = this.query(sql, User.class, params);
+		if(query!=null&&!query.isEmpty()){
+			return query.get(0);
+		}
+		return null;
+	}
+	//update password
+	@Transactional
+	public boolean updatePassword(User user){
+		return this.update(user);
+	}
+	//add user 
+	@Transactional
+	public boolean addUser(User user){
+		return  this.save(user);
+	}
+	//update user
+	@Transactional
+	public boolean updateUser(User user){
+		 return this.update(user);
+	}
 }
