@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*,java.text.*"
 	pageEncoding="utf-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -49,36 +50,30 @@
 											<td class="line_table" align="center" width="20%"><span
 												class="left_bt2">&nbsp;&nbsp;</span></td>
 										</tr>
+										<c:forEach items="${result.list }" var="order">
 										<tr>
 											<td class="line_table" align="center" width="40%"><span
-												class="left_txt">糖醋排骨</span></td>
+												class="left_txt">${order.product.name }</span></td>
 											<td class="line_table" align="center" width="20%"><span
-												class="left_txt">24.0</span></td>
+												class="left_txt">${order.product.price2 }</span></td>
 											<td class="line_table" align="center" width="20%"><span
-												class="left_txt">1</span></td>
+												class="left_txt">${order.productsum }</span></td>
+												<c:set value="${sum + order.product.price2*order.productsum}" var="sum" />
+												<c:set value="${sum1 + order.productsum}" var="sum1" />
 											<td class="line_table" align="center" width="20%"><a
-												href="#">取消</a></td>
+												href="deleteShoppingCar.do?id=${order.id }">取消</a></td>
 										</tr>
-										<tr>
-											<td class="line_table" align="center" width="40%"><span
-												class="left_txt">咸肉菜饭</span></td>
-											<td class="line_table" align="center" width="20%"><span
-												class="left_txt">12.0</span></td>
-											<td class="line_table" align="center" width="20%"><span
-												class="left_txt">1</span></td>
-											<td class="line_table" align="center" width="20%"><a
-												href="#">取消</a></td>
-										</tr>
-										
+									
+										</c:forEach>
 
 										<tr>
 											<td class="line_table" align="center" colspan="4"><span
 												class="left_bt2">小&nbsp;&nbsp;计：</span>&nbsp; <span
-												style="color: #ff0000;">36.0</span>&nbsp;&nbsp; <span
+												style="color: #ff0000;">${sum }</span>&nbsp;&nbsp; <span
 												class="left_bt2">元</span>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												<span class="left_bt2">共：</span>&nbsp; <span
-												style="color: #ff0000;">2</span>&nbsp; <span
+												style="color: #ff0000;">${sum2 }</span>&nbsp; <span
 												class="left_bt2">份</span></td>
 
 										</tr>
@@ -86,21 +81,55 @@
 										
 										<tr>
 											<td class="line_table" align="center" colspan="4"
-												valign="center"><a href="#"><img
+												valign="center"><a href="updateshopping.do"><img
 													src="images/canche_submit.gif" border="0" /></a>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-												<a href="#"><img src="images/quxiao2.gif" border="0" /></a></td>
+												<a href="deleteshopping.do"><img src="images/quxiao2.gif" border="0" /></a></td>
 
 										</tr>
-											<tr>
-																<td class="line_table" align="center" colspan="11"
-																	height="20"><span class="left_bt2">第1页
-																		&nbsp;&nbsp;共1页 </span>&nbsp;&nbsp; <a href="#">[首页]</a> <a
-																	href="#">[尾页]</a>&nbsp;&nbsp; <a href="#%>">[上一页]</a> <a
-																	href="#">[下一页]</a></td>
-															</tr>
+											
 								</table>
+									</table>
+								<table width="90%" border="0" align="center" cellpadding="0"
+									cellspacing="0" class="page">
+									<tr>
+										<td width="50%" align="left">共有${result.page.totalCount }条记录，<span
+											style="font-family: 宋体; font-size: 9.0pt; color: black;">第</span><span
+											style="font-family: Tahoma; font-size: 9.0pt; color: black;">
+												${result.page.currentPage}/${result.page.totalPage} </span><span
+											style="font-family: 宋体; font-size: 9.0pt; color: black;">页</span></td>
+										<td width="50%" align="right"><c:choose>
+												<c:when test="${result.page.currentPage eq 1}">首页</c:when>
+												<c:otherwise>
+													<a href="selectShopping.do">首页</a>
+												</c:otherwise>
+											</c:choose> <c:choose>
+												<c:when test="${result.page.currentPage eq 1 }">上一页</c:when>
+												<c:otherwise>
+													<a
+														href="selectShopping.do?curPage=${result.page.currentPage-1}">上一页</a>
+												</c:otherwise>
+											</c:choose> <c:choose>
+												<c:when
+													test="${result.page.currentPage eq result.page.totalPage }">下一页</c:when>
+												<c:otherwise>
+													<a
+														href="selectShopping.do?curPage=${result.page.currentPage+1 }">下一页</a>
+												</c:otherwise>
+											</c:choose> <c:choose>
+												<c:when
+													test="${result.page.currentPage eq result.page.totalPage }">尾页</c:when>
+												<c:otherwise>
+													<a href="selectShopping.do?curPage=${result.page.totalPage }">尾页</a>
+												</c:otherwise>
+											</c:choose></td>
+									</tr>
+								</table>
+							</div>
+						</td>
+					</tr>
+				</table>
 							</div>
 
 
@@ -123,8 +152,7 @@
 		</tr>
 
 	</table>
-
-
+${deleteshoppingcar }
 
 </body>
 </html>

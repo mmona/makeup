@@ -23,7 +23,7 @@ public class Product {
 	private Brand brand;
 	private String description;
 	private float price1;
-	
+	private int recommend;
 	private float price2;
 	
 	private String imgpath;
@@ -89,6 +89,12 @@ public class Product {
 	}
 	public void setImgpath(String imgpath) {
 		this.imgpath = imgpath;
+	}
+	public int getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(int recommend) {
+		this.recommend = recommend;
 	}
                                                  
 	

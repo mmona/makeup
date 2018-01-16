@@ -26,7 +26,7 @@ public class UserLoginController  extends BaseController{
 		if("get".equalsIgnoreCase(method)){
 			password=(String) session.getAttribute("password");
 			username=(String) session.getAttribute("username");
-		}else{
+		}else{	
 		session.setAttribute("username", username);
 		session.setAttribute("password", password);
 		}

@@ -5,8 +5,10 @@ import java.awt.event.MouseAdapter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpSession;
 
+import org.apache.xmlbeans.impl.jam.mutable.MMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -93,5 +95,26 @@ public class QuestionController extends BaseController {
 		}
 		return modelAndView;
 		
+	}
+	@RequestMapping(value="qiantai/addQuestion")
+	public ModelAndView addQuestion(HttpSession session,String content ){
+		ModelAndView modelAndView = new ModelAndView();
+		Question question = new Question();
+		User user = (User) session.getAttribute("user");
+		Date now = new Date(); 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//可以方便地修改日期格式
+		String times=dateFormat.format( now );
+		question.setContent(content);
+		question.setTimes(times);
+		question.setUsers(user);
+		boolean addQuestion = questionService.addQuestion(question);
+		if(addQuestion){
+			modelAndView.setViewName("answer.jsp");
+			modelAndView.addObject("success","<script>alert('提问成功!')</script>");
+		}else {
+			modelAndView.setViewName("answer.jsp");
+			modelAndView.addObject("fail","<script>alert('提问失败，请重新提问!')</script>");
+		}
+		return modelAndView;
 	}
 }

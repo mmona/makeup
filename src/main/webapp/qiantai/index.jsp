@@ -7,9 +7,38 @@
 <meta content="" name=keywords />
 <meta content="" name=description />
 <!-- <link href="css/common.css" rel="stylesheet" type="text/css" /> -->
-<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
+<script src="${basePath}/makeup/jquery/jquery-2.2.4.min.js"
+	type="text/javascript"></script>
 <script type="text/javascript" src="js/form.js"></script>
 <script type="text/javascript" src="js/blockui.js"></script>
+<script type="text/javascript">
+	$(function() {
+		selectshoppingcar();
+		  window.location.href = "indexshopping.do";
+	});
+	function selectshoppingcar(){
+		$.ajax({
+			url : "indexshopping.do",
+			type : "post",
+			dataType : "json",
+			success : function(data) {
+				alert(data.id)
+					$.each(data, function(index, element){
+						var td1=$("<td align='center'>"+element.product.name+"</td>");
+						var td2=$("<td align='center'>"+element.product.price2+"</td>");
+						var td3 =$("<td align='center'>"+element.productsum+"</td>"); 
+						var td4=$("<td align='center'><a href='deleteShoppingindex.do?id=${order.id }'>取消</a></td>");
+						var sum=sum + element.product.price2*element.productsum;
+						var sum1=sum1 + element.productsum;
+						$("#shopingcar").append(td1);
+						$("#shopingcar").append(td2);
+						$("#shopingcar").append(td3);
+						$("#shopingcar").append(td4);
+					})
+			}
+		});
+	} 
+	</script>
 
 </head>
 
@@ -397,19 +426,16 @@
 																		<td align="center">数量</td>
 																		<td align="center"></td>
 																	</tr>
-
-																	<tr>
-																		<td align="center">糖醋排骨</td>
-																		<td align="center">24.0</td>
-																		<td align="center">2</td>
-																		<td align="center"><a href="#">取消</a></td>
+																		 <c:forEach items="${shoppingcar.list }" var="order"> 
+																	<tr id="shoppingcar">
+																		 <td align="center">${order.product.name }</td>
+																		<td align="center">${order.product.price2 }</td>
+																		<td align="center">${order.productsum }</td>
+																		<c:set value="${sum + order.product.price2*order.productsum}" var="sum" />
+																		<c:set value="${sum1 + order.productsum}" var="sum1" />
+																		<td align="center"><a href="deleteShoppingindex.do?id=${order.id }">取消</a></td> 
 																	</tr>
-																	<tr>
-																		<td align="center">水煮鱼</td>
-																		<td align="center">32.0</td>
-																		<td align="center">1</td>
-																		<td align="center"><a href="#">取消</a></td>
-																	</tr>
+															</c:forEach>
 
 																</table>
 
@@ -420,11 +446,11 @@
 																		style="float: left; line-height: 24px; padding-left: 25px;">小&nbsp;&nbsp;计：</div>
 																	<div
 																		style="float: right; line-height: 24px; padding-right: 15px;">
-																		<font id="allnums" style="color: #ff0000;">3</font>份
+																		<font id="allnums" style="color: #ff0000;">${sum1 }</font>份
 																	</div>
 																	<div
 																		style="float: right; line-height: 24px; padding-right: 30px;">
-																		<font id="cpprice" style="color: #ff0000;">56.0</font>元
+																		<font id="cpprice" style="color: #ff0000;">${sum }</font>元
 																	</div>
 																</div>
 																<div style="height: 30px; margin: 5px 3px 1px 3px;">
@@ -489,20 +515,16 @@
 																	<div id="dingcanweekmenu_top_left"
 																		style="color: #FF69B4;">店长推荐</div>
 																	<div id="dingcanweekmenu_top_right">&nbsp;</div>
-																	<div
-																		style="float: right; width: 60px; height: 43px; text-align: right; background: url(images/bg.jpg) -840px 0px no-repeat">
-																		<a href="news/class/"
-																			style="font: 12px/43px simsun; color: #505050; margin-right: 12px; display: inline">更多&gt;&gt;</a>
-																	</div>
+																	
 																</div>
 																<div style="padding: px;">
 																	<div class="dingcanweekmenuinfo" align="left">
 																		<link href="css/newslist_time2.css" rel="stylesheet"
 																			type="text/css" />
 
-																		<li class="newslist_time2"><div class="time">已销售4次</div>
+																		<li class="newslist_time2"><div class="time">￥</div>
 																			<a href="#" class="newslist_time2">糖醋排骨</a></li>
-																		<li class="newslist_time2"><div class="time">已销售4次</div>
+																		<li class="newslist_time2"><div class="time">单价：4次</div>
 																			<a href="#" class="newslist_time2">咸肉菜饭</a></li>
 																		<li class="newslist_time2"><div class="time">已销售1次</div>
 																			<a href="#" class="newslist_time2">水煮鱼</a></li>

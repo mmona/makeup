@@ -14,7 +14,7 @@ import com.mona.makeup.pojo.Orderr;
 public class OrderDao extends CommonDao{
 	//count order
 	public Integer countOrder(String times,Integer delivery){
-		StringBuffer buffer =  new StringBuffer("Select Count(*) from Orderr o where 1=1");
+		StringBuffer buffer =  new StringBuffer("Select Count(*) from Orderr o where o.isorder=1");
 		Map<String,Object> params= new HashMap<>();
 		if(!"".equals(times)&&times!=null){
 			buffer.append(" and o.times=:times ");
@@ -30,7 +30,7 @@ public class OrderDao extends CommonDao{
 	}
 	//seelct Order by Page 
 	public List<Orderr> selectOrder(Page page,String times,Integer delivery){
-		StringBuffer buffer =  new StringBuffer("Select o from Orderr o where 1=1");
+		StringBuffer buffer =  new StringBuffer("Select o from Orderr o where o.isorder=1");
 		
 		Map<String,Object> params= new HashMap<>();
 		if(null != times){
@@ -83,7 +83,7 @@ public class OrderDao extends CommonDao{
 	}
 	//select order by times
 	public List<Orderr> selectOrderByTimes(String times){
-		String sql="Select o from Orderr o where o.times=:times";
+		String sql="Select o from Orderr o where o.times=:times and o.isorder=1";
 		Map<String,Object> params = new HashMap<>();
 		params.put("times", times);
 		List<Orderr> query = this.query(sql, Orderr.class, params);

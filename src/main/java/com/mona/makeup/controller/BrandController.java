@@ -36,8 +36,6 @@ public class BrandController extends BaseController {
 		Result<Brand> selectBrand = brandService.selectBrand(cPage);
 		if (selectBrand != null) {
 			int pageSize = selectBrand.getPage().getPageSize();
-			int beginIndex = selectBrand.getPage().getBeginIndex();
-			int totalPage = selectBrand.getPage().getTotalPage();
 			session.setAttribute("pageSize", pageSize);
 			session.setAttribute("curPage", curPage);
 			modelAndView.addObject("result", selectBrand);

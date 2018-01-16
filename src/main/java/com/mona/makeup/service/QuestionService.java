@@ -42,5 +42,8 @@ public class QuestionService extends BaseService {
 	public boolean deleteQuestion(int id) {
 		return questionDao.deleteQuestion(id);
 	}
-
+	//add question
+	public boolean addQuestion(Question question){
+		return questionDao.addQuestion(question);
+	}
 }

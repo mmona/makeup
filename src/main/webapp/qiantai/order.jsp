@@ -34,7 +34,7 @@
 						<td align="left" valign="top">
 
 							<div align="center" width="120">
-								<form action="#" name="form1" method="post">
+								<form action="selectuserorder.do" name="form1" method="get">
 									<table id="table1" class="line_table"
 										style="width: 500px; margin: 0; padding: 0" cellSpacing="0"
 										cellPadding="0">
@@ -42,13 +42,19 @@
 											<tr>
 												<td class="line_table" align="right" width="40%"><span
 													class="left_bt2">按购买日期查询</span></td>
-												<td class="line_table" align="left" width="60%"><input
+												<td class="line_table" align="left" width="40%"><input
 													type="text" name="times" size="20" readOnly
 													onClick="setDay(this);"></input></td>
+														<td class="line_table" align="center" width="20%"><input
+										type="submit" value="查询"></td>
 											</tr>
+										
+								
+
+							
 											<td class="line_table" align="center" colspan="3"><a
-												href="#">我的所有订单</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">未已派送订单</a>&nbsp;&nbsp;&nbsp;&nbsp;
-												<a href="#">已派送订单</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+												href="selectuserorder.do">我的所有订单</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="selectuserorder.do?delivery=${0}">未已派送订单</a>&nbsp;&nbsp;&nbsp;&nbsp;
+												<a href="selectuserorder.do?delivery=${1}">已派送订单</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 											</tr>
 									</table>
 								</form>
@@ -142,26 +148,26 @@
 										<td width="50%" align="right"><c:choose>
 												<c:when test="${result.page.currentPage eq 1}">首页</c:when>
 												<c:otherwise>
-													<a href="selectUserOrder.do">首页</a>
+													<a href="selectuserorder.do">首页</a>
 												</c:otherwise>
 											</c:choose> <c:choose>
 												<c:when test="${result.page.currentPage eq 1 }">上一页</c:when>
 												<c:otherwise>
 													<a
-														href="selectUserOrder.do?curPage=${result.page.currentPage-1}">上一页</a>
+														href="selectuserorder.do?curPage=${result.page.currentPage-1}">上一页</a>
 												</c:otherwise>
 											</c:choose> <c:choose>
 												<c:when
 													test="${result.page.currentPage eq result.page.totalPage }">下一页</c:when>
 												<c:otherwise>
 													<a
-														href="selectUserOrder.do?curPage=${result.page.currentPage+1 }">下一页</a>
+														href="selectuserorder.do?curPage=${result.page.currentPage+1 }">下一页</a>
 												</c:otherwise>
 											</c:choose> <c:choose>
 												<c:when
 													test="${result.page.currentPage eq result.page.totalPage }">尾页</c:when>
 												<c:otherwise>
-													<a href="selectUserOrder.do?curPage=${result.page.totalPage }">尾页</a>
+													<a href="selectuserorder.do?curPage=${result.page.totalPage }">尾页</a>
 												</c:otherwise>
 											</c:choose></td>
 									</tr>

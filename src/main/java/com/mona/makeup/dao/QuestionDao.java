@@ -46,5 +46,9 @@ public class QuestionDao extends CommonDao {
 	public boolean deleteQuestion(int id){
 		return this.delete(id, Question.class);
 	}
-	
+	//add question
+	@Transactional
+	public boolean addQuestion(Question question){
+		return this.save(question);
+	}
 }

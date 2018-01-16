@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -110,14 +111,14 @@ public class User {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	@OneToMany(mappedBy="users")
+	@OneToMany(mappedBy="users", fetch = FetchType.EAGER)
 	public List<Question> getQuestions() {
 		return questions;
 	}
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
-	@OneToMany(mappedBy="users")
+	@OneToMany(mappedBy="users",fetch = FetchType.EAGER)
 	public List<Review> getReviews() {
 		return reviews;
 	}
@@ -125,7 +126,7 @@ public class User {
 		this.reviews = reviews;
 	}
 	
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user",fetch = FetchType.EAGER)
     public List<Orderr> getMorder() {
 		return orderr;
 	}

@@ -93,7 +93,7 @@
 
 										<li><c:choose>
 												<c:when test="${user!=null }">
-													<a href="shoppingcar.jsp" target="_self">购物车</a>
+													<a href="selectShopping.do" target="_self">购物车</a>
 												</c:when>
 												<c:otherwise>
 													<a href="login.jsp">购物车</a>|
@@ -101,7 +101,7 @@
 											</c:choose></li>
 											<li><c:choose>
 												<c:when test="${user!=null }">
-													<a href="selectuserorder.do?id=${user.id}" target="_self">我的订单</a>
+													<a href="selectuserorder.do" target="_self">我的订单</a>
 												</c:when>
 												<c:otherwise>
 													<a href="login.jsp">我的订单</a>|

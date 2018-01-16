@@ -24,6 +24,7 @@ public class Orderr {
 	private String  times;
 	private int delivery;
 	private int reach;
+	private int isorder;
 	@Id
 	@TableGenerator(name = "PK_GENERATOR_ORDERR", table = "PKGENERATOR", pkColumnName = "TABLENAME", pkColumnValue = "ORDERR", valueColumnName = "PKVALUE", initialValue = 1, allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "PK_GENERATOR_ORDERR")
@@ -73,6 +74,12 @@ public class Orderr {
 	}
 	public void setReach(int reach) {
 		this.reach = reach;
+	}
+	public int getIsorder() {
+		return isorder;
+	}
+	public void setIsorder(int isorder) {
+		this.isorder = isorder;
 	}
 	
 }

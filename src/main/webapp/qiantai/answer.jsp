@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*,java.text.*" pageEncoding="gb2312"%>
+<%@ page language="java" import="java.util.*,java.text.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -7,14 +7,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>客服中心</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>瀹㈡湇涓績</title>
 <meta content="" name=keywords />
 <meta content="" name=description />
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 
 </head>
-
+<script language="JavaScript">
+	function check11() {
+		if (document.form1.content.value == "") {
+			alert("鎻愰棶鍐呭涓嶈兘涓虹┖!");
+			document.form1.content.focus();
+			return false;
+		}
+	}
+</script>
 
 <script type="text/javascript" src="js/common.js"></script>
 
@@ -42,25 +50,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<tr>
 		  <td  align="center" vlign="top"  >
 			 <strong><span style="font-family: Helvetica, sans-serif;font-size: 20px; color:#FF69B4">
-			       客服中心
+			       瀹㈡湇涓績
 			 </span></strong>
 			 <br>
 		  </td>
 		</tr>
+		<form action="addQuestion.do" method="post"
+						name="form1" onSubmit="return check11()">
 		<tr>
 		  <td  align="center" vlign="top" >
-		  <textarea rows="12" cols="100"></textarea>
+		  <textarea rows="12" cols="100" name="content"></textarea>
 		  </td>
 		</tr>
 		<tr>
 		<td  align="center" vlign="top" >
-		  <input  class="answer" type=submit value="提交"/>
+		  <input  class="answer" type=submit value="鎻愪氦"/>
 		  </td>
+		  </tr>
+		  </form>
 		<tr>
 		  <td  align="center"  >
 			 <a href="index.jsp" target="_self">
 			 <span style="font-family: Helvetica, sans-serif;font-size: 16px; color:#FF69B4">
-			     返回
+			     杩斿洖
 			 </span></a>
 		  </td>
 		</tr>	
@@ -83,8 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </tr>
   
 </table>
-
-
- 
+${success }
+ ${fail }
 </body>
 </html>
