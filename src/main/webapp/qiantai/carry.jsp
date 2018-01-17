@@ -68,7 +68,7 @@
 		</tr>
 		<tr>
 		  <td  align="center"  >
-			 <a href="index.jsp" target="_self">
+			 <a href="indexInfo.do" target="_self">
 			 <span style="font-family: Helvetica, sans-serif;font-size: 16px;color:#FF69B4; ">
 			     ·µ»Ø
 			 </span></a>

@@ -52,15 +52,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
              <p style=" font-size: 16px; color:#FF69B4">
               <br><br>
  
-             &nbsp;&nbsp;&nbsp;&nbsp;小时候的味道”即便五年十年都没机会再吃，也总是会挂念着，一吃就能想起过往时的味道来。这种味觉记忆，缠绕着思乡的点滴情怀，成为人们最原始的“乡愁”。你也有“小时候的味道”吗？<br><br>
-             &nbsp;&nbsp;&nbsp;&nbsp;欢迎来到ZW私房菜，让你重温童年妈妈的味道！
+             &nbsp;&nbsp;&nbsp;&nbsp;无论是一支光彩艳丽的口红，还是一张水润莹亮的面膜，这里有你想要变美的一切。我们有当下最时尚的彩妆，也有呵护肌肤的各种营养蛋白，更有贴心周到的服务！<br><br>
+             &nbsp;&nbsp;&nbsp;&nbsp;欢迎来到女孩地带，一起变成精致的猪猪女孩吧！
              </p>
         
 		  </td>
 		</tr>
 		<tr>
 		  <td  align="center"  >
-			 <a href="index.jsp" target="_self">
+			 <a href="indexInfo.do" target="_self">
 			 <span style="font-family: Helvetica, sans-serif;font-size: 16px; color:#FF69B4">
 			     返回
 			 </span></a>

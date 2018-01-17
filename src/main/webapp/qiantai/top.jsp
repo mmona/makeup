@@ -89,7 +89,7 @@
 								<div id="mainmenu">
 									<ul>
 
-										<li><a href="index.jsp" target="_self">首页</a></li>
+										<li><a href="indexInfo.do" target="_self">首页</a></li>
 
 										<li><c:choose>
 												<c:when test="${user!=null }">

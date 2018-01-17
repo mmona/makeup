@@ -3,6 +3,9 @@ package com.mona.makeup.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -134,7 +137,7 @@ public class UserOrderController extends BaseController {
 		boolean deleteShoppingCar = userOrderService.deleteShoppingCar(Integer.parseInt(id));
 		if (deleteShoppingCar) {
 			User user = (User) session.getAttribute("user");
-			modelAndView.setViewName("index.jsp");
+			modelAndView.setViewName("indexInfo.do");
 			modelAndView.addObject("deleteshoppingcar", "<script>alert('取消成功!')</script>");
 		}
 		return modelAndView;
@@ -144,7 +147,10 @@ public class UserOrderController extends BaseController {
 	public ModelAndView updateshopping(HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
 		User user = (User) session.getAttribute("user");
-		boolean updateShopping = userOrderService.updateShopping(user);
+		Date now = new Date(); 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");//可以方便地修改日期格式
+		String times=dateFormat.format( now );
+		boolean updateShopping = userOrderService.updateShopping(user,times);
 		if (updateShopping) {
 			modelAndView.setViewName("selectShopping.do");
 			modelAndView.addObject("deleteshoppingcar", "<script>alert('订单提交成功!')</script>");

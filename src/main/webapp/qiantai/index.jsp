@@ -13,32 +13,10 @@
 <script type="text/javascript" src="js/blockui.js"></script>
 <script type="text/javascript">
 	$(function() {
-		selectshoppingcar();
-		  window.location.href = "indexshopping.do";
+		/* 	selectshoppingcar();
+			selectRecommend(); */
 	});
-	function selectshoppingcar(){
-		$.ajax({
-			url : "indexshopping.do",
-			type : "post",
-			dataType : "json",
-			success : function(data) {
-				alert(data.id)
-					$.each(data, function(index, element){
-						var td1=$("<td align='center'>"+element.product.name+"</td>");
-						var td2=$("<td align='center'>"+element.product.price2+"</td>");
-						var td3 =$("<td align='center'>"+element.productsum+"</td>"); 
-						var td4=$("<td align='center'><a href='deleteShoppingindex.do?id=${order.id }'>取消</a></td>");
-						var sum=sum + element.product.price2*element.productsum;
-						var sum1=sum1 + element.productsum;
-						$("#shopingcar").append(td1);
-						$("#shopingcar").append(td2);
-						$("#shopingcar").append(td3);
-						$("#shopingcar").append(td4);
-					})
-			}
-		});
-	} 
-	</script>
+</script>
 
 </head>
 
@@ -79,245 +57,61 @@
 											<div id="dingcanall2">
 
 												<div style="margin-top: 0px; padding: px;">
+													<c:forEach items="${result.list}" var="product">
+														<div
+																style="margin-top: 10px; margin-left: 30px; float: left;">
+															<table>
+																<tr>
 
-													<div id="mm_01" class="dingcanall_connow">
-														<table>
-															<tr>
-																<td style="margin-top: 10px;">
-																	<div>
-																		<table>
-																			<tr>
-																				<td rowspan="5" class="bookPic"><img
-																					src="../img/m_fenzhengrou.gif"
-																					style="border: 1px solid #300;" /></td>
-																				<td><span>化妆品名称:</span></td>
-																				<td><span><strong
-																						style="color: HotPink;"><a
-																							href="show.jsp" style="color: HotPink;">粉蒸肉</a></strong></span></td>
-																			</tr>
-																			<tr>
-																				<td><span>原价:</span></td>
-																				<td><span style="color: HotPink;">26</span></td>
-																			</tr>
-																			<tr>
-																				<td><span>现价:</span></td>
-																				<td><span><strong style="color: red;">23</strong></span></td>
-																			</tr>
-																			<tr>
-																				<td><span> :</span></td>
-																				<td><span style="color: HotPink;">米粉、五花肉</span></td>
-																			</tr>
-																			<tr>
-																				<td><span>类型:</span></td>
-																				<td><span style="color: HotPink;">蒸菜</span></td>
-																			</tr>
-																			<tr>
-																				<td colspan="2" style="height: 40px;">
-																				<c:choose>
-																						<c:when test="${user!=null }">
-																							<a href="#" style="color: HotPink;">加入购物车</a>
-																						</c:when>
-																						<c:otherwise>
-																							<a href="login.do" style="color: HotPink;">加入购物车</a>
-																						
-																						</c:otherwise>
-																					</c:choose> </td>
-																				<td></td>
-																			</tr>
-																		</table>
-																	</div>
-																</td>
+																	<td style="margin-top: 10px;">
+																		<div>
+																			<table>
+																				<tr>
+																					<td rowspan="5" class="bookPic"><img
+																			src="../${product.imgpath}" width="100px" height="90px" /></td>
+																					<td ><span>化妆品名称:</span></td>
+																					<td ><span><strong
+																							style="color: HotPink;"><a
+																								href="selectProducrInfo.do?id=${product.id }" >${product.name}</a></strong></span></td>
+																				</tr>
+																				<tr>
+																					<td><span>原价:</span></td>
+																					<td><span style="color: HotPink;">${product.price1 }</span></td>
+																				</tr>
+																				<tr>
+																					<td><span>现价:</span></td>
+																					<td><span><strong style="color: red;">${product.price2 }</strong></span></td>
+																				</tr>
+																				<tr>
+																					<td><span>品牌:</span></td>
+																					<td><span style="color: HotPink;">${product.brand.bname}</span></td>
+																				</tr>
+																				<tr>
+																					<td><span>类型:</span></td>
+																					<td><span style="color: HotPink;">${product.type.tname}</span></td>
+																				</tr>
+																				<tr>
+																					<td colspan="2" style="height: 40px;"><c:choose>
+																							<c:when test="${user!=null }">
+																								<a href="addShoppingCar.do?id=${product.id }" style="color: HotPink;">加入购物车</a>
+																							</c:when>
+																							<c:otherwise>
+																								<a href="login.do" style="color: HotPink;">加入购物车</a>
+																							</c:otherwise>
+																						</c:choose></td>
+																					<td></td>
+																				</tr>
+																			</table>
+																		</div>
+																			
+																	</td>
+																</tr>
 
-																<td style="margin-top: 10px;">
-																	<div>
-																		<table>
-																			<tr>
-																				<td rowspan="5" class="bookPic"><img
-																					src="../img/m_huanggualapi.gif"
-																					style="border: 1px solid #300;" /></td>
-																				<td><span>菜名:</span></td>
-																				<td><span><strong>黄瓜拉皮</strong></span></td>
-																			</tr>
-																			<tr>
-																				<td><span>市场价格:</span></td>
-																				<td><span>8</span></td>
-																			</tr>
-																			<tr>
-																				<td><span>会员价格:</span></td>
-																				<td><span><strong style="color: red;">6</strong></span></td>
-																			</tr>
-																			<tr>
-																				<td><span>配料:</span></td>
-																				<td><span>黄瓜、拉皮</span></td>
-																			</tr>
-																			<tr>
-																				<td><span>菜品类型:</span></td>
-																				<td><span>凉拌菜</span></td>
-																			</tr>
-																			<tr>
-																				<td colspan="2" style="height: 40px;"><a
-																					href="#">加入餐车</a></td>
-																				<td></td>
-																			</tr>
-																		</table>
-																	</div>
-																</td>
-															</tr>
+															</table>
 
-															<tr>
-																<td style="margin-top: 10px;">
-																	<div>
-																		<table>
-																			<tr>
-																				<td rowspan="5" class="bookPic"><img
-																					src="../img/m_shuizhuyu.gif"
-																					style="border: 1px solid #300;" /></td>
-																				<td><span>菜名:</span></td>
-																				<td><span><strong>水煮鱼</strong></span></td>
-																			</tr>
-																			<tr>
-																				<td><span>市场价格:</span></td>
-																				<td><span>38</span></td>
-																			</tr>
-																			<tr>
-																				<td><span>会员价格:</span></td>
-																				<td><span><strong style="color: red;">32</strong></span></td>
-																			</tr>
-																			<tr>
-																				<td><span>配料:</span></td>
-																				<td><span>鱼，辣椒</span></td>
-																			</tr>
-																			<tr>
-																				<td><span>菜品类型:</span></td>
-																				<td><span>川菜</span></td>
-																			</tr>
-																			<tr>
-																				<td colspan="2" style="height: 40px;"><a
-																					href="#">加入餐车</a></td>
-																				<td></td>
-																			</tr>
-																		</table>
-																	</div>
-																</td>
-
-																<td style="margin-top: 10px;">
-																	<div>
-																		<table>
-																			<tr>
-																				<td rowspan="5" class="bookPic"><img
-																					src="../img/m_tangcupaigu.gif"
-																					style="border: 1px solid #300;" /></td>
-																				<td><span>菜名:</span></td>
-																				<td><span><strong>糖醋排骨</strong></span></td>
-																			</tr>
-																			<tr>
-																				<td><span>市场价格:</span></td>
-																				<td><span>26</span></td>
-																			</tr>
-																			<tr>
-																				<td><span>会员价格:</span></td>
-																				<td><span><strong style="color: red;">24</strong></span></td>
-																			</tr>
-																			<tr>
-																				<td><span>配料:</span></td>
-																				<td><span>排骨、糖、醋</span></td>
-																			</tr>
-																			<tr>
-																				<td><span>菜品类型:</span></td>
-																				<td><span>炒菜</span></td>
-																			</tr>
-																			<tr>
-																				<td colspan="2" style="height: 40px;"><a
-																					href="#">加入餐车</a></td>
-																				<td></td>
-																			</tr>
-																		</table>
-																	</div>
-																</td>
-															</tr>
-
-															<tr>
-																<td style="margin-top: 10px;">
-																	<div>
-																		<table>
-																			<tr>
-																				<td rowspan="5" class="bookPic"><img
-																					src="../img/m_wuxianglvrou.gif"
-																					style="border: 1px solid #300;" /></td>
-																				<td><span>菜名:</span></td>
-																				<td><span><strong>五香驴肉</strong></span></td>
-																			</tr>
-																			<tr>
-																				<td><span>市场价格:</span></td>
-																				<td><span>25</span></td>
-																			</tr>
-																			<tr>
-																				<td><span>会员价格:</span></td>
-																				<td><span><strong style="color: red;">21</strong></span></td>
-																			</tr>
-																			<tr>
-																				<td><span>配料:</span></td>
-																				<td><span>驴肉</span></td>
-																			</tr>
-																			<tr>
-																				<td><span>菜品类型:</span></td>
-																				<td><span>凉拌菜</span></td>
-																			</tr>
-																			<tr>
-																				<td colspan="2" style="height: 40px;"><a
-																					href="#">加入餐车</a></td>
-																				<td></td>
-																			</tr>
-																		</table>
-																	</div>
-																</td>
-
-																<td style="margin-top: 10px;">
-																	<div>
-																		<table>
-																			<tr>
-																				<td rowspan="5" class="bookPic"><img
-																					src="../img/m_xianroucaifan.gif"
-																					style="border: 1px solid #300;" /></td>
-																				<td><span>菜名:</span></td>
-																				<td><span><strong>咸肉菜饭</strong></span></td>
-																			</tr>
-																			<tr>
-																				<td><span>市场价格:</span></td>
-																				<td><span>15</span></td>
-																			</tr>
-																			<tr>
-																				<td><span>会员价格:</span></td>
-																				<td><span><strong style="color: red;">12</strong></span></td>
-																			</tr>
-																			<tr>
-																				<td><span>配料:</span></td>
-																				<td><span>咸肉、米饭</span></td>
-																			</tr>
-																			<tr>
-																				<td><span>菜品类型:</span></td>
-																				<td><span>炒饭</span></td>
-																			</tr>
-																			<tr>
-																				<td colspan="2" style="height: 40px;"><a
-																					href="#">加入餐车</a></td>
-																				<td></td>
-																			</tr>
-																		</table>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<td class="line_table" align="center" colspan="11"
-																	height="20"><span class="left_bt2">第1页
-																		&nbsp;&nbsp;共1页 </span>&nbsp;&nbsp; <a href="#">[首页]</a> <a
-																	href="#">[尾页]</a>&nbsp;&nbsp; <a href="#%>">[上一页]</a> <a
-																	href="#">[下一页]</a></td>
-															</tr>
-														</table>
-													</div>
-
-
+														</div>
+												</c:forEach>
+													
 												</div>
 
 											</div>
@@ -332,7 +126,46 @@
 									</div>
 								</div>
 							</div>
-							</div></td>
+							</div>
+								<table width="90%" border="0" align="center"
+														cellpadding="0" cellspacing="0" class="page">
+														<tr>
+															<td width="50%" align="left">共有${result.page.totalCount }条记录，<span
+																style="font-family: 宋体; font-size: 9.0pt; color: black;">第</span><span
+																style="font-family: Tahoma; font-size: 9.0pt; color: black;">
+																	${result.page.currentPage}/${result.page.totalPage} </span><span
+																style="font-family: 宋体; font-size: 9.0pt; color: black;">页</span></td>
+															<td width="50%" align="right"><c:choose>
+																	<c:when test="${result.page.currentPage eq 1}">首页</c:when>
+																	<c:otherwise>
+																		<a href="indexInfo.do">首页</a>
+																	</c:otherwise>
+																</c:choose> <c:choose>
+																	<c:when test="${result.page.currentPage eq 1 }">上一页</c:when>
+																	<c:otherwise>
+																		<a
+																			href="indexInfo.do?curPage=${result.page.currentPage-1}">上一页</a>
+																	</c:otherwise>
+																</c:choose> <c:choose>
+																	<c:when
+																		test="${result.page.currentPage eq result.page.totalPage }">下一页</c:when>
+																	<c:otherwise>
+																		<a
+																			href="indexInfo.do?curPage=${result.page.currentPage+1 }">下一页</a>
+																	</c:otherwise>
+																</c:choose> <c:choose>
+																	<c:when
+																		test="${result.page.currentPage eq result.page.totalPage }">尾页</c:when>
+																	<c:otherwise>
+																		<a
+																			href="indexInfo.do?curPage=${result.page.totalPage }">尾页</a>
+																	</c:otherwise>
+																</c:choose></td>
+														</tr>
+													</table>
+							
+							</td>
+						
 						<td width="41%" align="right" valign="top"><table width="243"
 								border="0" cellspacing="0" cellpadding="0">
 								<tr>
@@ -360,7 +193,7 @@
 
 
 															<div align="center" width="120">
-																<form action="../OrderServlet" name="form1"
+																<form action="indexInfo.do" name="form1"
 																	method="post">
 																	<table id="table1" class="line_table"
 																		style="width: 100%; margin: 0; padding: 0"
@@ -369,7 +202,7 @@
 
 																			<tr>
 																				<td class="line_table" align="left" width="60%"><input
-																					type="text" name="userid" size="20"> <input
+																					type="text" name="name" size="20" value=""> <input
 																					type="submit" class="btn btn-primary pull-right"
 																					value="查询"></td>
 																			</tr>
@@ -426,16 +259,19 @@
 																		<td align="center">数量</td>
 																		<td align="center"></td>
 																	</tr>
-																		 <c:forEach items="${shoppingcar.list }" var="order"> 
-																	<tr id="shoppingcar">
-																		 <td align="center">${order.product.name }</td>
-																		<td align="center">${order.product.price2 }</td>
-																		<td align="center">${order.productsum }</td>
-																		<c:set value="${sum + order.product.price2*order.productsum}" var="sum" />
-																		<c:set value="${sum1 + order.productsum}" var="sum1" />
-																		<td align="center"><a href="deleteShoppingindex.do?id=${order.id }">取消</a></td> 
-																	</tr>
-															</c:forEach>
+																	<c:forEach items="${indexShopping }" var="order">
+																		<tr id="shoppingcar">
+																			<td align="center">${order.product.name }</td>
+																			<td align="center">${order.product.price2 }</td>
+																			<td align="center">${order.productsum }</td>
+																			<c:set
+																				value="${sum + order.product.price2*order.productsum}"
+																				var="sum" />
+																			<c:set value="${sum1 + order.productsum}" var="sum1" />
+																			<td align="center"><a
+																				href="deleteShoppingindex.do?id=${order.id }">取消</a></td>
+																		</tr>
+																	</c:forEach>
 
 																</table>
 
@@ -458,10 +294,10 @@
 																		<tr>
 																			<td align="center" width="40%"></td>
 																			<td align="center" width="40%"><a
-																				href="../UserOrderingServlet"><img
+																				href="updateindexshopping.do"><img
 																					src="images/canche_submit.gif" border="0" /></a></td>
 																			<td align="center" width="40%"><a
-																				href="../ShoppingServlet?remove=1"><img
+																				href="deleteindexshopping.do"><img
 																					src="images/quxiao2.gif" border="0" /></a></td>
 																		</tr>
 																	</table>
@@ -515,19 +351,18 @@
 																	<div id="dingcanweekmenu_top_left"
 																		style="color: #FF69B4;">店长推荐</div>
 																	<div id="dingcanweekmenu_top_right">&nbsp;</div>
-																	
+
 																</div>
 																<div style="padding: px;">
 																	<div class="dingcanweekmenuinfo" align="left">
 																		<link href="css/newslist_time2.css" rel="stylesheet"
 																			type="text/css" />
+																		<c:forEach items="${recommend}" var="recommend">
 
-																		<li class="newslist_time2"><div class="time">￥</div>
-																			<a href="#" class="newslist_time2">糖醋排骨</a></li>
-																		<li class="newslist_time2"><div class="time">单价：4次</div>
-																			<a href="#" class="newslist_time2">咸肉菜饭</a></li>
-																		<li class="newslist_time2"><div class="time">已销售1次</div>
-																			<a href="#" class="newslist_time2">水煮鱼</a></li>
+																			<li class="newslist_time2" id="recommend"><div
+																					class="time">${recommend.price2 }￥</div> <a
+																				href="#" class="newslist_time2">${recommend.name }</a></li>
+																		</c:forEach>
 																	</div>
 																</div>
 															</div>
@@ -542,7 +377,9 @@
 							</table></td>
 					</tr>
 				</table></td>
+			
 		</tr>
+			
 		<tr>
 			<td height="10">&nbsp;</td>
 		</tr>
@@ -552,7 +389,7 @@
 		</tr>
 
 	</table>
-
+	${deleteshoppingcar}
 
 
 </body>

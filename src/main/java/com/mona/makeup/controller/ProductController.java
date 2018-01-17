@@ -34,7 +34,7 @@ public class ProductController extends BaseController{
 		} else {
 			cPage = Integer.parseInt(curPage);
 		}
-		Result<Product> selectProduct = productService.selectProduct(cPage);
+		Result<Product> selectProduct = productService.selectProduct(cPage,null);
 		if(selectProduct!=null){
 			int pageSize = selectProduct.getPage().getPageSize();
 			int beginIndex = selectProduct.getPage().getBeginIndex();
@@ -91,6 +91,7 @@ public class ProductController extends BaseController{
 		if(updateProduct){
 			String  curPage = (String) session.getAttribute("curPage");
 			modelAndView.setViewName("selectProduct.do?curPage="+curPage+"");
+			modelAndView.addObject("update", "<script>alert('商品修改成功!')</script>");
 		}
 		return modelAndView;
 	}
@@ -100,7 +101,7 @@ public class ProductController extends BaseController{
 		ModelAndView modelAndView = new ModelAndView();
 		boolean deleteProduct = productService.deleteProduct(Integer.parseInt(id));
 		if(deleteProduct){
-			int count = productDao.countProduct();
+			int count = productDao.countProduct(null);
 		
 			String  curPage  = (String)session.getAttribute("curPage");
 			int  pageSize = (int) session.getAttribute("pageSize");
@@ -111,6 +112,7 @@ public class ProductController extends BaseController{
 				curPage=curPage;
 			}
 			modelAndView.setViewName("selectProduct.do?curPage="+curPage+"");
+			modelAndView.addObject("update", "<script>alert('商品删除成功!')</script>");
 		}
 		return modelAndView;
 	}
@@ -144,7 +146,7 @@ public class ProductController extends BaseController{
 		product.setBrand(brand);
 		boolean updateProduct = productService.addProduct(product);
 		if(updateProduct){
-
+			modelAndView.addObject("update", "<script>alert('商品添加成功!')</script>");
 			modelAndView.setViewName("selectProduct.do");
 		}
 		return modelAndView;

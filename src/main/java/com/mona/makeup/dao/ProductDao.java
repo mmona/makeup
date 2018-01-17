@@ -1,6 +1,8 @@
 package com.mona.makeup.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import org.springframework.stereotype.Repository;
@@ -13,15 +15,28 @@ import com.mona.makeup.pojo.Product;
 @Repository
 public class ProductDao extends CommonDao {
 	//count product
-	public int countProduct(){
-		String sql="select count(*) from Product";
-		List<Object> query = (List<Object>) this.query(sql);
+	public int countProduct(String name){
+		StringBuffer buffer =  new StringBuffer("select count(*) from Product p where 1=1");
+		Map<String,Object> params= new HashMap<>();
+		if(!"".equals(name)&&name!=null){
+			buffer.append("  and p.name like :name");
+			params.put("name",  "%" +name + "%");
+		}
+		String sql = buffer.toString();
+		List<Object> query =(List<Object>) this.query(sql,params);
 		Number number = (Number) query.get(0);
 		return number.intValue();
 	}
 	//list product
-	public List<Product> selectProduct(Page page){
-		List<Product> query = this.query(Product.class, page.getBeginIndex(), page.getPageSize());
+	public List<Product> selectProduct(Page page,String name){
+		StringBuffer buffer =  new StringBuffer("select p from Product p where 1=1");
+		Map<String,Object> params= new HashMap<>();
+		if(!"".equals(name)&&name!=null){
+			buffer.append(" and p.name like :name ");
+			params.put("name", "%" +name + "%");
+		}
+		String sql = buffer.toString();
+		List<Product> query = (List<Product>) this.query(sql, page.getBeginIndex(), page.getPageSize(), params);
 		if(query!=null&&!query.isEmpty()){
 			return query;
 		}

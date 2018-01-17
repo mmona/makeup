@@ -64,7 +64,7 @@ public class UserController extends BaseController{
 		if(idUpdate){
 			String  curPage  = (String) session.getAttribute("curPage");
 			modelAndView.setViewName("seletAllUser.do?curPage="+curPage+"");
-			modelAndView.addObject("update", "修改成功！");
+			modelAndView.addObject("update", "<script>alert('修改成功!')</script>");
 		}
 		return modelAndView;
 	}
@@ -84,7 +84,7 @@ public class UserController extends BaseController{
 				curPage=curPage;
 			}
 			modelAndView.setViewName("seletAllUser.do?curPage="+curPage+"");
-			modelAndView.addObject("delete", "删除成功！！");
+			modelAndView.addObject("update", "<script>alert('删除成功!')</script>");
 		}
 		return modelAndView;
 	}

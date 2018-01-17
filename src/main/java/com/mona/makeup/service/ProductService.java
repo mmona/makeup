@@ -16,16 +16,16 @@ public class ProductService extends BaseService {
 	private ProductDao productDao;
 
 	// select product
-	public Result<Product> selectProduct(int curPage) {
+	public Result<Product> selectProduct(int curPage,String name) {
 		Result<Product> result = new Result<>();
-		int count = productDao.countProduct();
+		int count = productDao.countProduct(name);
 		Page page = new Page();
 		page.setBeginIndex((curPage - 1) * 10);
 		page.setCurrentPage(curPage);
 		page.setPageSize(10);
 		page.setTotalCount(count);
 		page.setTotalPage((count % 10 == 0) ? (count / 10) : (count / 10 + 1));
-		List<Product> selectProduct = productDao.selectProduct(page);
+		List<Product> selectProduct = productDao.selectProduct(page,name);
 		result.setList(selectProduct);
 		result.setPage(page);
 		return result;

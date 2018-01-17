@@ -61,6 +61,7 @@ public class TypeController extends BaseController{
 		if(addType){
 		
 			modelAndView.setViewName("selectType.do");
+			modelAndView.addObject("update", "<script>alert('类别添加成功!')</script>");
 		}
 		return modelAndView;
 	}
@@ -85,6 +86,7 @@ public class TypeController extends BaseController{
 		if(updateType){
 			String  curPage = (String) session.getAttribute("curPage");
 			modelAndView.setViewName("selectType.do?curPage="+curPage+"");
+			modelAndView.addObject("update", "<script>alert('类别修改成功!')</script>");
 		}
 		return modelAndView;
 	}
@@ -103,6 +105,7 @@ public class TypeController extends BaseController{
 				curPage=curPage;
 			}
 			modelAndView.setViewName("selectType.do?curPage="+curPage+"");
+			modelAndView.addObject("update", "<script>alert('类别删除成功!')</script>");
 		}
 
 		return modelAndView;

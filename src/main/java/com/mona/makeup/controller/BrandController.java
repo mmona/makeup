@@ -66,6 +66,7 @@ public class BrandController extends BaseController {
 		if (updateBrand) {
 			String curPage = (String) session.getAttribute("curPage");
 			modelAndView.setViewName("selectBrand.do?curPage=" + curPage + "");
+			modelAndView.addObject("update", "<script>alert('品牌修改成功!')</script>");
 		}
 		return modelAndView;
 	}
@@ -85,6 +86,7 @@ public class BrandController extends BaseController {
 				curPage = curPage;
 			}
 			modelAndView.setViewName("selectBrand.do?curPage=" + curPage + "");
+			modelAndView.addObject("update", "<script>alert('品牌删除成功!')</script>");
 		}
 		return modelAndView;
 	}
@@ -99,6 +101,7 @@ public class BrandController extends BaseController {
 		boolean addBrand = brandService.addBrand(brand);
 		if (addBrand) {
 			modelAndView.setViewName("selectBrand.do");
+			modelAndView.addObject("update", "<script>alert('品牌添加成功!')</script>");
 		}
 		return modelAndView;
 	}

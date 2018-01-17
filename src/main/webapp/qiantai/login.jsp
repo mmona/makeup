@@ -105,7 +105,6 @@
   
 </table>
 ${success}
-${password}
 ${isupdate }
  
 </body>

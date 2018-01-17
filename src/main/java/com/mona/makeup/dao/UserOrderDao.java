@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mona.makeup.page.utils.Page;
 import com.mona.makeup.pojo.Orderr;
+import com.mona.makeup.pojo.Product;
 import com.mona.makeup.pojo.User;
 
 @Repository
@@ -87,10 +88,11 @@ public class UserOrderDao extends CommonDao {
 	 }
 	 //update shopping 
 	 @Transactional
-	 public int updateshopping(User user){
-		 String sql="update Orderr o set o.isorder=1 where o.user=:user"; 
+	 public int updateshopping(User user,String times){
+		 String sql="update Orderr o set o.isorder=1,o.times=:times where o.user=:user and o.isorder=0"; 
 		 Map< String ,Object> params = new HashMap<>();
 		 params.put("user", user);
+		 params.put("times", times);
 		 int execRawSql = this.execRawSql(sql, params);
 		 if(execRawSql>0){
 			 return execRawSql;
@@ -124,5 +126,19 @@ public class UserOrderDao extends CommonDao {
 				return query;
 			}
 			return null;
+	 }
+	 //select recommend
+	 public List<Product> selectRecommend(){
+		 String sql = "select p from Product p  where p.recommend = 1 ";
+		List<Product> query = (List<Product>) this.query(sql);
+		 if(query!=null&&!query.isEmpty()){
+				return query;
+			}
+			return null;
+	 }
+	 //add shopping
+	 @Transactional
+	 public boolean addShoppingCar(Orderr orderr ){
+		 return this.save(orderr);
 	 }
 }

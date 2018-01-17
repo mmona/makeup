@@ -7,6 +7,7 @@ import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.type.StringRepresentableType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mona.makeup.bean.jsonresponse.JSONResponseBody;
 import com.mona.makeup.pojo.Admin;
 import com.mona.makeup.pojo.User;
+import com.mona.makeup.utils.MD5Util;
 
 @Controller
 @RequestMapping(value="/qiantai")
@@ -29,12 +31,13 @@ public class UserLoginController  extends BaseController{
 		}else{	
 		session.setAttribute("username", username);
 		session.setAttribute("password", password);
-		}
-		User login = userService.login(username, password);
+		}	
+		String pwString = MD5Util.md5Hex(password);
+		User login = userService.login(username, pwString);
 		if(login!=null){
 			modelAndView.addObject("user", login);
 			session.setAttribute("user",login);
-			modelAndView.setViewName("index.jsp");
+			modelAndView.setViewName("indexInfo.do");
 		}else {
 			modelAndView.setViewName("login.jsp");
 		}
@@ -62,15 +65,16 @@ public class UserLoginController  extends BaseController{
 		return modelAndView;
 	}
 	@RequestMapping(value="updatePassword")
-	public ModelAndView  updatePassword(String pwd,String id){
+	public ModelAndView  updatePassword(String pwd,String id,HttpSession session){
 		ModelAndView modelAndView = new ModelAndView();
 		User user = new User();
-		user.setPassword(pwd);
+		String password = MD5Util.md5Hex(pwd);
+		user.setPassword(password );
 		user.setId(Integer.parseInt(id));
 		boolean updatePassword = userService.updatePassword(user);
 		if(updatePassword){
 			modelAndView.setViewName("login.jsp");
-			modelAndView.addObject("password", "<script>alert('密码重置完成，请重新登录!')</script>");
+			modelAndView.addObject("success", "<script>alert('密码重置完成，请重新登录!')</script>");
 		}
 		return modelAndView;
 	}
@@ -98,7 +102,8 @@ public class UserLoginController  extends BaseController{
 	public ModelAndView addUser(HttpServletRequest request){
 		ModelAndView modelAndView = new ModelAndView();
 		String name = request.getParameter("name");
-		String password = request.getParameter("pwd");
+		String password1 = request.getParameter("pwd");
+		String password = MD5Util.md5Hex(password1);
 		String sex = request.getParameter("sex");
 		String realname = request.getParameter("realname");
 		String age = request.getParameter("age");
@@ -131,8 +136,9 @@ public class UserLoginController  extends BaseController{
 	@RequestMapping(value="updateUser")
 	public ModelAndView updateUser(HttpServletRequest request){
 		ModelAndView modelAndView = new ModelAndView();
-		String name = request.getParameter("name");
-		String password = request.getParameter("pwd");
+		String username = request.getParameter("username");
+		String password1 = request.getParameter("pwd");
+		String password = MD5Util.md5Hex(password1);
 		String sex = request.getParameter("sex");
 		String realname = request.getParameter("realname");
 		String age = request.getParameter("age");
@@ -143,7 +149,7 @@ public class UserLoginController  extends BaseController{
 		String code= request.getParameter("code");
 		String id= request.getParameter("id");
 		User user  = new User();
-		user.setUsername(name);
+		user.setUsername(username);
 		user.setPassword(password);
 		user.setRealname(realname);
 		user.setSex(sex);

@@ -66,6 +66,7 @@ public class OrderController extends BaseController {
 		if(updateOrder){
 			String  curPage = (String) session.getAttribute("curPage");
 			modelAndView.setViewName("selectOrder.do?curPage="+curPage+"");
+			modelAndView.addObject("update", "<script>alert('订单已取消!')</script>");
 		}
 		return modelAndView;
 	}
@@ -79,6 +80,7 @@ public class OrderController extends BaseController {
 		if(updateOrder){
 			String  curPage = (String) session.getAttribute("curPage");
 			modelAndView.setViewName("selectOrder.do?curPage="+curPage+"");
+			modelAndView.addObject("update", "<script>alert('订单已送达!')</script>");
 		}
 		return modelAndView;
 	}
@@ -98,6 +100,7 @@ public class OrderController extends BaseController {
 			}
 			
 			modelAndView.setViewName("selectOrder.do?curPage="+curPage+"");
+			modelAndView.addObject("update", "<script>alert('订单删除成功!')</script>");
 		}
 		return modelAndView;
 	}

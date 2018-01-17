@@ -73,7 +73,7 @@
 												class="left_bt2">元</span>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												<span class="left_bt2">共：</span>&nbsp; <span
-												style="color: #ff0000;">${sum2 }</span>&nbsp; <span
+												style="color: #ff0000;">${sum1 }</span>&nbsp; <span
 												class="left_bt2">份</span></td>
 
 										</tr>

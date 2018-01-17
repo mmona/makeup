@@ -10,8 +10,7 @@
 <meta content="" name=keywords />
 <meta content="" name=description />
 <link href="qiantai/css/common.css" rel="stylesheet" type="text/css" />
-<script src="/jquery/jquery-2.2.4.min.js"
-	type="text/javascript"></script>
+<script src="/jquery/jquery-2.2.4.min.js" type="text/javascript"></script>
 </head>
 
 
@@ -111,7 +110,8 @@
 										名：</font></td>
 								<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0"
 									height="25" align="left"><input class="input7" type="text"
-									name="username" value="${user.username }" /></td>								<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0"
+									name="username" value="${user.username }" /></td>
+								<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0"
 									height="25" align="left"><font color="red">&nbsp;*
 								</font>您用来登录的用户名</td>
 							</tr>
@@ -153,9 +153,9 @@
 									height="25" align="right"><font color="#996633">性&nbsp;
 										&nbsp;&nbsp;别：</font></td>
 								<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0"
-									height="25" align="left">
-									<font color="red">${user.sex }</font> 
-								</td>
+									height="25" align="left"><input type="radio" name="sex"
+									checked value="男"> 男&nbsp;&nbsp;&nbsp;&nbsp; <input
+									type="radio" name="sex" value="女"> 女</td>
 								<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0"
 									height="25" align="left"><font color="red">&nbsp;*
 								</font>请填写您的真实信息</td>
@@ -240,7 +240,7 @@
 		<tr>
 			<td height="10">&nbsp;</td>
 		</tr>
-	<%-- 	<tr>
+		<%-- 	<tr>
 			<td height="50" align="center" valign="middle">&nbsp; <jsp:include
 					flush="fasle" page="../qiantai/copyright.jsp" />
 			</td> --%>

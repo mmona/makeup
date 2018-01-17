@@ -11,6 +11,7 @@ import com.mona.makeup.dao.UserOrderDao;
 import com.mona.makeup.page.utils.Page;
 import com.mona.makeup.page.utils.Result;
 import com.mona.makeup.pojo.Orderr;
+import com.mona.makeup.pojo.Product;
 import com.mona.makeup.pojo.User;
 
 @Service
@@ -51,8 +52,8 @@ public class UserOrderService extends BaseService {
 		return userOrderDao.deleteShoppingCar(id);
 	}
 	//update shopping 
-	public boolean updateShopping(User user){
-		int updateshopping = userOrderDao.updateshopping(user);
+	public boolean updateShopping(User user,String times){
+		int updateshopping = userOrderDao.updateshopping(user,times);
 		if(updateshopping>0){
 			return true;
 		}
@@ -72,5 +73,13 @@ public class UserOrderService extends BaseService {
 	//select index shopping 
 	 public List<Orderr> indexshopping(User user){
 		 return userOrderDao.indexshopping(user);
+	 }
+	 //select recommend
+	 public List<Product> selectRecommend(){
+		 return userOrderDao.selectRecommend();
+	 }
+	 //add addShoppingCar
+	 public boolean addShoppingCar(Orderr orderr ){
+		 return userOrderDao.addShoppingCar(orderr);
 	 }
 }

@@ -133,6 +133,6 @@ alert(${update})
 			</td>
 		</tr>
 	</table>
-<%-- ${delete } --%>
+ ${uodate }
 </body>
 </html>

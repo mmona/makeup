@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.stat.spi.StatisticsImplementor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -93,7 +94,15 @@ public class UserDao extends CommonDao {
 	//update password
 	@Transactional
 	public boolean updatePassword(User user){
-		return this.update(user);
+		String sql="update User u set u.password=:password where u.id=:id";
+		Map<String, Object> params = new HashMap<>();
+		params.put("password", user.getPassword());
+		params.put("id", user.getId());
+		int execRawSql = this.execRawSql(sql, params);
+		if(execRawSql>0){
+			return true;
+		}
+		return false;
 	}
 	//add user 
 	@Transactional

@@ -40,47 +40,47 @@
 		<tr>
 			<td  class="line_table" height="25" align="right" width="20%"><span class="left_bt2">化妆品名称：</span></td>
 			<td class="line_table" height="25"  width="70%">
-			<input type="text" name="name" size="45" readonly value="糖醋排骨"></td>
+			<span class="left_bt2">${product.name }</span></td>
 		</tr>
 		<tr>
 			<td  class="line_table" height="25"  align="right" width="20%"><span class="left_bt2">主	要成分 ：
 			</span></td>
 			<td class="line_table" height="25" width="80%">
-			<input type="text" name="burden" size="45" readonly value="排骨、糖、醋"></td>
+			<span class="left_bt2">${product.burden}</span></td>
 		</tr>
 		<tr>
 			<td class="line_table" height="25"  align="right" width="20%"><span class="left_bt2">原&nbsp;&nbsp;&nbsp;
 			价：</span></td>
-			<td height="25"  width="80%">
-			<input type="text" name="price" size="45" readonly value="26.0"></td>
+			<td  class="line_table" height="25"  width="80%">
+			<span class="left_bt2">${product.price1}</span></td>
 		</tr>
 		<tr>
 			<td class="line_table" height="25"  align="right" width="20%"><span class="left_bt2">会员单
 			价：</span></td>
 			<td height="25"  width="80%">
-			<input type="text" name="price1" size="45" readonly value="24.0"></td>
+			<span class="left_bt2" height="25"  width="80%">${product.price2}</span></td>
 		</tr>
 		<tr>
-			<td class="line_table"  height="25"  align="right" width="20%"><span class="left_bt2">用&nbsp;&nbsp;&nbsp; 
-			途：</span></td>
+			<td class="line_table"  height="25"  align="right" width="20%"><span class="left_bt2">描&nbsp;&nbsp;&nbsp; 
+			述：</span></td>
 			<td class="line_table" height="25"  width="80%">
-			<textarea rows="12" name="brief" cols="100" readonly>暂无</textarea></td>
+			<span class="left_bt2">${product.description}</span></td>
 		</tr>
 		<tr>
 			<td  class="line_table" height="25"  align="right" width="20%"><span class="left_bt2">化妆品类别：</span></td>
 			<td  class="line_table"  height="25"  width="80%">
-			<input type="text" name="type" size="45" readonly value="炒菜">
+			<span class="left_bt2">${product.type.tname}</span>
 			</td>
 		</tr>
 		<tr>
 			<td class="line_table" align="right" width="20%">
 			<span class="left_bt2">展示图片</span>：</td>
-			<td  class="line_table" width="80%" align="left"><img src="../img/m_tangcupaigu.gif"></td>
+			<td  class="line_table" width="80%" align="left"><img src="../${product.imgpath}"></td>
 		</tr>
 
 		<tr>
 			<td  class="line_table" height="25"  align="center" colspan="2">
-			<a href="index.jsp" target="_self"><input type="submit" value="返回"></a>
+			<a href="indexInfo.do" target="_self"><input type="submit" value="返回"></a>
 			</td>
 		</tr>
 		

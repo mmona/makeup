@@ -47,7 +47,7 @@ public class AdminController extends BaseController {
 			return mView;
 		}else {
 			mView.setViewName("/admin/index.jsp");
-			mView.addObject("error", "密码或用户名错误请重新登录");
+			mView.addObject("update", "<script>alert('密码或用户名错误请重新登录!')</script>");
 		}
 		return mView;
 	}
@@ -70,10 +70,10 @@ public class AdminController extends BaseController {
 		PrintWriter out = response.getWriter();
 		boolean updateAdmin = adminService.updateAdmin(admin);
 		if(updateAdmin){
-			out.println("<script>alert('修改成功,欢迎下次登录');</script>");
+			modelAndView.addObject("update", "<script>alert('修改成功!')</script>");
 			modelAndView.setViewName("/admin/index.jsp");
 		}else {
-			out.println("<script>alert('修改失败');</script>");
+			modelAndView.addObject("update", "<script>alert('修改失败!')</script>");
 		}
 		return modelAndView;
 	}
@@ -84,6 +84,7 @@ public class AdminController extends BaseController {
 		if(admin!=null){
 			session.removeAttribute("admin");
 			modelAndView.setViewName("/admin/index.jsp");
+			modelAndView.addObject("update", "<script>alert('退出登录!')</script>");
 		}
 		return modelAndView;
 	}

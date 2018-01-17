@@ -117,5 +117,6 @@ body {
 			</td>
 		</tr>
 	</table>
+	${update }
 </body>
 </html>
