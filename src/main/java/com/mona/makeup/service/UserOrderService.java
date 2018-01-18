@@ -51,6 +51,15 @@ public class UserOrderService extends BaseService {
 	public boolean deleteShoppingCar(int id ){
 		return userOrderDao.deleteShoppingCar(id);
 	}
+	//uppdate updateShoppingCar
+	public boolean updateShoppingCar(int id  ){
+
+		int updateShoppingCar = userOrderDao.updateShoppingCar(id);
+		if(updateShoppingCar>0){
+			return true;
+		}
+		return false;
+	}
 	//update shopping 
 	public boolean updateShopping(User user,String times){
 		int updateshopping = userOrderDao.updateshopping(user,times);

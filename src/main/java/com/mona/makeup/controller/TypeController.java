@@ -85,6 +85,11 @@ public class TypeController extends BaseController{
 		boolean updateType = typeService.updateType(type);
 		if(updateType){
 			String  curPage = (String) session.getAttribute("curPage");
+			if(null== curPage ){
+				curPage="1";
+			}else{
+				curPage = curPage;
+			}
 			modelAndView.setViewName("selectType.do?curPage="+curPage+"");
 			modelAndView.addObject("update", "<script>alert('类别修改成功!')</script>");
 		}
@@ -102,7 +107,11 @@ public class TypeController extends BaseController{
 				int a = Integer.parseInt(curPage)-1;
 				curPage = String.valueOf(a);
 			}else {
-				curPage=curPage;
+				if(null== curPage ){
+					curPage="1";
+				}else{
+					curPage = curPage;
+				}
 			}
 			modelAndView.setViewName("selectType.do?curPage="+curPage+"");
 			modelAndView.addObject("update", "<script>alert('类别删除成功!')</script>");

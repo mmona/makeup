@@ -64,7 +64,7 @@ body {
 	            success:function(data){
 	                if(data.success){
 	                $('#file').fadeOut();
-	                $('#'+preview).attr("src",data.imagePath).fadeIn();
+	                $('#'+preview).attr("src/img",data.imagePath).fadeIn();
 	                $('#'+col).val(data.imagePath);
 	                }else{
 	                    alert(data.message);

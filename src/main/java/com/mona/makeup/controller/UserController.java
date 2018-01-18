@@ -63,6 +63,11 @@ public class UserController extends BaseController{
 		boolean idUpdate = userService.updateUserById(user);
 		if(idUpdate){
 			String  curPage  = (String) session.getAttribute("curPage");
+			if(null== curPage ){
+				curPage="1";
+			}else{
+				curPage = curPage;
+			}
 			modelAndView.setViewName("seletAllUser.do?curPage="+curPage+"");
 			modelAndView.addObject("update", "<script>alert('修改成功!')</script>");
 		}
@@ -81,7 +86,11 @@ public class UserController extends BaseController{
 				int a = Integer.parseInt(curPage)-1;
 				curPage = String.valueOf(a);
 			}else {
-				curPage=curPage;
+				if(null== curPage ){
+					curPage="1";
+				}else{
+					curPage = curPage;
+				}
 			}
 			modelAndView.setViewName("seletAllUser.do?curPage="+curPage+"");
 			modelAndView.addObject("update", "<script>alert('删除成功!')</script>");

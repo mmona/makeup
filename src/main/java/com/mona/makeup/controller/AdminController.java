@@ -83,7 +83,7 @@ public class AdminController extends BaseController {
 		Admin admin = (Admin) session.getAttribute("admin");
 		if(admin!=null){
 			session.removeAttribute("admin");
-			modelAndView.setViewName("/admin/index.jsp");
+			modelAndView.setViewName("index.jsp");
 			modelAndView.addObject("update", "<script>alert('退出登录!')</script>");
 		}
 		return modelAndView;

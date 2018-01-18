@@ -86,6 +86,18 @@ public class UserOrderDao extends CommonDao {
 	 public boolean deleteShoppingCar(int id){
 		 return this.delete(id, Orderr.class);
 	 }
+	//uodate 	updateShoppingCar  只是修改单个
+	 @Transactional
+	 public int updateShoppingCar(int id){
+		 String sql="update Orderr o set o.isorder=1 where o.id=:id";
+		 Map< String ,Object> params = new HashMap<>();
+		 params.put("id", id);
+		 int execRawSql = this.execRawSql(sql, params);
+		 if(execRawSql>0){
+			 return execRawSql;
+		 }
+		 return 0;
+	 }
 	 //update shopping 
 	 @Transactional
 	 public int updateshopping(User user,String times){

@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -124,11 +125,32 @@ public class UserOrderController extends BaseController {
 				int a = Integer.parseInt(curPage) - 1;
 				curPage = String.valueOf(a);
 			} else {
-				curPage = curPage;
+				if(null== curPage ){
+					curPage="1";
+				}else{
+					curPage = curPage;
+				}
 			}
 			modelAndView.setViewName("selectShopping.do?curPage=" + curPage + "");
 			modelAndView.addObject("deleteshoppingcar", "<script>alert('取消成功!')</script>");
 		}
+		return modelAndView;
+	}
+	@RequestMapping(value="updateShoppingCar")
+	public ModelAndView updateShoppingCar(HttpSession session,String id){
+		ModelAndView modelAndView = new ModelAndView();
+		boolean updateShoppingCar = userOrderService.updateShoppingCar(Integer.parseInt(id));
+		if( updateShoppingCar){
+			String curPage = (String) session.getAttribute("curPage");
+			if(null== curPage ){
+				curPage="1";
+			}else{
+				curPage = curPage;
+			}
+			modelAndView.setViewName("selectShopping.do?curPage=" + curPage + "");
+			modelAndView.addObject("deleteshoppingcar", "<script>alert('订单提交成功!')</script>");
+		}
+		
 		return modelAndView;
 	}
 	@RequestMapping(value="deleteShoppingindex")
@@ -153,7 +175,7 @@ public class UserOrderController extends BaseController {
 		boolean updateShopping = userOrderService.updateShopping(user,times);
 		if (updateShopping) {
 			modelAndView.setViewName("selectShopping.do");
-			modelAndView.addObject("deleteshoppingcar", "<script>alert('订单提交成功!')</script>");
+			modelAndView.addObject("deleteshoppingcar", "<script>alert('订单全部提交成功!')</script>");
 		}
 		return modelAndView;
 	}

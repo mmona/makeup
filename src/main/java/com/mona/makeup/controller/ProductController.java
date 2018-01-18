@@ -48,12 +48,13 @@ public class ProductController extends BaseController{
 		return modelAndView;
 	}
 	@RequestMapping(value="selectProductById")
-	public ModelAndView selectProductById(String id){
+	public ModelAndView selectProductById(String id,HttpSession session){
 		ModelAndView modelAndView = new ModelAndView();
 		Product selectProductById = productService.selectProductById(Integer.parseInt(id));
 		if(selectProductById!=null){
 			modelAndView.setViewName("admin/product_update.jsp");
 			modelAndView.addObject("product", selectProductById);
+			session.setAttribute("product", selectProductById);
 		}
 		return modelAndView;
 	}
@@ -90,6 +91,11 @@ public class ProductController extends BaseController{
 		boolean updateProduct = productService.updateProduct(product);
 		if(updateProduct){
 			String  curPage = (String) session.getAttribute("curPage");
+			if(null== curPage ){
+				curPage="1";
+			}else{
+				curPage = curPage;
+			}
 			modelAndView.setViewName("selectProduct.do?curPage="+curPage+"");
 			modelAndView.addObject("update", "<script>alert('商品修改成功!')</script>");
 		}
@@ -109,7 +115,11 @@ public class ProductController extends BaseController{
 				int a = Integer.parseInt(curPage)-1;
 				curPage = String.valueOf(a);
 			}else {
-				curPage=curPage;
+				if(null== curPage ){
+					curPage="1";
+				}else{
+					curPage = curPage;
+				}
 			}
 			modelAndView.setViewName("selectProduct.do?curPage="+curPage+"");
 			modelAndView.addObject("update", "<script>alert('商品删除成功!')</script>");
@@ -134,7 +144,7 @@ public class ProductController extends BaseController{
 		product.setBurden(burden);
 		product.setDescription(description);
 		String  attribute = (String) session.getAttribute("absolutePath");
-		product.setImgpath(attribute);
+		product.setImgpath(file);
 		product.setName(name);
 		product.setPrice1(Float.parseFloat(price1));
 		product.setPrice2(Float.parseFloat(price2));

@@ -52,6 +52,11 @@ public class OrderController extends BaseController {
 		boolean updateOrder = orderService.updateOrder(orderr);
 		if(updateOrder){
 			String  curPage = (String) session.getAttribute("curPage");
+			if(null== curPage ){
+				curPage="1";
+			}else{
+				curPage = curPage;
+			}
 			modelAndView.setViewName("selectOrder.do?curPage="+curPage+"");
 		}
 		return modelAndView;
@@ -65,6 +70,11 @@ public class OrderController extends BaseController {
 		boolean updateOrder = orderService.updateOrder(orderr);
 		if(updateOrder){
 			String  curPage = (String) session.getAttribute("curPage");
+			if(null== curPage ){
+				curPage="1";
+			}else{
+				curPage = curPage;
+			}
 			modelAndView.setViewName("selectOrder.do?curPage="+curPage+"");
 			modelAndView.addObject("update", "<script>alert('订单已取消!')</script>");
 		}
@@ -79,6 +89,11 @@ public class OrderController extends BaseController {
 		boolean updateOrder = orderService.updateReach(orderr);
 		if(updateOrder){
 			String  curPage = (String) session.getAttribute("curPage");
+			if(null== curPage ){
+				curPage="1";
+			}else{
+				curPage = curPage;
+			}
 			modelAndView.setViewName("selectOrder.do?curPage="+curPage+"");
 			modelAndView.addObject("update", "<script>alert('订单已送达!')</script>");
 		}
@@ -96,7 +111,11 @@ public class OrderController extends BaseController {
 				int a = Integer.parseInt(curPage) - 1;
 				curPage = String.valueOf(a);
 			} else {
-				curPage = curPage;
+				if(null== curPage ){
+					curPage="1";
+				}else{
+					curPage = curPage;
+				}
 			}
 			
 			modelAndView.setViewName("selectOrder.do?curPage="+curPage+"");

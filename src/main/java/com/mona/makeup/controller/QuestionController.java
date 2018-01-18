@@ -72,6 +72,11 @@ public class QuestionController extends BaseController {
 		boolean addReview = reviewService.addReview(review);
 		if(addReview){
 			String  curPage = (String) session.getAttribute("curPage");
+			if(null== curPage ){
+				curPage="1";
+			}else{
+				curPage = curPage;
+			}
 			modelAndView.setViewName("selectQuestion.do?curPage="+ curPage+"");
 		}
 		return modelAndView;
@@ -89,7 +94,11 @@ public class QuestionController extends BaseController {
 				int a = Integer.parseInt(curPage)-1;
 				curPage = String.valueOf(a);
 			}else {
-				curPage=curPage;
+				if(null== curPage ){
+					curPage="1";
+				}else{
+					curPage = curPage;
+				}
 			}
 			modelAndView.setViewName("selectQuestion.do?curPage="+ curPage+"");
 		}

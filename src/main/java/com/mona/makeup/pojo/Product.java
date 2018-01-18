@@ -15,7 +15,7 @@ import org.hibernate.dialect.Ingres10Dialect;
 import org.hibernate.type.PrimitiveByteArrayBlobType;
 
 @Entity
-public class Product {
+public class Product implements Cloneable {
 	private int id ;
 	private String name ;
 	private Type type;
@@ -97,6 +97,16 @@ public class Product {
 		this.recommend = recommend;
 	}
                                                  
-	
+	@Override
+	public Product clone() {
+		Product product = null;
+		try {
+			product = (Product) super.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return product;
+	}
 	
 }
