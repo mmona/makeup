@@ -77,8 +77,7 @@ public class ProductController extends BaseController{
 		product.setDescription(description);
 		product.setId(Integer.parseInt(id));
 		String  attribute = (String) session.getAttribute("absolutePath");
-		
-		product.setImgpath(attribute);
+		product.setImgpath(file );
 		product.setName(name);
 		product.setPrice1(Float.parseFloat(price1));
 		product.setPrice2(Float.parseFloat(price2));

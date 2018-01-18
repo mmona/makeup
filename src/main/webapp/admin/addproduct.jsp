@@ -112,7 +112,7 @@ body {
 								<td class="line_table" height="25" align="right" width="20%"><span
 									class="left_bt2">会员价格：</span></td>
 								<td height="25" width="80%"><input type="text"
-									name="price2" size="45" value="${product.price2 }"></td>
+									name="price2" size="45" value=""></td>
 							</tr>
 							<tr>
 								<td class="line_table" height="25" align="right" width="20%"><span
