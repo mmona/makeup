@@ -38,17 +38,18 @@ body {
 										class="left_bt2">按销售日期查询</span></td>
 									<td class="line_table" align="left" width="60%">
 									<input
-										type="text" name="times" size="20" readOnly
+										type="text" name="times" size="20" value="${times }" readOnly
 										onClick="setDay(this);"></input></td>
 								</tr>
 								<tr>
 									<td class="line_table" align="right" width="40%"><span
 										class="left_bt2">按是否派送查询</span></td>
 									<td class="line_table" align="left" width="60%">
+									<c:set value="${delivery }" var="delivery"></c:set>
 									<select name="delivery">
-									    <option  value="" size="20">无</option>
-											<option  value="1" size="20">是</option>
-											<option  value="0" size="20">否</option>
+									     <option  value="" size="20" <c:if test="${delivery eq ''}"> selected="selected"</c:if>>无</option>
+											<option  value="1" size="20" <c:if test="${delivery eq '1'}"> selected="selected"</c:if>>是</option>
+											<option  value="0" size="20" <c:if test="${delivery eq '0'}"> selected="selected"</c:if>>否</option>
 									</select></td>
 								</tr>
 								<tr>

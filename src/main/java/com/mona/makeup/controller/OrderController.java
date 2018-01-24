@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -147,7 +148,7 @@ public class OrderController extends BaseController {
 		return modelAndView;
 	}*/
 	@RequestMapping(value="searchOrder")
-	public ModelAndView searchOrder(String curPage,String delivery,String times){
+	public ModelAndView searchOrder(String curPage,String delivery,String times,HttpSession session){
 		ModelAndView modelAndView=new ModelAndView();
 		boolean blank = StringUtils.isBlank(curPage);
 		int cPage = 0;
@@ -158,19 +159,29 @@ public class OrderController extends BaseController {
 		}
 		Result<Orderr> selectOrder=null;
 		if(!"".equals(times)&&null!=times){
+			session.removeAttribute("delivery");
+			session.setAttribute("times", times);
 			selectOrder=orderService.selectOrder(cPage,times,null);
 		}
 		if("".equals(delivery)&&"".equals(times)){
+			session.removeAttribute("delivery");
+			session.removeAttribute("times");
 			selectOrder = orderService.selectOrder(cPage,null,null);
 		}
 		if(delivery==null&&delivery==null){
+			session.removeAttribute("delivery");
 			selectOrder = orderService.selectOrder(cPage,null,null);
 		}
 		if(!"".equals(delivery)&&"".equals(times)){
 			selectOrder = orderService.selectOrder(cPage,null,Integer.valueOf(delivery));
+			session.setAttribute("delivery", delivery);
+			session.setAttribute("times", times);
+			session.removeAttribute("delivery");
 		}
 		 if(!"".equals(delivery)&&!"".equals(times)&&null!=delivery&&null!=times){
 			 selectOrder=orderService.selectOrder(cPage,times,Integer.valueOf(delivery));
+			 session.setAttribute("delivery", delivery);
+			 session.setAttribute("times", times);
 		 }
 		if(selectOrder!=null){
 			modelAndView.setViewName("admin/order_search.jsp");

@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -226,10 +227,11 @@ function addUser(){
 					<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0" height="25" align="right">
 						<font color="#996633">性&nbsp; &nbsp;&nbsp;别：</font>
 					</td>
+					<c:set value="${user.sex }" var="sex" scope="page"></c:set>
 					<td  bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0" height="25" align="left">
-						<input type="radio" name="sex" checked value="男">
+						<input type="radio" name="sex" value="男" <c:if test="${sex eq '男' }"> checked="checked"</c:if> />
 						男&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="sex" value="女">
+						<input type="radio" name="sex" value="女" <c:if test="${sex eq '女' }"> checked="checked"</c:if>/>
 						女
 					</td>
 					<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0" height="25" align="left">

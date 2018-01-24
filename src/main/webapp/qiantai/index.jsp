@@ -262,7 +262,7 @@
 																	<c:forEach items="${indexShopping }" var="order">
 																		<tr id="shoppingcar">
 																			<td align="center">${order.product.name }</td>
-																			<td align="center">${order.product.price2 }</td>
+																			<td align="center">￥${order.product.price2 }</td>
 																			<td align="center">${order.productsum }</td>
 																			<c:set
 																				value="${sum + order.product.price2*order.productsum}"
@@ -286,7 +286,7 @@
 																	</div>
 																	<div
 																		style="float: right; line-height: 24px; padding-right: 30px;">
-																		<font id="cpprice" style="color: #ff0000;">${sum }</font>元
+																		<font id="cpprice" style="color: #ff0000;">￥${sum }</font>元
 																	</div>
 																</div>
 																<div style="height: 30px; margin: 5px 3px 1px 3px;">
@@ -360,7 +360,7 @@
 																		<c:forEach items="${recommend}" var="recommend">
 
 																			<li class="newslist_time2" id="recommend"><div
-																					class="time">${recommend.price2 }￥</div> <a
+																					class="time">￥${recommend.price2 }</div> <a
 																				href="#" class="newslist_time2">${recommend.name }</a></li>
 																		</c:forEach>
 																	</div>

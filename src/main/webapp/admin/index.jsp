@@ -63,7 +63,7 @@ body {
 								cellspacing="0">
 								<tr>
 									<td width="4%">&nbsp;</td>
-									<td width="96%" height="38"><span class="login_txt_bt">登陆女孩地带化妆品销售后台管理</span></td>
+									<td width="96%" height="38"><span class="login_txt_bt">登录女孩地带化妆品销售后台管理</span></td>
 								</tr>
 								<tr>
 									<td>&nbsp;</td>
