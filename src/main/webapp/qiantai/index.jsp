@@ -76,11 +76,11 @@
 																				</tr>
 																				<tr>
 																					<td><span>原价:</span></td>
-																					<td><span style="color: HotPink;">${product.price1 }</span></td>
+																					<td><span style="color: HotPink; text-decoration:line-through;">￥ ${product.price1 }</span></td>
 																				</tr>
 																				<tr>
 																					<td><span>现价:</span></td>
-																					<td><span><strong style="color: red;">${product.price2 }</strong></span></td>
+																					<td><span><strong style="color: red;">￥ ${product.price2 }</strong></span></td>
 																				</tr>
 																				<tr>
 																					<td><span>品牌:</span></td>
@@ -202,7 +202,7 @@
 
 																			<tr>
 																				<td class="line_table" align="left" width="60%"><input
-																					type="text" name="name" size="20" value=""> <input
+																					type="text" name="name" size="20" value="${name }"> <input
 																					type="submit" class="btn btn-primary pull-right"
 																					value="查询"></td>
 																			</tr>

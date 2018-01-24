@@ -99,7 +99,7 @@
 													<a href="login.jsp">购物车</a>|
 									</c:otherwise>
 											</c:choose></li>
-											<li><c:choose>
+										<li><c:choose>
 												<c:when test="${user!=null }">
 													<a href="selectuserorder.do" target="_self">我的订单</a>
 												</c:when>
@@ -107,15 +107,15 @@
 													<a href="login.jsp">我的订单</a>|
 									</c:otherwise>
 											</c:choose></li>
-											<li><c:choose>
+										<li><c:choose>
 												<c:when test="${user!=null }">
 													<a href="center.jsp" target="_self">用户中心</a>
 												</c:when>
 												<c:otherwise>
-												<a href="login.jsp" target="_self">用户中心</a>>|
+													<a href="login.jsp" target="_self">用户中心</a>>|
 									</c:otherwise>
 											</c:choose></li>
-										
+
 
 										<li><a href="carry.jsp" target="_self">配送说明</a></li>
 										<li><c:choose>
@@ -204,15 +204,19 @@
 								<a href="-1" style="line-height: 25px; color:">更多</a>
 							</div>
 						</div>
-						<div
-							style="padding: 0px; font: bold 13px/43px 'Microsoft YaHei', 'SimSun', Arial, Sans-Serif; color: #FF69B4;">
-							亲爱的${user.username }您好!&nbsp;&nbsp;欢迎光临!</div>
+						<c:if test="${user!=null }">
+								<div
+									style="padding: 0px; font: bold 13px/43px 'Microsoft YaHei', 'SimSun', Arial, Sans-Serif; color: #FF69B4;">
+									亲爱的${user.username }您好&nbsp;&nbsp;欢迎光临!</div>
 					</div>
-				</div>
+						</c:if>
+						
+				
 			</div>
-
-
 		</div>
+
+
+	</div>
 	</div>
 	</div>
 	</div>

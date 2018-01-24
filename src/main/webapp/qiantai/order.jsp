@@ -53,7 +53,7 @@
 
 							
 											<td class="line_table" align="center" colspan="3"><a
-												href="selectuserorder.do">我的所有订单</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="selectuserorder.do?delivery=${0}">未已派送订单</a>&nbsp;&nbsp;&nbsp;&nbsp;
+												href="selectuserorder.do">我的所有订单</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="selectuserorder.do?delivery=${0}">未派送订单</a>&nbsp;&nbsp;&nbsp;&nbsp;
 												<a href="selectuserorder.do?delivery=${1}">已派送订单</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 											</tr>
 									</table>

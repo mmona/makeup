@@ -35,6 +35,7 @@ public class IndexController extends BaseController {
 		User user = (User) session.getAttribute("user");
 		List<Orderr> indexshopping = userOrderService.indexshopping(user);
 		modelAndView.addObject("indexShopping", indexshopping);
+		session.removeAttribute("name");
 		boolean blank = StringUtils.isBlank(curPage);
 		int cPage = 0;
 		if (blank) {

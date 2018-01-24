@@ -35,7 +35,6 @@ public class UserLoginController  extends BaseController{
 		String pwString = MD5Util.md5Hex(password);
 		User login = userService.login(username, pwString);
 		if(login!=null){
-			modelAndView.addObject("user", login);
 			session.setAttribute("user",login);
 			modelAndView.setViewName("indexInfo.do");
 		}else {
@@ -45,11 +44,13 @@ public class UserLoginController  extends BaseController{
 	}
 	@RequestMapping(value="logout")
 	public String logout(HttpSession session){
-		String password=(String) session.getAttribute("password");
+		/*String password=(String) session.getAttribute("password");
 		String username=(String) session.getAttribute("username");
-		User login = userService.login(username, password);
-		if(login!=null){
+		User login = userService.login(username, password);*/
+		User user = (User) session.getAttribute("user");
+		if(user!=null){
 			session.removeAttribute("user");
+			
 		}
 		return "login.jsp";
 	}
