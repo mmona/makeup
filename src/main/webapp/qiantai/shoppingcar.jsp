@@ -84,6 +84,8 @@
 
 										</tr>
 										<tr>
+										<c:if test="${result.list!=null }">
+										
 										<tr>
 											<td class="line_table" align="center" colspan="5"
 												valign="center"><a href="updateshopping.do"><img
@@ -94,6 +96,10 @@
 													src="images/quxiao2.gif" border="0" /></a></td>
 
 										</tr>
+										
+										
+										</c:if>
+										
 								</table>
 				</table>
 				<table width="90%" border="0" align="center" cellpadding="0"

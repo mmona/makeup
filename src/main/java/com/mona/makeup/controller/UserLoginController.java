@@ -138,8 +138,8 @@ public class UserLoginController  extends BaseController{
 	public ModelAndView updateUser(HttpServletRequest request){
 		ModelAndView modelAndView = new ModelAndView();
 		String username = request.getParameter("username");
-		String password1 = request.getParameter("pwd");
-		String password = MD5Util.md5Hex(password1);
+		String password = request.getParameter("pwd");
+	
 		String sex = request.getParameter("sex");
 		String realname = request.getParameter("realname");
 		String age = request.getParameter("age");

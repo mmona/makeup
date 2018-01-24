@@ -37,9 +37,18 @@
 							<link href="css/topmenu_bk.css" rel="stylesheet" type="text/css" />
 
 							<div id="topmenu">
-
-								<a href="login.jsp" target="_self">会员登录</a>| <a href="reg.jsp"
+							<c:choose>
+									<c:when test="${user!=null }">
+										<a href="#" target="_self">会员登录</a>| <a href="#"
 									target="_self">会员注册</a>|
+									</c:when>
+									<c:otherwise>
+									<a href="login.jsp" target="_self">会员登录</a>| <a href="reg.jsp"
+									target="_self">会员注册</a>|
+									</c:otherwise>
+								</c:choose>
+		
+								
 								<c:choose>
 									<c:when test="${user!=null }">
 										<a href="logout.do">注销退出</a>|

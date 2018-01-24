@@ -36,9 +36,29 @@ function addUser(){
 					document.form1.name.focus();
 					return false;
 				}
+				if(document.form1.name.value.length<6){
+					alert("用户名长度必须在6为以上!");
+					document.form1.name.focus();
+					return false;
+				}
+				
+				
 				if (document.form1.pwd.value == ""  )  
 				{
 					alert("密码不能为空!");
+					document.form1.pwd.focus();
+					return false;
+				}
+				if (document.form1.pwd.value.length<5||document.form1.pwd.value.length>16)  
+				{
+					alert("密码长度要在5-16为之间!");
+					document.form1.pwd.focus();
+					return false;
+				}
+				 var patrn=/^([a-z]|[A-Z]|[0-9]){5}$/;
+				if (!patrn.exec(document.form1.pwd.value))  
+				{
+					alert("密码只能为英语字和数字组合!");
 					document.form1.pwd.focus();
 					return false;
 				}
@@ -72,6 +92,12 @@ function addUser(){
 					document.form1.card.focus();
 					return false;
 				}
+				if (document.form1.card.value.length!=18  )  
+				{
+					alert("身份证号不为18位!");
+					document.form1.card.focus();
+					return false;
+				}
 				if (document.form1.address.value == ""  )  
 				{
 					alert("家庭住址不能为空!");
@@ -84,9 +110,17 @@ function addUser(){
 					document.form1.phone.focus();
 					return false;
 				}
+				var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+				 
 				if (document.form1.email.value == ""  )  
 				{
 					alert("电子邮箱不能为空!");
+					document.form1.email.focus();
+					return false;
+				}
+				if (!reg.exec(document.form1.email.value)) 
+				{
+					alert("电子邮箱格式不正确!");
 					document.form1.email.focus();
 					return false;
 				}
@@ -146,7 +180,7 @@ function addUser(){
 						<input class="input7" type="password" name="pwd" value=""/>
 					</td>
 					<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0" height="25" align="left">
-						<font color="red">&nbsp;* </font>长度必须大于5个小于16个字符，只能为英语字、数字
+						<font color="red">&nbsp;* </font>长度必须大于5个小于16个字符，只能为英语字和数字组合
 					</td>
 				</tr>				
 				<tr>
@@ -204,7 +238,7 @@ function addUser(){
 						<input class="input7" type="text" name="card"/>
 					</td>
 					<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0" height="25" align="left">
-						<font color="red">&nbsp;* </font>请填写您的真实信息
+						<font color="red">&nbsp;* </font>请填写18位身份证号
 					</td>
 				</tr>
 				<tr>
@@ -236,7 +270,7 @@ function addUser(){
 						<input class="input7" type="text" name="email"/>
 					</td>
 					<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0" height="25" align="left">
-						<font color="red">&nbsp;* </font>请填写您有效的邮件地址，以便于我们为您提供有效的服务。
+						<font color="red">&nbsp;* </font>请填写您有效的邮件地址，如11111@qq.com;以便于我们为您提供有效的服务。
 					</td>
 				</tr>
 				<tr>
