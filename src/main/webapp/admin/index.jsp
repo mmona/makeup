@@ -93,10 +93,10 @@ body {
 															
 															<tr>
 																<td height="35">&nbsp;</td>
-																<td width="20%" height="35"><input name="Submit"
-																	type="submit" class="button" id="Submit" value="登 陆">
+																<td width="10%" height="35"><input name="Submit"
+																	type="submit" class="button" id="Submit" value="登录">
 																</td>
-																<td width="67%" class="top_hui_text"><input
+																<td width="90%" class="top_hui_text"><input
 																	name="cs" type="button" class="button" id="cs"
 																	value="取 消" onClick="showConfirmMsg1()"></td>
 															</tr>

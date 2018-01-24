@@ -49,13 +49,8 @@ function addUser(){
 					document.form1.pwd.focus();
 					return false;
 				}
-				if (document.form1.pwd.value.length<5||document.form1.pwd.value.length>16)  
-				{
-					alert("密码长度要在5-16为之间!");
-					document.form1.pwd.focus();
-					return false;
-				}
-				 var patrn=/^([a-z]|[A-Z]|[0-9]){5}$/;
+		
+				 var patrn= /^[0-9a-zA-Z]{5,16}$/;
 				if (!patrn.exec(document.form1.pwd.value))  
 				{
 					alert("密码只能为英语字和数字组合!");
@@ -80,6 +75,13 @@ function addUser(){
 					document.form1.realname.focus();
 					return false;
 				}
+				var g =/^\d+$/;
+				if (!g.exec(document.form1.age.value))  
+				{
+					alert("年龄必须是非负整数!");
+					document.form1.card.focus();
+					return false;
+				}
 				if (document.form1.age.value == ""  )  
 				{
 					alert("年龄不能为空!");
@@ -92,7 +94,8 @@ function addUser(){
 					document.form1.card.focus();
 					return false;
 				}
-				if (document.form1.card.value.length!=18  )  
+				var b= /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+				if (!b.exec(document.form1.card.value))  
 				{
 					alert("身份证号不为18位!");
 					document.form1.card.focus();
@@ -102,6 +105,13 @@ function addUser(){
 				{
 					alert("家庭住址不能为空!");
 					document.form1.address.focus();
+					return false;
+				}
+				var res = /^0?1[3|4|5|8|7][0-9]\d{8}$/;
+				if (!res.exec(document.form1.phone.value)) 
+				{
+					alert("电话号码格式不正确!");
+					document.form1.email.focus();
 					return false;
 				}
 				if (document.form1.phone.value == ""  )  
@@ -127,6 +137,13 @@ function addUser(){
 				if (document.form1.code.value == ""  )  
 				{
 					alert("邮政编码不能为空!");
+					document.form1.code.focus();
+					return false;
+				}
+				var a= /^\d{6}$/;
+				if (!a.exec(document.form1.code.value) )  
+				{
+					alert("邮政编码格式不正确，请输入如111111!");
 					document.form1.code.focus();
 					return false;
 				}
@@ -238,7 +255,7 @@ function addUser(){
 						<input class="input7" type="text" name="card"/>
 					</td>
 					<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0" height="25" align="left">
-						<font color="red">&nbsp;* </font>请填写18位身份证号
+						<font color="red">&nbsp;* </font>请填写18位或者15为正确身份证号
 					</td>
 				</tr>
 				<tr>
@@ -260,7 +277,7 @@ function addUser(){
 						<input class="input7" type="text" name="phone"/>
 					</td>
 					<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0" height="25" align="left">
-						<font color="red">&nbsp;* </font>请填写您的真实信息(格式为02411111111或13911111111) </td>
+						<font color="red">&nbsp;* </font>请填写您的真实信息(格式为17811111111或13911111111) </td>
 				</tr>
 				<tr>
 					<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0" height="25" align="right">

@@ -77,7 +77,8 @@ public class QuestionController extends BaseController {
 			}else{
 				curPage = curPage;
 			}
-			modelAndView.setViewName("selectQuestion.do?curPage="+ curPage+"");
+			modelAndView.setViewName("selectReview.do?curPage="+ curPage+"");
+			modelAndView.addObject("success","<script>alert('回复成功!')</script>");
 		}
 		return modelAndView;
 	}
@@ -101,6 +102,7 @@ public class QuestionController extends BaseController {
 				}
 			}
 			modelAndView.setViewName("selectQuestion.do?curPage="+ curPage+"");
+			modelAndView.addObject("success","<script>alert('删除成功!')</script>");
 		}
 		return modelAndView;
 		

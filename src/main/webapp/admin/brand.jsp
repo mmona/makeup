@@ -74,19 +74,19 @@ body {
 						</c:otherwise>
 					</c:choose> 
 						<c:choose>
-							<c:when test="${result.page.currentPage eq 1 }">上一页</c:when>
+						<c:when test="${result.page.currentPage eq 1 }"> 上一页 </c:when> 
 							<c:otherwise>
 								<a href="selectBrand.do?curPage=${result.page.currentPage-1}">上一页</a>
 							</c:otherwise>
 						</c:choose>
 						<c:choose>
-							<c:when test="${result.page.currentPage eq result.page.totalPage }">下一页</c:when>
+							<c:when test="${result.page.currentPage eq result.page.totalPage }"> 下一页 </c:when>
 							<c:otherwise>
 								<a href="selectBrand.do?curPage=${result.page.currentPage+1 }">下一页</a>
 							</c:otherwise>
 						</c:choose>
 						<c:choose>
-						<c:when test="${result.page.currentPage eq result.page.totalPage }">尾页</c:when>
+						<c:when test="${result.page.currentPage eq result.page.totalPage }"> 尾页 </c:when>
 						<c:otherwise>
 							<a href="selectBrand.do?curPage=${result.page.totalPage }">尾页</a>
 						</c:otherwise>

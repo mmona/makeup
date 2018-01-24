@@ -119,7 +119,7 @@ public class UserLoginController  extends BaseController{
 		user.setRealname(realname);
 		user.setSex(sex);
 		user.setAddress(address);
-		user.setAge(Integer.parseInt(age));
+		user.setAge(age);
 		user.setTelephone(phone);
 		user.setEmail(email );
 		user.setCard(card);
@@ -134,10 +134,21 @@ public class UserLoginController  extends BaseController{
 		}
 		return modelAndView;
 	}
+	@RequestMapping(value="selectUserByIds")
+	public ModelAndView selectUserById(HttpSession session){
+		ModelAndView modelAndView = new ModelAndView();
+		User user = (User) session.getAttribute("user");
+		User selectUserById = userService.selectUserById(user.getId());
+		if(selectUserById!=null){
+			modelAndView.setViewName("center.jsp");
+			modelAndView.addObject("user",selectUserById);                                                                      
+		}
+		return modelAndView;
+	}
 	@RequestMapping(value="updateUser")
 	public ModelAndView updateUser(HttpServletRequest request){
 		ModelAndView modelAndView = new ModelAndView();
-		String username = request.getParameter("username");
+		String username = request.getParameter("name");
 		String password = request.getParameter("pwd");
 	
 		String sex = request.getParameter("sex");
@@ -155,7 +166,7 @@ public class UserLoginController  extends BaseController{
 		user.setRealname(realname);
 		user.setSex(sex);
 		user.setAddress(address);
-		user.setAge(Integer.parseInt(age));
+		user.setAge(age);
 		user.setTelephone(phone);
 		user.setEmail(email );
 		user.setCard(card);
@@ -163,11 +174,11 @@ public class UserLoginController  extends BaseController{
 		user.setId(Integer.parseInt(id));
 		boolean updateUser = userService.updateUser(user);
 		if(updateUser){
-			modelAndView.setViewName("login.jsp");
+			modelAndView.setViewName("selectUserByIds.do");
 			modelAndView.addObject("isupdate","<script>alert('个人信息修改成功请登录!')</script>");
 		}else {
 			modelAndView.addObject("unupdate","<script>alert('个人信息修改失败!')</script>");
-			modelAndView.setViewName("reg.jsp");
+			modelAndView.setViewName("center.jsp");
 		}
 		return modelAndView;
 	}

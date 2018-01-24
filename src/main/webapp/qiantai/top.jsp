@@ -39,8 +39,7 @@
 							<div id="topmenu">
 							<c:choose>
 									<c:when test="${user!=null }">
-										<a href="#" target="_self">会员登录</a>| <a href="#"
-									target="_self">会员注册</a>|
+									 <span style="color:#FF69B4;">${user.username }</span>|
 									</c:when>
 									<c:otherwise>
 									<a href="login.jsp" target="_self">会员登录</a>| <a href="reg.jsp"
@@ -118,7 +117,7 @@
 											</c:choose></li>
 										<li><c:choose>
 												<c:when test="${user!=null }">
-													<a href="center.jsp" target="_self">用户中心</a>
+													<a href="selectUserByIds.do" target="_self">用户中心</a>
 												</c:when>
 												<c:otherwise>
 													<a href="login.jsp" target="_self">用户中心</a>>|

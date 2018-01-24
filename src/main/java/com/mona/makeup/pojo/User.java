@@ -26,7 +26,7 @@ public class User {
 	private String password;
 	private String realname;
 	private String sex;
-	private Integer age;
+	private String age;
 	private String card;
 	private String address;
 	private String telephone;
@@ -69,10 +69,10 @@ public class User {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public Integer getAge() {
+	public String getAge() {
 		return age;
 	}
-	public void setAge(Integer age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 	public String getCard() {

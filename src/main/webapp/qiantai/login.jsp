@@ -23,9 +23,21 @@
 			document.form1.username.focus();
 			return false;
 		}
-		if (document.form1.password.value == ""  )  
+		if(document.form1.username.value.length<6){
+			alert("用户名长度必须在6为以上!");
+			document.form1.name.focus();
+			return false;
+		}
+		if (document.form1.password.value.length<5||document.form1.password.value.length>16)  
 		{
-			alert("请输入密码!");
+			alert("密码长度要在5-16为之间!");
+			document.form1.password.focus();
+			return false;
+		}
+		 var patrn=/^([a-z]|[A-Z]|[0-9]){5}$/;
+		if (!patrn.exec(document.form1.password.value))  
+		{
+			alert("密码只能为英语字和数字组合!");
 			document.form1.password.focus();
 			return false;
 		}

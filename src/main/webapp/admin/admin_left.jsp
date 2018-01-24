@@ -185,7 +185,7 @@ H1 a {
         </table>
         <ul class="MM">
             <li><a href="selectQuestion.do" target="main">提问信息列表</a></li>
-            
+            <li><a href="selectReview.do" target="main">回复信息列表</a></li>
         </ul>
       </div>
     </div>

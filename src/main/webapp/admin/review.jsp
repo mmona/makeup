@@ -29,7 +29,7 @@ body {
 						<tbody style="margin: 0; padding: 0">
 							<tr>
 								<td class="line_table" align="center" colspan="11" height="20"><span
-									class="left_bt2">提问信息列表</span></td>
+									class="left_bt2">回复信息列表</span></td>
 							</tr>
 							<tr>
 								<td class="line_table" align="center"><span
@@ -37,23 +37,23 @@ body {
 								<td class="line_table" align="center"><span
 									class="left_bt2">提问内容</span></td>
 								<td class="line_table" align="center"><span
-									class="left_bt2">提问时间</span></td>
+									class="left_bt2">回复内容</span></td>
 								<td class="line_table" align="center"><span
-									class="left_bt2">&nbsp;</span></td>
+									class="left_bt2">回复时间</span></td>
 								<td class="line_table" align="center"><span
 									class="left_bt2">&nbsp;</span></td>
 							</tr>
-								 <c:forEach items="${result.list}" var="question">
+								 <c:forEach items="${result.list}" var="review">
 							<tr>
 								<td class="line_table" align="center"><a
-									href="selectQuestionById.do?id=${question.id}">${question.users.username }</a></td>
+									href="selectQuestionById.do?id=${review.question.id}">${review.users.username }</a></td>
 								<td class="line_table" align="center"><span
-									class="left_txt">${question.content }</span></td>
+									class="left_txt">${review.question.content }</span></td>
 								<td class="line_table" align="center"><span
-									class="left_txt">${question.times }</span></td>
-								<td class="line_table" align="center"><a
-									href="selectQuestionById.do?id=${question.id}">回复</a></td>
-								<td class="line_table" align="center"><a href="deleteQuestion.do?id=${question.id}">删除</a></td>
+									class="left_txt">${review.content }</span></td>
+								<td class="line_table" align="center"><span
+									class="left_txt">${review.time }</span></td>
+								<td class="line_table" align="center"><a href="deleteReview.do?id=${review.id}">删除</a></td>
 							</tr>
 							</c:forEach>
 					</table>
@@ -68,24 +68,24 @@ body {
 							<td width="50%" align="right"><c:choose>
 									<c:when test="${result.page.currentPage eq 1}">首页</c:when>
 									<c:otherwise>
-										<a href="selectQuestion.do">首页</a>
+										<a href="selectReview.do">首页</a>
 									</c:otherwise>
 								</c:choose> <c:choose>
 									<c:when test="${result.page.currentPage eq 1 }">上一页</c:when>
 									<c:otherwise>
-										<a href="selectQuestion.do?curPage=${result.page.currentPage-1}">上一页</a>
+										<a href="selectReview.do?curPage=${result.page.currentPage-1}">上一页</a>
 									</c:otherwise>
 								</c:choose> <c:choose>
 									<c:when
 										test="${result.page.currentPage eq result.page.totalPage }">下一页</c:when>
 									<c:otherwise>
-										<a href="selectQuestion.do?curPage=${result.page.currentPage+1 }">下一页</a>
+										<a href="selectReview.do?curPage=${result.page.currentPage+1 }">下一页</a>
 									</c:otherwise>
 								</c:choose> <c:choose>
 									<c:when
 										test="${result.page.currentPage eq result.page.totalPage }">尾页</c:when>
 									<c:otherwise>
-										<a href="selectQuestion.do?curPage=${result.page.totalPage }">尾页</a>
+										<a href="selectReview.do?curPage=${result.page.totalPage }">尾页</a>
 									</c:otherwise>
 								</c:choose></td>
 						</tr>

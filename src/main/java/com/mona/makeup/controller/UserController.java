@@ -54,7 +54,7 @@ public class UserController extends BaseController{
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setRealname(realname);
-		user.setAge(Integer.parseInt(age));
+		user.setAge(age);
 		user.setAddress(address);
 		user.setCard(card);
 		user.setCode(code);
