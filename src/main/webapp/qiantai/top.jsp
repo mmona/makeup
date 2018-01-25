@@ -57,8 +57,15 @@
 									</c:otherwise>
 								</c:choose>
 
-								<a href="carry.jsp" target="_self">配送说明</a>| <a
-									href="answer.jsp" target="_self">客服中心</a>
+								<a href="carry.jsp" target="_self">配送说明</a>|
+								<c:choose>
+												<c:when test="${user!=null }">
+													<a href="selectReviewByUser.do" target="_self">客服中心</a>
+												</c:when>
+												<c:otherwise>
+													<a href="login.jsp">客服中心</a>|
+									</c:otherwise>
+											</c:choose> 
 							</div>
 
 						</div>
@@ -128,7 +135,7 @@
 										<li><a href="carry.jsp" target="_self">配送说明</a></li>
 										<li><c:choose>
 												<c:when test="${user!=null }">
-													<a href="selectQuestionByUsers.do" target="_self">客服中心</a>
+													<a href="selectReviewByUser.do" target="_self">客服中心</a>
 												</c:when>
 												<c:otherwise>
 													<a href="login.jsp">客服中心</a>|

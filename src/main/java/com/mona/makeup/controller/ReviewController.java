@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mona.makeup.dao.ReviewDao;
 import com.mona.makeup.page.utils.Result;
+import com.mona.makeup.pojo.Question;
 import com.mona.makeup.pojo.Review;
 import com.mona.makeup.pojo.User;
 import com.mona.makeup.utils.StringUtils;
@@ -64,13 +65,16 @@ public class ReviewController extends BaseController{
 	}
 	@RequestMapping(value="qiantai/selectReviewByUser")
 	public ModelAndView selectReviewByUser(HttpSession session){
-		ModelAndView modelAndView = new ModelAndView();
+	ModelAndView modelAndView = new ModelAndView();
 		User user = (User) session.getAttribute("user");
 		List<Review> selectReviewByUser = reviewService.selectReviewByUser(user);
-		if( selectReviewByUser!=null){
-			modelAndView.addObject("selectReviewByUser", selectReviewByUser);
-			modelAndView.setViewName("answer.jsp");
+		List<Question> selectQuestionByUser = questionService.selectQuestionByUser(user);
+		if(selectReviewByUser!=null){
 			
+			
+			modelAndView.setViewName("answer.jsp");
+			modelAndView.addObject("selectReviewByUser",selectReviewByUser);
+		
 		}
 		return modelAndView;
 	}

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mona.makeup.dao.ReviewDao;
 import com.mona.makeup.page.utils.Page;
 import com.mona.makeup.page.utils.Result;
+import com.mona.makeup.pojo.Question;
 import com.mona.makeup.pojo.Review;
 import com.mona.makeup.pojo.User;
 

@@ -91,12 +91,13 @@
 																					<td><span style="color: HotPink;">${product.type.tname}</span></td>
 																				</tr>
 																				<tr>
-																					<td colspan="2" style="height: 40px;"><c:choose>
+																						<td><span></span></td>
+																					<td colspan="2" rowspan="5" style="height: 40px;"><c:choose>
 																							<c:when test="${user!=null }">
 																								<a href="addShoppingCar.do?id=${product.id }" style="color: HotPink;">加入购物车</a>
 																							</c:when>
 																							<c:otherwise>
-																								<a href="login.do" style="color: HotPink;">加入购物车</a>
+																								<a href="login.jsp" style="color: HotPink;">加入购物车</a>
 																							</c:otherwise>
 																						</c:choose></td>
 																					<td></td>

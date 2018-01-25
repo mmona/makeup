@@ -121,7 +121,7 @@ public class QuestionController extends BaseController {
 		question.setUsers(user);
 		boolean addQuestion = questionService.addQuestion(question);
 		if(addQuestion){
-			modelAndView.setViewName("answer.jsp");
+			modelAndView.setViewName("selectReviewByUser.do");
 			modelAndView.addObject("success","<script>alert('提问成功!')</script>");
 		}else {
 			modelAndView.setViewName("answer.jsp");
@@ -135,7 +135,7 @@ public class QuestionController extends BaseController {
 		User user = (User) session.getAttribute("user");
 		List<Question> selectQuestionByUser = questionService.selectQuestionByUser(user);
 		if(selectQuestionByUser!=null){
-			modelAndView.setViewName("answer.jsp");
+			modelAndView.setViewName("qiantai/answer.jsp");
 			modelAndView.addObject("selectQuestionByUser", selectQuestionByUser);
 			
 		}

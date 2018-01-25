@@ -53,10 +53,10 @@ public class Question {
 		this.users = users;
 	}
 	@OneToMany(mappedBy="question",fetch = FetchType.EAGER)
-	public List<Review> getReview() {
+	public List<Review> getReviews() {
 		return reviews;
 	}
-	public void setReview(List<Review> reviews) {
+	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
 	

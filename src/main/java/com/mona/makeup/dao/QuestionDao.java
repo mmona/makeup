@@ -54,7 +54,7 @@ public class QuestionDao extends CommonDao {
 	}
 	//selectQuestionByUser
 	public List<Question> selectQuestionByUser(User user){
-		String sql = "select q from Question q where q.users=:users order by q.times desc";
+		String sql = "select q from Question q where q.users in(select r.users from Review r  where r.users=:users)  order by q.times desc";
 		Map<String, Object> params = new HashMap<>();
 		params.put("users", user);
 		List<Question> query = this.query(sql, Question.class, params);

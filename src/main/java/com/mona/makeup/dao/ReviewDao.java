@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mona.makeup.page.utils.Page;
+import com.mona.makeup.pojo.Question;
 import com.mona.makeup.pojo.Review;
 import com.mona.makeup.pojo.User;
 @Repository
@@ -40,9 +41,10 @@ public class ReviewDao extends CommonDao{
 	}
 	//selectReviewByUser
 	public List<Review> selectReviewByUser(User user ){
-		String sql="select r from Review r where r.users=:users order by r.time";
+		String sql="select r from Review r where r.users=:users  order by r.time";
 		Map<String,Object> params = new HashMap<>();
 		params.put("users", user);
+		
 		List<Review> query = this.query(sql, Review.class, params);
 		if(query!=null&&!query.isEmpty()){
 			return query;
