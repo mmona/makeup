@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>客服中心</title>
 <meta content="" name=keywords />
 <meta content="" name=description />
-<link href="css/common.css" rel="stylesheet" type="text/css" />
+<link href="qiantai/css/common.css" rel="stylesheet" type="text/css" />
 
 </head>
 <script language="JavaScript">
@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 </script>
 
-<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="qiantai/js/common.js"></script>
 
  
 <body >
@@ -55,11 +55,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			 <br>
 		  </td>
 		</tr>
+		<c:forEach items="${selectQuestionByUser}" var="question">
+		<tr>
+		  <td  align="left">
+			<span style="font-family: Helvetica, sans-serif;font-size: 20px; /* color:#FF69B4 */">
+			       问题：
+			 </span>
+			 <span style="font-family: Helvetica, sans-serif;font-size: 20px;/*  color:#FF69B4" */>
+			${question.content }
+			 </span>
+			 <%-- &nbsp;&nbsp;&nbsp;
+			 <span style="font-family: Helvetica, sans-serif;font-size: 20px;/*  color:#FF69B4" */>
+			${review.question.times }
+			 </span> --%>
+			 <br>
+		  </td>
+		</tr>
+		<%-- 	<tr>
+		  <td  align="left">
+			<span style="font-family: Helvetica, sans-serif;font-size: 20px; /* color:#FF69B4" */>
+			       回复：
+			 </span>
+			  <span style="font-family: Helvetica, sans-serif;font-size: 20px; color:#FF69B4">
+				${review.content }
+			 </span>
+			 &nbsp;&nbsp;&nbsp;
+			 <span style="font-family: Helvetica, sans-serif;font-size: 20px;/*  color:#FF69B4" */>
+			${review.time}
+			 </span>
+			 <br>
+		  </td>
+		</tr> --%>
+		</c:forEach>
 		<form action="addQuestion.do" method="post"
 						name="form1" onSubmit="return check11()">
 		<tr>
 		  <td  align="center" vlign="top" >
-		  <textarea rows="12" cols="100" name="content"></textarea>
+		  <textarea rows="3" cols="100" name="content"></textarea>
 		  </td>
 		</tr>
 		<tr>

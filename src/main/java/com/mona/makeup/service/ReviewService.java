@@ -11,6 +11,7 @@ import com.mona.makeup.dao.ReviewDao;
 import com.mona.makeup.page.utils.Page;
 import com.mona.makeup.page.utils.Result;
 import com.mona.makeup.pojo.Review;
+import com.mona.makeup.pojo.User;
 
 @Service
 public class ReviewService extends BaseService {
@@ -40,6 +41,10 @@ public class ReviewService extends BaseService {
 	//delete review 
 	public boolean deleteReview(int id){
 		return reviewDao.deleteReview(id);
+	}
+	//select review by user
+	public List<Review> selectReviewByUser(User user ){
+		return reviewDao.selectReviewByUser(user);
 	}
 }
 

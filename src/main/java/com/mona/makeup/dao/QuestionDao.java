@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mchange.v2.async.StrandedTaskReporting;
 import com.mona.makeup.page.utils.Page;
 import com.mona.makeup.pojo.Question;
+import com.mona.makeup.pojo.User;
 
 @Repository
 public class QuestionDao extends CommonDao {
@@ -50,5 +51,16 @@ public class QuestionDao extends CommonDao {
 	@Transactional
 	public boolean addQuestion(Question question){
 		return this.save(question);
+	}
+	//selectQuestionByUser
+	public List<Question> selectQuestionByUser(User user){
+		String sql = "select q from Question q where q.users=:users order by q.times desc";
+		Map<String, Object> params = new HashMap<>();
+		params.put("users", user);
+		List<Question> query = this.query(sql, Question.class, params);
+		if(query!=null&&!query.isEmpty()){
+			return query;
+		}
+		return null;
 	}
 }

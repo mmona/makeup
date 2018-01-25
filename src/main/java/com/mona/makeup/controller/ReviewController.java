@@ -1,5 +1,7 @@
 package com.mona.makeup.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mona.makeup.dao.ReviewDao;
 import com.mona.makeup.page.utils.Result;
 import com.mona.makeup.pojo.Review;
+import com.mona.makeup.pojo.User;
 import com.mona.makeup.utils.StringUtils;
 
 @Controller
@@ -56,6 +59,18 @@ public class ReviewController extends BaseController{
 			}
 			modelAndView.setViewName("selectReview.do?curPage="+ curPage+"");
 			modelAndView.addObject("success","<script>alert('删除成功!')</script>");
+		}
+		return modelAndView;
+	}
+	@RequestMapping(value="qiantai/selectReviewByUser")
+	public ModelAndView selectReviewByUser(HttpSession session){
+		ModelAndView modelAndView = new ModelAndView();
+		User user = (User) session.getAttribute("user");
+		List<Review> selectReviewByUser = reviewService.selectReviewByUser(user);
+		if( selectReviewByUser!=null){
+			modelAndView.addObject("selectReviewByUser", selectReviewByUser);
+			modelAndView.setViewName("answer.jsp");
+			
 		}
 		return modelAndView;
 	}

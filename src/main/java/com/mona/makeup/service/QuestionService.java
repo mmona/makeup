@@ -10,6 +10,7 @@ import com.mona.makeup.dao.QuestionDao;
 import com.mona.makeup.page.utils.Page;
 import com.mona.makeup.page.utils.Result;
 import com.mona.makeup.pojo.Question;
+import com.mona.makeup.pojo.User;
 
 @Service
 public class QuestionService extends BaseService {
@@ -45,5 +46,9 @@ public class QuestionService extends BaseService {
 	//add question
 	public boolean addQuestion(Question question){
 		return questionDao.addQuestion(question);
+	}
+	//selectQuestionByUser
+	public List<Question> selectQuestionByUser(User user){
+		return questionDao.selectQuestionByUser(user);
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.Dialog.ModalityType;
 import java.awt.event.MouseAdapter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpSession;
@@ -125,6 +126,18 @@ public class QuestionController extends BaseController {
 		}else {
 			modelAndView.setViewName("answer.jsp");
 			modelAndView.addObject("fail","<script>alert('提问失败，请重新提问!')</script>");
+		}
+		return modelAndView;
+	}
+	@RequestMapping(value="selectQuestionByUsers")
+	public ModelAndView selectQuestionByUser(HttpSession session ){
+		ModelAndView modelAndView = new ModelAndView();
+		User user = (User) session.getAttribute("user");
+		List<Question> selectQuestionByUser = questionService.selectQuestionByUser(user);
+		if(selectQuestionByUser!=null){
+			modelAndView.setViewName("answer.jsp");
+			modelAndView.addObject("selectQuestionByUser", selectQuestionByUser);
+			
 		}
 		return modelAndView;
 	}
