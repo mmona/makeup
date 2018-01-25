@@ -39,13 +39,24 @@ public class ReviewDao extends CommonDao{
 	public boolean deleteReview(int id ){
 	return  this.delete(id, Review.class);
 	}
-	//selectReviewByUser
-	public List<Review> selectReviewByUser(User user ){
-		String sql="select r from Review r where r.users=:users  order by r.time";
+	//select review by user count 
+	public int selectReviewByUserCount(User user ){
+		String sql="select COUNT(*) from Review r where r.users=:users";
 		Map<String,Object> params = new HashMap<>();
 		params.put("users", user);
-		
-		List<Review> query = this.query(sql, Review.class, params);
+		List<Object> query = (List<Object>) this.query(sql, params);
+		Number number = (Number) query.get(0);
+		return number.intValue();
+	}
+	
+	
+	
+	//selectReviewByUser
+	public List<Review> selectReviewByUser(User user,Page page ){
+		String sql="select r from Review r where r.users=:users order by r.time";
+		Map<String,Object> params = new HashMap<>();
+		params.put("users", user);
+		List<Review> query = (List<Review>) this.query(sql, page.getBeginIndex(), page.getPageSize(), params);
 		if(query!=null&&!query.isEmpty()){
 			return query;
 		}

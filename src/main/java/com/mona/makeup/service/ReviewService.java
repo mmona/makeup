@@ -44,8 +44,19 @@ public class ReviewService extends BaseService {
 		return reviewDao.deleteReview(id);
 	}
 	//select review by user
-	public List<Review> selectReviewByUser(User user ){
-		return reviewDao.selectReviewByUser(user);
+	public Result<Review> selectReviewByUser(User user,int curPage ){
+		Result<Review> result = new Result<>();
+		int count  = reviewDao.selectReviewByUserCount(user);
+		Page page  = new Page();
+		page.setBeginIndex((curPage-1)*5);
+		page.setCurrentPage(curPage);
+		page.setPageSize(5);
+		page.setTotalCount(count);
+		page.setTotalPage((count%5==0)?(count/5):(count/5+1));
+		List<Review> selectReviewByUser = reviewDao.selectReviewByUser(user, page);
+		result.setList(selectReviewByUser);
+		result.setPage(page);
+		return result;
 	}
 }
 

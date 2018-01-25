@@ -92,7 +92,7 @@
 																				</tr>
 																				<tr>
 																						<td><span></span></td>
-																					<td colspan="2" rowspan="5" style="height: 40px;"><c:choose>
+																					<td colspan="2" style="height: 40px;"><c:choose>
 																							<c:when test="${user!=null }">
 																								<a href="addShoppingCar.do?id=${product.id }" style="color: HotPink;">加入购物车</a>
 																							</c:when>

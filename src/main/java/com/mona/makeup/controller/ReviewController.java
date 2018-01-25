@@ -64,16 +64,21 @@ public class ReviewController extends BaseController{
 		return modelAndView;
 	}
 	@RequestMapping(value="qiantai/selectReviewByUser")
-	public ModelAndView selectReviewByUser(HttpSession session){
+	public ModelAndView selectReviewByUser(HttpSession session,String curPage){
 	ModelAndView modelAndView = new ModelAndView();
 		User user = (User) session.getAttribute("user");
-		List<Review> selectReviewByUser = reviewService.selectReviewByUser(user);
+		boolean blank = StringUtils.isBlank(curPage);
+		int cPage=0;
+		if( blank){
+			cPage=1;
+		}else {
+			cPage=Integer.parseInt(curPage);
+		}
+		Result<Review> selectReviewByUser = reviewService.selectReviewByUser(user,cPage);
 		List<Question> selectQuestionByUser = questionService.selectQuestionByUser(user);
 		if(selectReviewByUser!=null){
-			
-			
 			modelAndView.setViewName("answer.jsp");
-			modelAndView.addObject("selectReviewByUser",selectReviewByUser);
+			modelAndView.addObject("result",selectReviewByUser);
 		
 		}
 		return modelAndView;
