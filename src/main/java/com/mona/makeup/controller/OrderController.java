@@ -176,11 +176,11 @@ public class OrderController extends BaseController {
 			selectOrder = orderService.selectOrder(cPage,null,Integer.valueOf(delivery));
 			session.setAttribute("delivery", delivery);
 			session.setAttribute("times", times);
-			session.removeAttribute("delivery");
 		}
 		 if(!"".equals(delivery)&&!"".equals(times)&&null!=delivery&&null!=times){
 			 selectOrder=orderService.selectOrder(cPage,times,Integer.valueOf(delivery));
 			 session.setAttribute("delivery", delivery);
+			
 			 session.setAttribute("times", times);
 		 }
 		if(selectOrder!=null){
