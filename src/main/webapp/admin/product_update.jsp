@@ -1,5 +1,7 @@
+<%@page import="com.mona.makeup.pojo.Product"%>
 <%@page import="java.util.*"%>
 <%@ page language="java" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <base
 	href="${pageContext.request.scheme }://${pageContext.request.serverName }:${pageContext.request.serverPort }${pageContext.request.contextPath }/">
 <html>
@@ -21,60 +23,69 @@ body {
 </style>
 <script type="text/javascript">
 	$(function() {
-		selecttype();
-		selectBrand();
+		/* selecttype();
+		selectBrand(); */
 	});
-	function selecttype(){
+	function selecttype() {
 		$.ajax({
 			url : "typeInfo.do",
 			type : "post",
 			dataType : "json",
 			success : function(data) {
-					$.each(data, function(index, element) {
-						$("select[name='typeid']").append($("<option value='"+element.id+"'>"+element.tname+"</option>"));
-					})
+				$.each(data, function(index, element) {
+					$("select[name='typeid']").append(
+							$("<option value='"+element.id+"'>" + element.tname
+									+ "</option>"));
+				})
 			}
 		});
 	}
-	function selectBrand(){
+	function selectBrand() {
 		$.ajax({
 			url : "brandInfo.do",
 			type : "post",
 			dataType : "json",
 			success : function(data) {
-					$.each(data, function(index, element) {
-						$("select[name='brandid']").append($("<option value='"+element.id+"'>"+element.bname+"</option>"));
-					})
+				$.each(data, function(index, element) {
+					$("select[name='brandid']").append(
+							$("<option value='"+element.id+"'>" + element.bname
+									+ "</option>"));
+				})
+				if (id == data.id) {
+					$("select[name='brandid']").find(
+							$("<option value='"+element.id+"'>" + element.bname
+									+ "</option>")).attr("selected", true);
+				}
 			}
 		});
 	}
-	 function submitIdentity(upload,preview,col) {
-	        debugger
-	        var pic = $('#'+upload)[0].files[0];
-	        var fd = new FormData();
-	        fd.append('file', pic);
-	      //  var form = new FormData(document.getElementById("form"));
-	        $.ajax({                             
-	            url:"upload.do",
-	            type:"post",
-	            data:fd,
-	            cache: false,
-	            processData: false,
-	            contentType: false,
-	            success:function(data){
-	                if(data.success){
-	                $('#file').fadeOut();
-	                $('#'+preview).attr("src",data.imagePath).fadeIn();
-	                $('#'+col).val(data.imagePath);
-	                }else{
-	                    alert(data.message);
-	                }
-	            },
-	            error:function(e){
-	                alert("网络错误，请重试！！");
-	            }
-	        });
-	    }
+	function submitIdentity(upload, preview, col) {
+		debugger
+		var pic = $('#' + upload)[0].files[0];
+		var fd = new FormData();
+		fd.append('file', pic);
+		//  var form = new FormData(document.getElementById("form"));
+		$.ajax({
+			url : "upload.do",
+			type : "post",
+			data : fd,
+			cache : false,
+			processData : false,
+			contentType : false,
+			success : function(data) {
+				if (data.success) {
+					$('#file').fadeOut();
+					$('#' + preview).attr("src", data.imagePath).fadeIn();
+					$('#' + col).val(data.imagePath);
+				} else {
+					alert(data.message);
+				}
+			},
+			error : function(e) {
+				alert("网络错误，请重试！！");
+			}
+		});
+	}
 </script>
 </head>
 <body>
@@ -106,8 +117,8 @@ body {
 							<tr>
 								<td class="line_table" height="25" align="right" width="20%"><span
 									class="left_bt2">原&nbsp;&nbsp;&nbsp;价：</span></td>
-								<td height="25" width="80%"><input type="text" name="price1"
-									size="45" value="${product.price1 }"></td>
+								<td height="25" width="80%"><input type="text"
+									name="price1" size="45" value="${product.price1 }"></td>
 							</tr>
 							<tr>
 								<td class="line_table" height="25" align="right" width="20%"><span
@@ -127,6 +138,12 @@ body {
 								<td class="line_table" height="25" width="80%"><select
 									name="typeid">
 
+										<c:forEach items="${type }" var="type">
+											<c:set value="${product.type.id}" var="id"></c:set>
+											<option value="${type.id }"
+												<c:if test="${id eq type.id }"> selected="selected"</c:if>>
+												${type.tname }</option>
+										</c:forEach>
 								</select></td>
 							</tr>
 							<tr>
@@ -134,7 +151,12 @@ body {
 									class="left_bt2">化妆品品牌：</span></td>
 								<td class="line_table" height="25" width="80%"><select
 									name="brandid">
-
+									<c:set value="${product.brand.id }" var="id"></c:set>
+										<c:forEach items="${brand }" var="brand">
+											
+											<option value="${brand.id }"
+												<c:if test="${brand.id eq id}"> selected="selected"</c:if>>${brand.bname }</option>
+										</c:forEach>
 								</select></td>
 							</tr>
 							<tr>

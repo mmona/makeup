@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mona.makeup.page.utils.Page;
 import com.mona.makeup.pojo.Brand;
 import com.mona.makeup.pojo.Product;
+import com.mona.makeup.pojo.Type;
 
 @Repository
 public class ProductDao extends CommonDao {
@@ -28,12 +29,16 @@ public class ProductDao extends CommonDao {
 		return number.intValue();
 	}
 	//list product
-	public List<Product> selectProduct(Page page,String name){
+	public List<Product> selectProduct(Page page,String name,Type type){
 		StringBuffer buffer =  new StringBuffer("select p from Product p where 1=1");
 		Map<String,Object> params= new HashMap<>();
 		if(!"".equals(name)&&name!=null){
 			buffer.append(" and p.name like :name ");
 			params.put("name", "%" +name + "%");
+		}
+		if(!"".equals(type)&&type!=null){
+			buffer.append(" and p.type = :type ");
+			params.put("type", type);
 		}
 		String sql = buffer.toString();
 		List<Product> query = (List<Product>) this.query(sql, page.getBeginIndex(), page.getPageSize(), params);

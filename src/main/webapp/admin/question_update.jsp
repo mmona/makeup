@@ -44,8 +44,8 @@ body {
 								<td class="line_table" height="25" align="right" width="40%"><span
 									class="left_bt2">问题：</span></td>
 								<td class="line_table" height="25" width="60%">
-								<textarea rows="12" cols="100" name="question" placeholder="${question.content }" ></textarea>
-									
+								<%-- <textarea rows="12" cols="100" name="question" placeholder="${question.content }" ></textarea> --%>
+								<span  rows="12" cols="100">${question.content }</span>	
 								</td>
 							</tr>
 							<tr>

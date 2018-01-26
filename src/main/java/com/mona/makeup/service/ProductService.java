@@ -9,6 +9,7 @@ import com.mona.makeup.dao.ProductDao;
 import com.mona.makeup.page.utils.Page;
 import com.mona.makeup.page.utils.Result;
 import com.mona.makeup.pojo.Product;
+import com.mona.makeup.pojo.Type;
 
 @Service
 public class ProductService extends BaseService {
@@ -16,7 +17,7 @@ public class ProductService extends BaseService {
 	private ProductDao productDao;
 
 	// select product
-	public Result<Product> selectProduct(int curPage,String name) {
+	public Result<Product> selectProduct(int curPage,String name,Type type ) {
 		Result<Product> result = new Result<>();
 		int count = productDao.countProduct(name);
 		Page page = new Page();
@@ -25,7 +26,7 @@ public class ProductService extends BaseService {
 		page.setPageSize(10);
 		page.setTotalCount(count);
 		page.setTotalPage((count % 10 == 0) ? (count / 10) : (count / 10 + 1));
-		List<Product> selectProduct = productDao.selectProduct(page,name);
+		List<Product> selectProduct = productDao.selectProduct(page,name,type);
 		result.setList(selectProduct);
 		result.setPage(page);
 		return result;

@@ -48,11 +48,11 @@ public class ReviewService extends BaseService {
 		Result<Review> result = new Result<>();
 		int count  = reviewDao.selectReviewByUserCount(user);
 		Page page  = new Page();
-		page.setBeginIndex((curPage-1)*5);
+		page.setBeginIndex((curPage-1)*10);
 		page.setCurrentPage(curPage);
-		page.setPageSize(5);
+		page.setPageSize(10);
 		page.setTotalCount(count);
-		page.setTotalPage((count%5==0)?(count/5):(count/5+1));
+		page.setTotalPage((count%10==0)?(count/10):(count/10+1));
 		List<Review> selectReviewByUser = reviewDao.selectReviewByUser(user, page);
 		result.setList(selectReviewByUser);
 		result.setPage(page);

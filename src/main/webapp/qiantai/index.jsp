@@ -207,12 +207,21 @@
 																					type="submit" class="btn btn-primary pull-right"
 																					value="查询"></td>
 																			</tr>
+																			<c:forEach items="${type }" var="type">
+																			<tr> 
+																			<a style=" float: left;color: #FF69B4;text-decoration:none;"   onmouseover="this.style.color='#ff0000';" onmouseout="this.style.color='#FF69B4';" href="indexInfo.do?tid=${type.id }">${type.tname } &nbsp;&nbsp;&nbsp;&nbsp;</a>
+																			</tr>
+																			</c:forEach>
 																	</table>
+																	
 																</form>
+															
 															</div>
 														</div>
+															
 													</div>
 												</div>
+												
 												<div
 													style="margin-top: -10px; height: 10px; line-height: 10px; background: url(images/bg.jpg) 0px -220px no-repeat">&nbsp;</div>
 												<div

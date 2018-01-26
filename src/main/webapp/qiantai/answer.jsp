@@ -66,7 +66,6 @@
 									 <span
 								style="ont-family: Helvetica, sans-serif; font-size: 15px; ">
 									回复： </span> 
-									</br>
 								<strong>
 									<span
 										style="ont-family: Helvetica, sans-serif; font-size: 15px; color: #FF69B4"">

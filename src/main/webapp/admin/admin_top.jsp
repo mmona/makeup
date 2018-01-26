@@ -17,7 +17,7 @@
     <td width="39%" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="74%" height="38" class="admin_txt">管理员：<b>${admin.name}</b> 您好,感谢登录使用！</td>
-        <td width="22%"><a href="../admin/logout.do" style="text-decoration: none;color: #fff"  target="index">系统退出</a></td>
+        <td width="22%"><a href="../admin/logout.do" style="text-decoration: none;color: #fff"  target="_top">系统退出</a></td>
       </tr>
       <tr>
         <td height="19" colspan="3">&nbsp;</td>

@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.mona.makeup.page.utils.Result;
 import com.mona.makeup.pojo.Orderr;
 import com.mona.makeup.pojo.Product;
+import com.mona.makeup.pojo.Type;
 import com.mona.makeup.pojo.User;
 import com.mona.makeup.utils.StringUtils;
 
@@ -28,13 +29,16 @@ import com.mona.makeup.utils.StringUtils;
 @RequestMapping(value = "/qiantai")
 public class IndexController extends BaseController {
 	@RequestMapping(value = "indexInfo")
-	public ModelAndView indexInf(HttpSession session, String curPage, String name, HttpServletRequest request) {
+	public ModelAndView indexInf(HttpSession session, String curPage, String name, String tid,
+			HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		List<Product> selectRecommend = userOrderService.selectRecommend();
 		modelAndView.addObject("recommend", selectRecommend);
 		User user = (User) session.getAttribute("user");
 		List<Orderr> indexshopping = userOrderService.indexshopping(user);
 		modelAndView.addObject("indexShopping", indexshopping);
+		List<Type> typeInfo = typeService.typeInfo();
+		modelAndView.addObject("type", typeInfo);
 		session.removeAttribute("name");
 		boolean blank = StringUtils.isBlank(curPage);
 		int cPage = 0;
@@ -43,17 +47,23 @@ public class IndexController extends BaseController {
 		} else {
 			cPage = Integer.parseInt(curPage);
 		}
+	
 		String method = request.getMethod();
 		if ("get".equalsIgnoreCase(method)) {
 			name = (String) session.getAttribute("name");
+			
 		} else {
 			session.setAttribute("name", name);
+			
 		}
 		Result<Product> selectProduct = null;
 		if (!"".equals(name) && name != null) {
-			selectProduct = productService.selectProduct(cPage, name);
+			selectProduct = productService.selectProduct(cPage, name, null);
+		} else if (!"".equals(tid) && tid != null) {
+			Type type = typeService.selectTypeById(Integer.parseInt(tid));
+			selectProduct = productService.selectProduct(cPage, null, type);
 		} else {
-			selectProduct = productService.selectProduct(cPage, null);
+			selectProduct = productService.selectProduct(cPage, null, null);
 		}
 		if (selectProduct != null) {
 			modelAndView.addObject("result", selectProduct);

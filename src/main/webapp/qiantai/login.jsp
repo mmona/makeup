@@ -24,13 +24,13 @@
 			return false;
 		}
 		if(document.form1.username.value.length<6){
-			alert("用户名长度必须在6为以上!");
+			alert("用户名长度必须在6位以上!");
 			document.form1.name.focus();
 			return false;
 		}
 		if (document.form1.password.value.length<5||document.form1.password.value.length>16)  
 		{
-			alert("密码长度要在5-16为之间!");
+			alert("密码长度要在5-16位之间!");
 			document.form1.password.focus();
 			return false;
 		}

@@ -1,6 +1,7 @@
 package com.mona.makeup.controller;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -34,7 +35,7 @@ public class ProductController extends BaseController{
 		} else {
 			cPage = Integer.parseInt(curPage);
 		}
-		Result<Product> selectProduct = productService.selectProduct(cPage,null);
+		Result<Product> selectProduct = productService.selectProduct(cPage,null,null);
 		if(selectProduct!=null){
 			int pageSize = selectProduct.getPage().getPageSize();
 			int beginIndex = selectProduct.getPage().getBeginIndex();
@@ -51,9 +52,13 @@ public class ProductController extends BaseController{
 	public ModelAndView selectProductById(String id,HttpSession session){
 		ModelAndView modelAndView = new ModelAndView();
 		Product selectProductById = productService.selectProductById(Integer.parseInt(id));
+		List<Type> typeInfo = typeService.typeInfo();
+		List<Brand> brandinfo = brandService.brandinfo();
 		if(selectProductById!=null){
 			modelAndView.setViewName("admin/product_update.jsp");
 			modelAndView.addObject("product", selectProductById);
+			modelAndView.addObject("type",  typeInfo );
+			modelAndView.addObject("brand",brandinfo);
 			session.setAttribute("product", selectProductById);
 		}
 		return modelAndView;

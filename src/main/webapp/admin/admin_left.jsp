@@ -190,8 +190,8 @@ H1 a {
       </div>
     </div>
 
-    <h1 class="type"><a href="admin/admin_update.jsp" target="index">系统用户管理</a></h1>
-    <h1 class="type"><a href="admin/logout.do" target="index">注销退出</a></h1>
+    <h1 class="type"><a href="admin/admin_update.jsp" target="main">系统用户管理</a></h1>
+    <h1 class="type"><a href="admin/logout.do" target="_top">注销退出</a></h1>
       </td>
   </tr>
 </table>

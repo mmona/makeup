@@ -37,7 +37,7 @@ function addUser(){
 					return false;
 				}
 				if(document.form1.name.value.length<6){
-					alert("用户名长度必须在6为以上!");
+					alert("用户名长度必须在6位以上!");
 					document.form1.name.focus();
 					return false;
 				}
@@ -97,7 +97,7 @@ function addUser(){
 				var b= /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 				if (!b.exec(document.form1.card.value))  
 				{
-					alert("身份证号不为18位!");
+					alert("身份证号格式不对!");
 					document.form1.card.focus();
 					return false;
 				}
