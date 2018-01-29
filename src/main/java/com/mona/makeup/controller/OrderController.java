@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import org.hibernate.engine.spi.SessionEventListenerManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,7 @@ public class OrderController extends BaseController {
 		} else {
 			cPage = Integer.parseInt(curPage);
 		}
-		Result<Orderr> selectOrder = orderService.selectOrder(cPage,null,null);
+		Result<Orderr> selectOrder = orderService.selectOrder(cPage,null,null,null);
 		if(selectOrder!=null){
 			int pageSize = selectOrder.getPage().getPageSize();
 			int beginIndex = selectOrder.getPage().getBeginIndex();
@@ -105,7 +106,7 @@ public class OrderController extends BaseController {
 		ModelAndView modelAndView = new ModelAndView();
 		boolean deleteOrder = orderService.deleteOrder(Integer.parseInt(id));
 		if(deleteOrder){
-			int count  = orderDao.countOrder(null, null);
+			int count  = orderDao.countOrder(null, null,null);
 			String curPage = (String) session.getAttribute("curPage");
 			int pageSize = (int) session.getAttribute("pageSize");
 			if (count%pageSize==0) {
@@ -147,8 +148,8 @@ public class OrderController extends BaseController {
 		}
 		return modelAndView;
 	}*/
-	@RequestMapping(value="searchOrder")
-	public ModelAndView searchOrder(String curPage,String delivery,String times,HttpSession session){
+	@RequestMapping(value="searchOrders")
+	public ModelAndView searchOrder(String curPage,String delivery,String times,String name,HttpSession session){
 		ModelAndView modelAndView=new ModelAndView();
 		boolean blank = StringUtils.isBlank(curPage);
 		int cPage = 0;
@@ -158,31 +159,60 @@ public class OrderController extends BaseController {
 			cPage = Integer.parseInt(curPage);
 		}
 		Result<Orderr> selectOrder=null;
-		if(!"".equals(times)&&null!=times){
-			session.removeAttribute("delivery");
-			session.setAttribute("times", times);
-			selectOrder=orderService.selectOrder(cPage,times,null);
-		}
-		if("".equals(delivery)&&"".equals(times)){
+		if(null==times&&null==name&&null==delivery){
+			session.removeAttribute("name");
 			session.removeAttribute("delivery");
 			session.removeAttribute("times");
-			selectOrder = orderService.selectOrder(cPage,null,null);
+			selectOrder=orderService.selectOrder(cPage,null,null,null);
 		}
-		if(delivery==null&&delivery==null){
+		if("".equals(times)&&"".equals(name)&&"".equals(delivery)){
+			session.removeAttribute("name");
 			session.removeAttribute("delivery");
-			selectOrder = orderService.selectOrder(cPage,null,null);
+			session.removeAttribute("times");
+			selectOrder=orderService.selectOrder(cPage,null,null,null);
 		}
-		if(!"".equals(delivery)&&"".equals(times)){
-			selectOrder = orderService.selectOrder(cPage,null,Integer.valueOf(delivery));
+		if(!"".equals(times)&&null!=times&&"".equals(name)&&"".equals(delivery)){
+			session.removeAttribute("name");
+			session.removeAttribute("delivery");
+			session.setAttribute("times", times);
+			selectOrder=orderService.selectOrder(cPage,times,null,null);
+		}
+		if(!"".equals(name)&&null!=name&&"".equals(times)&&"".equals(delivery)){
+			session.removeAttribute("times");
+			session.removeAttribute("delivery");
+			session.setAttribute("name", name);
+			selectOrder=orderService.selectOrder(cPage,null,null,name);
+		}
+		if(!"".equals(delivery)&&null!=delivery&&"".equals(name)&&"".equals(times)){
+			session.removeAttribute("name");
+			session.removeAttribute("times");
+			session.setAttribute("delivery",delivery);
+			selectOrder=orderService.selectOrder(cPage,null,Integer.parseInt(delivery),null);
+		}
+		if(!"".equals(times)&&null!=name&&!"".equals(name )&&null!=times&&"".equals(delivery)){
+			session.setAttribute("name", name);
+			session.setAttribute("times", times);
+			session.removeAttribute("delivery");
+			selectOrder=orderService.selectOrder(cPage,times,null,name);
+		}
+		if(null!=times&&!"".equals(delivery)&&"".equals(name)&&!"".equals(times)){
 			session.setAttribute("delivery", delivery);
 			session.setAttribute("times", times);
+			session.removeAttribute("name");
+			selectOrder=orderService.selectOrder(cPage,times,Integer.parseInt(delivery),null);
 		}
-		 if(!"".equals(delivery)&&!"".equals(times)&&null!=delivery&&null!=times){
-			 selectOrder=orderService.selectOrder(cPage,times,Integer.valueOf(delivery));
-			 session.setAttribute("delivery", delivery);
-			
-			 session.setAttribute("times", times);
-		 }
+		if(!"".equals(name)&&!"".equals(delivery)&&null!=name&&null!=delivery&&"".equals(times)){
+			session.setAttribute("name", name);
+			session.setAttribute("delivery", delivery);
+			session.removeAttribute("times");
+			selectOrder=orderService.selectOrder(cPage,null,Integer.parseInt(delivery),name);
+		}
+		if(!"".equals(name)&&!"".equals(times)&&!"".equals(delivery)&&null!=name&&null!=delivery&&null!=times){
+			session.setAttribute("name", name);
+			session.setAttribute("delivery", delivery);
+			session.setAttribute("times", times);
+			selectOrder=orderService.selectOrder(cPage,times,Integer.parseInt(delivery),name);
+		}
 		if(selectOrder!=null){
 			modelAndView.setViewName("admin/order_search.jsp");
 			modelAndView.addObject("result", selectOrder);

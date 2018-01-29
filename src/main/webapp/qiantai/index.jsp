@@ -68,7 +68,7 @@
 																			<table>
 																				<tr>
 																					<td rowspan="5" class="bookPic"><img
-																			src="../${product.imgpath}" width="100px" height="90px" /></td>
+																			src="../upload/${product.imgpath }" width="100px" height="90px" /></td>
 																					<td ><span>化妆品名称:</span></td>
 																					<td ><span><strong
 																							style="color: HotPink;"><a
@@ -299,6 +299,7 @@
 																		<font id="cpprice" style="color: #ff0000;">￥${sum }</font>元
 																	</div>
 																</div>
+																<c:if test="${indexShopping!=null }">
 																<div style="height: 30px; margin: 5px 3px 1px 3px;">
 																	<table width="100%" border="0" cellspacing="0">
 																		<tr>
@@ -313,6 +314,7 @@
 																	</table>
 
 																</div>
+																</c:if>
 															</div>
 														</div>
 													</div>

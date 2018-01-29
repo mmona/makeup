@@ -77,12 +77,13 @@ public class ProductController extends BaseController{
 		File file1  = new File("file");
 		String absolutePath = file1.getAbsolutePath();
 		String id= request.getParameter("id");
-		Product product = new Product();
+		/*Product product = new Product();*/
+		Product product = (Product) session.getAttribute("product");
 		product.setBurden(burden);
 		product.setDescription(description);
 		product.setId(Integer.parseInt(id));
 		String  attribute = (String) session.getAttribute("absolutePath");
-		product.setImgpath(file );
+		product.setImgpath(product.getImgpath() );
 		product.setName(name);
 		product.setPrice1(Float.parseFloat(price1));
 		product.setPrice2(Float.parseFloat(price2));
@@ -148,7 +149,7 @@ public class ProductController extends BaseController{
 		product.setBurden(burden);
 		product.setDescription(description);
 		String  attribute = (String) session.getAttribute("absolutePath");
-		product.setImgpath(file);
+	/*	product.setImgpath(file);*/
 		product.setName(name);
 		product.setPrice1(Float.parseFloat(price1));
 		product.setPrice2(Float.parseFloat(price2));

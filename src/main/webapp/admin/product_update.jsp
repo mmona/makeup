@@ -25,67 +25,10 @@ body {
 	$(function() {
 		/* selecttype();
 		selectBrand(); */
+		
 	});
-	function selecttype() {
-		$.ajax({
-			url : "typeInfo.do",
-			type : "post",
-			dataType : "json",
-			success : function(data) {
-				$.each(data, function(index, element) {
-					$("select[name='typeid']").append(
-							$("<option value='"+element.id+"'>" + element.tname
-									+ "</option>"));
-				})
-			}
-		});
-	}
-	function selectBrand() {
-		$.ajax({
-			url : "brandInfo.do",
-			type : "post",
-			dataType : "json",
-			success : function(data) {
-				$.each(data, function(index, element) {
-					$("select[name='brandid']").append(
-							$("<option value='"+element.id+"'>" + element.bname
-									+ "</option>"));
-				})
-				if (id == data.id) {
-					$("select[name='brandid']").find(
-							$("<option value='"+element.id+"'>" + element.bname
-									+ "</option>")).attr("selected", true);
-				}
-			}
-		});
-	}
-	function submitIdentity(upload, preview, col) {
-		debugger
-		var pic = $('#' + upload)[0].files[0];
-		var fd = new FormData();
-		fd.append('file', pic);
-		//  var form = new FormData(document.getElementById("form"));
-		$.ajax({
-			url : "upload.do",
-			type : "post",
-			data : fd,
-			cache : false,
-			processData : false,
-			contentType : false,
-			success : function(data) {
-				if (data.success) {
-					$('#file').fadeOut();
-					$('#' + preview).attr("src", data.imagePath).fadeIn();
-					$('#' + col).val(data.imagePath);
-				} else {
-					alert(data.message);
-				}
-			},
-			error : function(e) {
-				alert("网络错误，请重试！！");
-			}
-		});
-	}
+	
+	
 </script>
 </head>
 <body>
@@ -162,11 +105,9 @@ body {
 							<tr>
 								<td class="line_table" align="right" width="20%"><span
 									class="left_bt2">展示图片</span>：</td>
-								<td class="line_table" width="80%" align="left"><img
-									src="${product.imgpath }"> <a href="javascript:;"
-									class="a-upload"> <input type="file" name="file"
-										id="negativefile" accept="image/jpg,image/jpeg,image/png"
-										onchange="submitIdentity('negativefile','previewnegative','negative')">
+								<td class="line_table" width="80%" align="left"> <a 
+									class="a-upload" href="admin/updatephoto.jsp"><img
+									src="upload/${product.imgpath }" name="file"/>
 								</a></td>
 
 								<input type="hidden" name="id" value="${product.id }" />

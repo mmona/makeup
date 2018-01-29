@@ -175,7 +175,7 @@ H1 a {
         </table>
         <ul class="MM">
           <li><a href="selectOrder.do" target="main">销售订单信息列表</a></li>
-          <li><a href="searchOrder.do" target="main">销售订单查询</a></li>
+          <li><a href="searchOrders.do" target="main">销售订单查询</a></li>
           <li><a href="selectOrderByTimes.do" target="main">本日销售额统计</a></li>
         </ul>
       </div>

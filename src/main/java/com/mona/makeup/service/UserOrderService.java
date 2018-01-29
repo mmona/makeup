@@ -19,16 +19,16 @@ public class UserOrderService extends BaseService {
 	@Autowired 
 	private UserOrderDao userOrderDao;
 	//select user order
-	public Result<Orderr> selectUserOrder(int curPage,String times,Integer delivery,User user){
+	public Result<Orderr> selectUserOrder(int curPage,String times,Integer delivery,User user,String name){
 		Result<Orderr> result = new Result<>();
 		Page page  = new Page();
-		int count =userOrderDao.countUserOrder(user, times, delivery);
+		int count =userOrderDao.countUserOrder(user, times, delivery,name);
 		page.setBeginIndex((curPage-1)*10);
 		page.setCurrentPage(curPage);
 		page.setPageSize(10);
 		page.setTotalCount(count);
 		page.setTotalPage((count%10==0)?(count/10):(count/10+1));
-		List<Orderr> list = userOrderDao.selectUserOrder(page, times, delivery, user);
+		List<Orderr> list = userOrderDao.selectUserOrder(page, times, delivery, user,name);
 		result.setList(list);
 		result.setPage(page);
 		return result;

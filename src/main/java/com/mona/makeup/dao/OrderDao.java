@@ -13,7 +13,7 @@ import com.mona.makeup.pojo.Orderr;
 @Repository
 public class OrderDao extends CommonDao{
 	//count order
-	public Integer countOrder(String times,Integer delivery){
+	public Integer countOrder(String times,Integer delivery,String name ){
 		StringBuffer buffer =  new StringBuffer("Select Count(*) from Orderr o where o.isorder=1");
 		Map<String,Object> params= new HashMap<>();
 		if(!"".equals(times)&&times!=null){
@@ -24,12 +24,16 @@ public class OrderDao extends CommonDao{
 			buffer.append(" and o.delivery=:delivery ");
 			params.put("delivery",delivery);
 		}
+		if(null != name){
+			buffer.append(" and  o.product=(select p from Product p where p.name like :name) ");
+			params.put("name",  "%" +name + "%");
+		}
 		String sql = buffer.toString();
 		List<Object> query = (List<Object>) this.query(sql, params);
 		return Integer.parseInt(query.get(0).toString());
 	}
 	//seelct Order by Page 
-	public List<Orderr> selectOrder(Page page,String times,Integer delivery){
+	public List<Orderr> selectOrder(Page page,String times,Integer delivery,String name){
 		StringBuffer buffer =  new StringBuffer("Select o from Orderr o where o.isorder=1");
 		
 		Map<String,Object> params= new HashMap<>();
@@ -40,6 +44,10 @@ public class OrderDao extends CommonDao{
 		if(null != delivery){
 			buffer.append(" and o.delivery=:delivery");
 			params.put("delivery",delivery);
+		}
+		if(null != name){
+			buffer.append(" and  o.product=(select p from Product p where p.name like :name) ");
+			params.put("name",  "%" +name + "%");
 		}
 		buffer.append(" order by o.times desc");
 		String sql = buffer.toString();

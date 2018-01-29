@@ -3,11 +3,14 @@ package com.mona.makeup.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +50,14 @@ public class UserOrderController extends BaseController {
 	 * } return modelAndView; }
 	 */
 	@RequestMapping(value = "/selectuserorder")
-	public ModelAndView selectuserorder(HttpSession session, String curPage, String times, String delivery,
-			HttpServletRequest request) {
+	public ModelAndView selectuserorder(HttpSession session, String curPage, String times, String delivery,/*String name,*/
+			HttpServletRequest request,HttpServletResponse response) throws IOException {
 		ModelAndView modelAndView = new ModelAndView();
+		//请求内容转码
+		request.setCharacterEncoding("UTF-8");
+		//回传告诉浏览器展示编码
+		response.setContentType("text/html;charset=UTF-8");
+		String name = request.getParameter("name");
 		boolean blank = StringUtils.isBlank(curPage);
 		int cPage = 0;
 		if (blank) {
@@ -69,18 +77,36 @@ public class UserOrderController extends BaseController {
 		 */
 		User user = (User) session.getAttribute("user");
 		Result<Orderr> selectUserOrder = null;
-		if (null == times && null == delivery) {
-			selectUserOrder = userOrderService.selectUserOrder(cPage, null, null, user);
+		if (null == times && null == delivery&&null == name) {
+			session.removeAttribute("times");
+			session.removeAttribute("name");
+			selectUserOrder = userOrderService.selectUserOrder(cPage, null, null, user,null);
 		}
-		if (times != null && null == delivery) {
-			selectUserOrder = userOrderService.selectUserOrder(cPage, times, null, user);
+		if (times != null && null == delivery&&"".equals(name)) {
+			session.setAttribute("times",times);
+			selectUserOrder = userOrderService.selectUserOrder(cPage, times, null, user,null);
 
 		}
-		if (null == times && null != delivery) {
-			selectUserOrder = userOrderService.selectUserOrder(cPage, null, Integer.parseInt(delivery), user);
+		if (null == times && null != delivery&&null==name) {
+			session.removeAttribute("times");
+			session.removeAttribute("name");
+			selectUserOrder = userOrderService.selectUserOrder(cPage, null, Integer.parseInt(delivery), user,null);
+		}
+	
+		if (null == times &&null!=name) {
+			session.removeAttribute("times");
+			session.setAttribute("name", name);
+			selectUserOrder = userOrderService.selectUserOrder(cPage, null,null,user,name);
 		}
 		if (delivery != null && times != null) {
-			selectUserOrder = userOrderService.selectUserOrder(cPage, times, Integer.parseInt(delivery), user);
+			session.setAttribute("times", times);
+			session.removeAttribute("name");
+			selectUserOrder = userOrderService.selectUserOrder(cPage, times, Integer.parseInt(delivery), user,null);
+		}
+		if (!"".equals(name) && times != null&&null!=name) {
+			session.setAttribute("times", times);
+			session.setAttribute("name", name);
+			selectUserOrder = userOrderService.selectUserOrder(cPage, times, null, user,name);
 		}
 		if (selectUserOrder != null) {
 			modelAndView.setViewName("order.jsp");

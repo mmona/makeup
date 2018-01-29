@@ -46,6 +46,10 @@ public class FileUpload {
 		this.path = path;
 	}
 
+	public String getPath() {
+		return path;
+	}
+
 	public String getTypeReg() {
 		return typeReg;
 	}

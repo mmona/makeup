@@ -61,7 +61,7 @@ body {
 										href="menus_update.jsp">${product.name }</a></td>
 									<td class="line_table" align="center" width="7.5%"><a
 										href="selectProductById.do?id=${product.id }"><img
-											src="${product.imgpath }" width="30" heigth="30"></a></td>
+											src="upload/${product.imgpath }" width="40" heigth="40"></a></td>
 									<td class="line_table" align="center" width="25%"><span
 										class="left_txt">${product.burden}</span></td>
 									<td class="line_table" align="center" width="7.5%"><span

@@ -1,5 +1,4 @@
-<%@ page language="java" import="java.util.*,java.text.*"
-	pageEncoding="utf-8"%>
+<%@page language="java" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
@@ -42,20 +41,30 @@
 											<tr>
 												<td class="line_table" align="right" width="40%"><span
 													class="left_bt2">按购买日期查询</span></td>
-												<td class="line_table" align="left" width="40%"><input
-													type="text" name="times" size="20" readOnly
+												<td class="line_table" align="left" width="60%"><input
+													type="text" name="times" value="${times }" size="20" readOnly
 													onClick="setDay(this);"></input></td>
-														<td class="line_table" align="center" width="20%"><input
-										type="submit" value="查询"></td>
-											</tr>
+										</tr> 
+										<tr>
+										<td class="line_table" align="right" width="40%"><span
+													class="left_bt2">按商品名称查询</span></td>
+												<td class="line_table" align="left" width="60%"><input
+													type="text" name="name" value="${name}" size="20" 
+													></input></td>
+										</tr>
 										
-								
-
-							
-											<td class="line_table" align="center" colspan="3"><a
+										<tr>
+														<td class="line_table" align="center" colspan="6" ><input
+										           type="submit" value="查询"></td>
+										
+										
+										</tr>
+<tr>
+											<td class="line_table" align="center" colspan="6"><a
 												href="selectuserorder.do">我的所有订单</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="selectuserorder.do?delivery=${0}">未派送订单</a>&nbsp;&nbsp;&nbsp;&nbsp;
 												<a href="selectuserorder.do?delivery=${1}">已派送订单</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 											</tr>
+											
 									</table>
 								</form>
 							</div>

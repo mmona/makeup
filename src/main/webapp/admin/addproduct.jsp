@@ -48,33 +48,7 @@ body {
 			}
 		});
 	}
-	 function submitIdentity(upload,preview,col) {
-	        debugger
-	        var pic = $('#'+upload)[0].files[0];
-	        var fd = new FormData();
-	        fd.append('file', pic);
-	      //  var form = new FormData(document.getElementById("form"));
-	        $.ajax({                             
-	            url:"upload.do",
-	            type:"post",
-	            data:fd,
-	            cache: false,
-	            processData: false,
-	            contentType: false,
-	            success:function(data){
-	                if(data.success){
-	                $('#file').fadeOut();
-	                $('#'+preview).attr("src/img",data.imagePath).fadeIn();
-	                $('#'+col).val(data.imagePath);
-	                }else{
-	                    alert(data.message);
-	                }
-	            },
-	            error:function(e){
-	                alert("网络错误，请重试！！");
-	            }
-	        });
-	    }
+
 </script>
 </head>
 <body>
@@ -136,16 +110,14 @@ body {
 
 								</select></td>
 							</tr>
-							<tr>
+						 <%-- <tr>
 								<td class="line_table" align="right" width="20%"><span
 									class="left_bt2">展示图片</span>：</td>
-								<td class="line_table" width="80%" align="left"><img
-									src=""> <a href="javascript:;"
-									class="a-upload"> <input type="file" name="file"
-										id="negativefile" accept="image/jpg,image/jpeg,image/png"
-										onchange="submitIdentity('negativefile','previewnegative','negative')">
+								<td class="line_table" width="80%" align="left"> <a 
+									class="a-upload" href="admin/updatephoto.jsp"><img
+									src="upload/${product.imgpath }" name="file"/>
 								</a></td>
-							</tr>
+							</tr>  --%>
 
 							<tr>
 

@@ -28,7 +28,7 @@ body {
 			<td valign="top" bgcolor="#F7F8F9">
 
 				<div align="center" width="120">
-					<form action="searchOrder.do" name="form1" method="get">
+					<form action="searchOrders.do" name="form1" method="get">
 						<table id="table1" class="line_table"
 							style="width: 100%; margin: 0; padding: 0" cellSpacing="0"
 							cellPadding="0">
@@ -40,6 +40,13 @@ body {
 									<input
 										type="text" name="times" size="20" value="${times }" readOnly
 										onClick="setDay(this);"></input></td>
+								</tr>
+									<tr>
+									<td class="line_table" align="right" width="40%"><span
+										class="left_bt2">按商品名称查询</span></td>
+									<td class="line_table" align="left" width="60%">
+									<input
+										type="text" name="name" size="20" value="${name }"></input></td>
 								</tr>
 								<tr>
 									<td class="line_table" align="right" width="40%"><span

@@ -16,16 +16,16 @@ public class OrderService {
 	@Autowired
 	private OrderDao orderDao;
 	//select order
-	public Result<Orderr> selectOrder(int curPage,String times,Integer delivery){
+	public Result<Orderr> selectOrder(int curPage,String times,Integer delivery,String name){
 		Result<Orderr> result = new Result<>();
 		Page page  = new Page();
-		int count = orderDao.countOrder(times, delivery);
+		int count = orderDao.countOrder(times, delivery,name);
 		page.setBeginIndex((curPage-1)*10);
 		page.setCurrentPage(curPage);
 		page.setPageSize(10);
 		page.setTotalCount(count);
 		page.setTotalPage((count%10==0)?(count/10):(count/10+1));
-		List<Orderr> list = orderDao.selectOrder(page, times, delivery);
+		List<Orderr> list = orderDao.selectOrder(page, times, delivery,name);
 		result.setList(list);
 		result.setPage(page);
 		return result;
