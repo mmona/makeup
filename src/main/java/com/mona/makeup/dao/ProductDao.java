@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
+import org.hibernate.engine.jdbc.spi.ResultSetReturn;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,4 +72,5 @@ public class ProductDao extends CommonDao {
 	public boolean addProduct(Product product){
 		return this.save(product);
 	}
+	
 }

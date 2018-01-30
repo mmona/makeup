@@ -73,7 +73,8 @@
 										名：</font></td>
 								<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0"
 									height="50" align="left">
-									<font color=" #FF69B4" style="font-weight:bold;">${user.username }</font></td>								<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0"
+									<input class="input7"
+									type="text" name="username" value="${user.password }" /></td>								<td bordercolorlight="#C0C0C0" bordercolordark="#C0C0C0"
 									height="50" align="left"><font color="red">&nbsp;*
 								</font>您用来登录的用户名</td>
 							</tr>
@@ -122,7 +123,7 @@
 
 	</table>
 
-
+${success }
 
 </body>
 </html>

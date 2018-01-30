@@ -49,4 +49,5 @@ public class ProductService extends BaseService {
 	public boolean addProduct(Product product) {
 		return productDao.addProduct(product);
 	}
+
 }

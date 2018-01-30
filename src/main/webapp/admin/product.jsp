@@ -57,8 +57,16 @@ body {
 							</tr>
 							<c:forEach items="${result.list}" var="product">
 								<tr>
-									<td class="line_table" align="center" width="7.5%"><a
-										href="menus_update.jsp">${product.name }</a></td>
+									<td class="line_table" align="center" width="7.5%">
+									<c:if test="${product.recommend==1 }">
+									<strong><a
+										href="updateRecommend.do?id=${product.id }">${product.name }</a></strong>
+									</c:if>
+									<c:if test="${product.recommend==0 }">
+									<a
+										href="updateRecommend.do?id=${product.id }">${product.name }</a>
+									   </c:if>
+									</td>
 									<td class="line_table" align="center" width="7.5%"><a
 										href="selectProductById.do?id=${product.id }"><img
 											src="upload/${product.imgpath }" width="40" heigth="40"></a></td>

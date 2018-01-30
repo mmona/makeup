@@ -60,6 +60,7 @@ public class OrderController extends BaseController {
 				curPage = curPage;
 			}
 			modelAndView.setViewName("selectOrder.do?curPage="+curPage+"");
+			modelAndView.addObject("update", "<script>alert('订单已派送!')</script>");
 		}
 		return modelAndView;
 	}

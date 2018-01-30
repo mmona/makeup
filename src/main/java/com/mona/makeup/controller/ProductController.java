@@ -93,6 +93,7 @@ public class ProductController extends BaseController{
 		Brand brand = new Brand();
 		brand.setId(Integer.parseInt(brandid));
 		product.setBrand(brand);
+		/*product.setRecommend(product.getRecommend());*/
 		boolean updateProduct = productService.updateProduct(product);
 		if(updateProduct){
 			String  curPage = (String) session.getAttribute("curPage");
@@ -163,6 +164,34 @@ public class ProductController extends BaseController{
 		if(updateProduct){
 			modelAndView.addObject("update", "<script>alert('商品添加成功!')</script>");
 			modelAndView.setViewName("selectProduct.do");
+		}
+		return modelAndView;
+	}
+	@RequestMapping(value="updateRecommend")
+	public ModelAndView updateRecommend(HttpSession session,String id ){
+		ModelAndView modelAndView = new ModelAndView();
+		Product product = productService.selectProductById(Integer.parseInt(id));
+		int recommend = product.getRecommend();
+		if(recommend==1){
+			product.setRecommend(0);
+		}else {
+			product.setRecommend(1);
+		}
+		boolean updateProduct = productService.updateProduct(product);
+		if(updateProduct){
+			String  curPage = (String) session.getAttribute("curPage");
+			if(null== curPage ){
+				curPage="1";
+			}else{
+				curPage = curPage;
+			}
+			modelAndView.setViewName("selectProduct.do?curPage="+curPage+"");
+			if(recommend==1){
+				modelAndView.addObject("update", "<script>alert('商品取消推荐!')</script>");
+			}else {
+				modelAndView.addObject("update", "<script>alert('商品推荐成功!')</script>");
+			}
+			
 		}
 		return modelAndView;
 	}

@@ -55,7 +55,7 @@ public class UserLoginController  extends BaseController{
 		return "login.jsp";
 	}
 	@RequestMapping(value="selectUserByUsername")
-	public ModelAndView selectUserByUsername(HttpSession session){
+	public ModelAndView selectUserByUsername(HttpSession session ){
 		ModelAndView modelAndView = new ModelAndView();
 		String username=(String) session.getAttribute("username");
 		User selectuserByname = userService.selectuserByname(username);
@@ -66,17 +66,22 @@ public class UserLoginController  extends BaseController{
 		return modelAndView;
 	}
 	@RequestMapping(value="updatePassword")
-	public ModelAndView  updatePassword(String pwd,String id,HttpSession session){
+	public ModelAndView  updatePassword(String pwd,String id,HttpSession session,String username){
 		ModelAndView modelAndView = new ModelAndView();
-		User user = new User();
-		String password = MD5Util.md5Hex(pwd);
-		user.setPassword(password );
-		user.setId(Integer.parseInt(id));
-		boolean updatePassword = userService.updatePassword(user);
-		if(updatePassword){
-			modelAndView.setViewName("login.jsp");
-			modelAndView.addObject("success", "<script>alert('密码重置完成，请重新登录!')</script>");
+		User user = userService.selectuserByname(username);
+		if(user==null){
+			modelAndView.setViewName("repassword.jsp");
+			modelAndView.addObject("success", "<script>alert('该用户不存在，请重新输入用户名或注册新用户!')</script>");
+		}else{
+			String password = MD5Util.md5Hex(pwd);
+			user.setPassword(password );
+			boolean updatePassword = userService.updateUser(user);
+			if(updatePassword){
+				modelAndView.setViewName("login.jsp");
+				modelAndView.addObject("success", "<script>alert('密码重置完成，请重新登录!')</script>");
+			}
 		}
+		
 		return modelAndView;
 	}
 	@RequestMapping(value="isUser")

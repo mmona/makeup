@@ -57,10 +57,7 @@ public class UserService extends BaseService {
 	public User selectuserByname(String username){
 		return userDao.selectUserByUsername(username);
 	}
-	//update password
-	public boolean updatePassword(User user){
-		return userDao.updatePassword(user);
-	}
+
 	//add user 
 	public boolean addUser(User user){
 	/*	User selectUserByUsername = userDao.selectUserByUsername(user.getUsername());

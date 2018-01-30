@@ -91,19 +91,6 @@ public class UserDao extends CommonDao {
 		}
 		return null;
 	}
-	//update password
-	@Transactional
-	public boolean updatePassword(User user){
-		String sql="update User u set u.password=:password where u.id=:id";
-		Map<String, Object> params = new HashMap<>();
-		params.put("password", user.getPassword());
-		params.put("id", user.getId());
-		int execRawSql = this.execRawSql(sql, params);
-		if(execRawSql>0){
-			return true;
-		}
-		return false;
-	}
 	//add user 
 	@Transactional
 	public boolean addUser(User user){
