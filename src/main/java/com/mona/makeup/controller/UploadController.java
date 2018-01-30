@@ -66,7 +66,7 @@ public class UploadController extends BaseController {
 				// 更新Session
 				session.setAttribute("product", product);
 				modelAndView.addObject("product", product);
-				response.getWriter().print("{\"res\": 1, \"data\":\"头像上传成功\"}");
+				response.getWriter().print("{\"res\": 1, \"data\":\"图片上传成功\"}");
 			}
 			else{
 				response.getWriter().print("{\"res\": "+ res +", \"info\":\"数据库操作失败!\"}");
