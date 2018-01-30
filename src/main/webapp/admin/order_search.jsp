@@ -167,24 +167,24 @@ body {
 							<td width="50%" align="right"><c:choose>
 									<c:when test="${result.page.currentPage eq 1}">首页</c:when>
 									<c:otherwise>
-										<a href="searchOrder.do">首页</a>
+										<a href="searchOrders.do">首页</a>
 									</c:otherwise>
 								</c:choose> <c:choose>
 									<c:when test="${result.page.currentPage eq 1 }">上一页 </c:when>
 									<c:otherwise>
-										<a href="searchOrder.do?curPage=${result.page.currentPage-1}">上一页</a>
+										<a href="searchOrders.do?curPage=${result.page.currentPage-1}">上一页</a>
 									</c:otherwise>
 								</c:choose> <c:choose>
 									<c:when
 										test="${result.page.currentPage eq result.page.totalPage }">下一页 </c:when>
 									<c:otherwise>
-										<a href="searchOrder.do?curPage=${result.page.currentPage+1 }">下一页</a>
+										<a href="searchOrders.do?curPage=${result.page.currentPage+1 }">下一页</a>
 									</c:otherwise>
 								</c:choose> <c:choose>
 									<c:when
 										test="${result.page.currentPage eq result.page.totalPage }"> 尾页</c:when>
 									<c:otherwise>
-										<a href="searchOrder.do?curPage=${result.page.totalPage }">尾页</a>
+										<a href="searchOrders.do?curPage=${result.page.totalPage }">尾页</a>
 									</c:otherwise>
 								</c:choose></td>
 						</tr>
