@@ -75,7 +75,7 @@
 		<tr>
 			<td class="line_table" align="right" width="20%">
 			<span class="left_bt2">չʾͼƬ</span>��</td>
-			<td  class="line_table" width="80%" align="left"><img src="../${product.imgpath}"></td>
+			<td  class="line_table" width="80%" align="left"><img src="../upload/${product.imgpath}"></td>
 		</tr>
 
 		<tr>

@@ -42,29 +42,28 @@
 												<td class="line_table" align="right" width="40%"><span
 													class="left_bt2">按购买日期查询</span></td>
 												<td class="line_table" align="left" width="60%"><input
-													type="text" name="times" value="${times }" size="20" readOnly
-													onClick="setDay(this);"></input></td>
-										</tr> 
-										<tr>
-										<td class="line_table" align="right" width="40%"><span
+													type="text" name="times" value="${times }" size="20"
+													readOnly onClick="setDay(this);"></input></td>
+											</tr>
+											<tr>
+												<td class="line_table" align="right" width="40%"><span
 													class="left_bt2">按商品名称查询</span></td>
 												<td class="line_table" align="left" width="60%"><input
-													type="text" name="name" value="${name}" size="20" 
-													></input></td>
-										</tr>
-										
-										<tr>
-														<td class="line_table" align="center" colspan="6" ><input
-										           type="submit" value="查询"></td>
-										
-										
-										</tr>
-<tr>
-											<td class="line_table" align="center" colspan="6"><a
-												href="selectuserorder.do">我的所有订单</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="selectuserorder.do?delivery=${0}">未派送订单</a>&nbsp;&nbsp;&nbsp;&nbsp;
-												<a href="selectuserorder.do?delivery=${1}">已派送订单</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+													type="text" name="name" value="${name}" size="20"></input></td>
 											</tr>
-											
+
+											<tr>
+												<td class="line_table" align="center" colspan="6"><input
+													type="submit" value="查询"></td>
+
+
+											</tr>
+											<tr>
+												<td class="line_table" align="center" colspan="6"><a
+													href="selectuserorder.do">我的所有订单</a>&nbsp;&nbsp;&nbsp;&nbsp;
+													<a href="selectuserorder.do?delivery=${0}">未派送订单</a>&nbsp;&nbsp;&nbsp;&nbsp;
+													<a href="selectuserorder.do?delivery=${1}">已派送订单</a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+											</tr>
 									</table>
 								</form>
 							</div>
@@ -83,7 +82,7 @@
 									cellPadding="0">
 									<tbody style="margin: 0; padding: 0">
 										<tr>
-											<td class="line_table" align="center" colspan="9"><span
+											<td class="line_table" align="center" colspan="11"><span
 												class="left_bt2">订单查询结果信息列表</span></td>
 										</tr>
 										<tr>
@@ -107,6 +106,8 @@
 												class="left_bt2">是否派送</span></td>
 											<td class="line_table" align="center"><span
 												class="left_bt2">是否送达</span></td>
+											<td class="line_table" align="center"><span
+												class="left_bt2"> &nbsp;&nbsp;&nbsp;&nbsp; </span></td>
 										</tr>
 										<c:forEach items="${result.list }" var="order">
 											<tr>
@@ -142,7 +143,12 @@
 															<span class="left_txt">否</span>
 														</c:otherwise>
 													</c:choose></td>
+												<td class="line_table" align="center"><c:if
+														test="${order.delivery==0&&order.reach==0 }">
+														<a class="left_txt" href="deleteOrder.do?id=${order.id}">删除</a>
+													</c:if></td>
 											</tr>
+
 											</tr>
 										</c:forEach>
 								</table>
@@ -176,7 +182,8 @@
 												<c:when
 													test="${result.page.currentPage eq result.page.totalPage }">尾页</c:when>
 												<c:otherwise>
-													<a href="selectuserorder.do?curPage=${result.page.totalPage }">尾页</a>
+													<a
+														href="selectuserorder.do?curPage=${result.page.totalPage }">尾页</a>
 												</c:otherwise>
 											</c:choose></td>
 									</tr>
@@ -195,5 +202,6 @@
 					flush="fasle" page="copyright.jsp" /></td>
 		</tr>
 	</table>
+	${update }
 </body>
 </html>

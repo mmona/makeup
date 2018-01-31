@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*,java.text.*"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -9,6 +10,31 @@
 <meta content="" name=description />
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/skin.css" rel="stylesheet" type="text/css" />
+<script src="/jquery/jquery-2.2.4.min.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+function selectsum(id){
+	var productsum = $("select[name='productsum']").val();
+	$.ajax({
+		url : "updateShoppingCar.do",
+		type : "post",
+		dataType : "json",
+		data:{"id":id,"productsum":productsum},
+		success : function(data) {
+				if(data.res==1){
+					alert(data.data)
+					window.location="selectShopping.do?curPage=" + data.curPage + "";
+				}else{
+					alert(data.data)
+				}
+		} 
+	});
+}
+	
+
+
+
+</script>
 </head>
 <body style='background: transparent'>
 	<table width="900" border="0" align="center" cellpadding="0"
@@ -58,8 +84,19 @@
 													class="left_txt">${order.product.name }</span></td>
 												<td class="line_table" align="center" width="20%"><span
 													class="left_txt">${order.product.price2 }</span></td>
-												<td class="line_table" align="center" width="20%"><span
-													class="left_txt">${order.productsum }</span></td>
+												<td class="line_table" align="center" width="20%">
+												<select name="productsum">
+												<option value="1" <c:if test="${1 eq order.productsum}"> selected="selected"</c:if>>1</option>
+												<option value="2" <c:if test="${2 eq order.productsum}"> selected="selected"</c:if>>2</option>
+												<option value="3" <c:if test="${3 eq order.productsum}"> selected="selected"</c:if>>3</option>
+												<option value="4" <c:if test="${4 eq order.productsum}"> selected="selected"</c:if>>4</option>
+												<option value="5" <c:if test="${5 eq order.productsum}"> selected="selected"</c:if>>5</option>
+												<option value="6" <c:if test="${6 eq order.productsum}"> selected="selected"</c:if>>6</option>
+												<option value="7" <c:if test="${7 eq order.productsum}"> selected="selected"</c:if>>7</option>
+												<option value="8" <c:if test="${8 eq order.productsum}"> selected="selected"</c:if>>8</option>
+												</select>
+												</td>
+		
 												<c:set
 													value="${sum + order.product.price2*order.productsum}"
 													var="sum" />
@@ -67,7 +104,7 @@
 												<td class="line_table" align="center" width="10%"><a
 													href="deleteShoppingCar.do?id=${order.id }">取消</a></td>
 												<td class="line_table" align="center" width="10%"><a
-													href="updateShoppingCar.do?id=${order.id }">提交</a></td>
+													href="#" onclick="selectsum(${order.id })" >提交</a></td>
 											</tr>
 
 										</c:forEach>

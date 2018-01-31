@@ -6,7 +6,7 @@
 	function check11() {
 		if (document.form1.content.value == "") {
 			alert("回复内容不能为空!");
-			document.form1.name.focus();
+			document.form1.content.focus();
 			return false;
 		}
 	}

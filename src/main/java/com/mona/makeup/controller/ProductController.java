@@ -152,8 +152,12 @@ public class ProductController extends BaseController{
 		String  attribute = (String) session.getAttribute("absolutePath");
 	/*	product.setImgpath(file);*/
 		product.setName(name);
-		product.setPrice1(Float.parseFloat(price1));
-		product.setPrice2(Float.parseFloat(price2));
+		if(!"".equals(price1)){
+			product.setPrice1(Float.parseFloat(price1));
+		}
+		if(!"".equals(price2)){
+			product.setPrice2(Float.parseFloat(price2));
+		}
 		Type type = new Type();
 		type.setId(Integer.parseInt(typeid));
 		product.setType(type);

@@ -102,25 +102,20 @@ public class OrderController extends BaseController {
 		}
 		return modelAndView;
 	}
-	@RequestMapping(value="deleteOrder")
+	@RequestMapping(value="updateIsOrder")
 	public ModelAndView deleteOrder(String id,HttpSession session){
 		ModelAndView modelAndView = new ModelAndView();
-		boolean deleteOrder = orderService.deleteOrder(Integer.parseInt(id));
-		if(deleteOrder){
-			int count  = orderDao.countOrder(null, null,null);
-			String curPage = (String) session.getAttribute("curPage");
-			int pageSize = (int) session.getAttribute("pageSize");
-			if (count%pageSize==0) {
-				int a = Integer.parseInt(curPage) - 1;
-				curPage = String.valueOf(a);
-			} else {
-				if(null== curPage ){
-					curPage="1";
-				}else{
-					curPage = curPage;
-				}
+		Orderr orderr = orderService.selectOrderById(Integer.parseInt(id));
+		orderr.setIsorder(2);
+		boolean updateOrderr = orderService.updateOrderr(orderr);
+		
+		if(updateOrderr){
+			String  curPage = (String) session.getAttribute("curPage");
+			if(null== curPage ){
+				curPage="1";
+			}else{
+				curPage = curPage;
 			}
-			
 			modelAndView.setViewName("selectOrder.do?curPage="+curPage+"");
 			modelAndView.addObject("update", "<script>alert('订单删除成功!')</script>");
 		}

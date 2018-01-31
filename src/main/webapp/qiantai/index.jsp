@@ -15,6 +15,7 @@
 	$(function() {
 		/* 	selectshoppingcar();
 			selectRecommend(); */
+		
 	});
 </script>
 

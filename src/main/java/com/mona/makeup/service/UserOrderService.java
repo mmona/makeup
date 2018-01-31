@@ -33,6 +33,10 @@ public class UserOrderService extends BaseService {
 		result.setPage(page);
 		return result;
 	}
+	//delete deleteOrder by id
+	public boolean deleteOrder(int id ){
+		return userOrderDao.deleteOrder(id);
+	}
 	public Result<Orderr> selectShopping(int curPage,User user){
 		Result<Orderr> result = new Result<>();
 		Page page  = new Page();
@@ -52,9 +56,9 @@ public class UserOrderService extends BaseService {
 		return userOrderDao.deleteShoppingCar(id);
 	}
 	//uppdate updateShoppingCar
-	public boolean updateShoppingCar(int id  ){
+	public boolean updateShoppingCar(int id ,int productsum ){
 
-		int updateShoppingCar = userOrderDao.updateShoppingCar(id);
+		int updateShoppingCar = userOrderDao.updateShoppingCar(id,productsum);
 		if(updateShoppingCar>0){
 			return true;
 		}

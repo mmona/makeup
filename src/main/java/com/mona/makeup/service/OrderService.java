@@ -2,6 +2,9 @@ package com.mona.makeup.service;
 
 import java.util.List;
 
+import javax.persistence.criteria.Order;
+
+import org.hibernate.sql.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,6 +55,15 @@ public class OrderService {
 		public boolean deleteOrder(int id ){
 			return orderDao.deleteOrder(id);
 		}
+		//update orderr
+		public boolean updateOrderr(Orderr orderr){
+			return orderDao.updateOrderr(orderr);
+		}
+		//select order by id
+		public Orderr selectOrderById(int id ){
+			return orderDao.selectOrderById(id);
+		}
+		
 		//select order by times
 		public List<Orderr> selectOrderByTimes(String times){
 			return orderDao.selectOrderByTimes(times);

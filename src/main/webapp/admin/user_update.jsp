@@ -18,59 +18,126 @@
 
 <script language="JavaScript">
 	function check11() {
-
-		if (document.form1.name.value == "") {
+		if (document.form1.name.value == "" ) 
+		{
 			alert("用户名不能为空!");
 			document.form1.name.focus();
 			return false;
 		}
-		if (document.form1.pwd.value == "") {
+		if(document.form1.name.value.length<6){
+			alert("用户名长度必须在6位以上!");
+			document.form1.name.focus();
+			return false;
+		}
+		
+		
+		if (document.form1.pwd.value == ""  )  
+		{
 			alert("密码不能为空!");
 			document.form1.pwd.focus();
 			return false;
 		}
-		if (document.form1.qpwd.value == "") {
+
+		 var patrn= /^[0-9a-zA-Z]{5,16}$/;
+		if (!patrn.exec(document.form1.pwd.value))  
+		{
+			alert("密码只能为英语字和数字组合!");
+			document.form1.pwd.focus();
+			return false;
+		}
+		if (document.form1.qpwd.value == ""  )  
+		{
 			alert("确认密码不能为空!");
 			document.form1.qpwd.focus();
 			return false;
 		}
-		if (document.form1.qpwd.value != document.form1.pwd.value) {
+		if (document.form1.qpwd.value != document.form1.pwd.value  )  
+		{
 			alert("两次密码不一致!");
 			document.form1.qpwd.focus();
 			return false;
 		}
-		if (document.form1.realname.value == "") {
-			alert("真实姓名不能为空!");
+		if (document.form1.realname.value == ""  )  
+		{
+			alert("真实姓名不能为空");
 			document.form1.realname.focus();
 			return false;
 		}
-		if (document.form1.age.value == "") {
+		var g =/^\d+$/;
+		if (!g.exec(document.form1.age.value))  
+		{
+			alert("年龄必须是非负整数!");
+			document.form1.card.focus();
+			return false;
+		}
+		if (document.form1.age.value == ""  )  
+		{
 			alert("年龄不能为空!");
 			document.form1.age.focus();
 			return false;
 		}
-		if (document.form1.card.value == "") {
+		if (document.form1.age.value > 150 )  
+		{
+			alert("年龄输入不合法!");
+			document.form1.age.focus();
+			return false;
+		}
+		if (document.form1.card.value == ""  )  
+		{
 			alert("身份证不能为空!");
 			document.form1.card.focus();
 			return false;
 		}
-		if (document.form1.address.value == "") {
+		var b= /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+		if (!b.exec(document.form1.card.value))  
+		{
+			alert("身份证号格式不对!");
+			document.form1.card.focus();
+			return false;
+		}
+		if (document.form1.address.value == ""  )  
+		{
 			alert("家庭住址不能为空!");
 			document.form1.address.focus();
 			return false;
 		}
-		if (document.form1.phone.value == "") {
+		var res = /^0?1[3|4|5|8|7][0-9]\d{8}$/;
+		if (!res.exec(document.form1.phone.value)) 
+		{
+			alert("电话号码格式不正确!");
+			document.form1.email.focus();
+			return false;
+		}
+		if (document.form1.phone.value == ""  )  
+		{
 			alert("电话号码不能为空!");
 			document.form1.phone.focus();
 			return false;
 		}
-		if (document.form1.email.value == "") {
+		var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+		 
+		if (document.form1.email.value == ""  )  
+		{
 			alert("电子邮箱不能为空!");
 			document.form1.email.focus();
 			return false;
 		}
-		if (document.form1.code.value == "") {
+		if (!reg.exec(document.form1.email.value)) 
+		{
+			alert("电子邮箱格式不正确!");
+			document.form1.email.focus();
+			return false;
+		}
+		if (document.form1.code.value == ""  )  
+		{
 			alert("邮政编码不能为空!");
+			document.form1.code.focus();
+			return false;
+		}
+		var a= /^\d{6}$/;
+		if (!a.exec(document.form1.code.value) )  
+		{
+			alert("邮政编码格式不正确，请输入如111111!");
 			document.form1.code.focus();
 			return false;
 		}

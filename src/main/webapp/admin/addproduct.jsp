@@ -20,6 +20,26 @@ body {
 -->
 </style>
 <script type="text/javascript">
+function check11(){
+	if (document.form1.name.value == "" ) 
+	{
+		alert("化妆品名称不能为空!");
+		document.form1.name.focus();
+		return false;
+	}
+	if (document.form1.price1.value == "" ) 
+	{
+		alert("原价不能为空!");
+		document.form1.price1.focus();
+		return false;
+	}
+	if (document.form1.price2.value == "" ) 
+	{
+		alert("会员价不能为空!");
+		document.form1.price2.focus();
+		return false;
+	}
+}
 	$(function() {
 		selecttype();
 		selectBrand();

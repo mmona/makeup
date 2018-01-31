@@ -8,7 +8,7 @@
 
 		if (document.form1.tname.value == "") {
 			alert("类别名称不能为空!");
-			document.form1.name.focus();
+			document.form1.tname.focus();
 			return false;
 		}
 	}

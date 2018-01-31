@@ -20,10 +20,10 @@ import com.mona.makeup.pojo.User;
 public class UserOrderDao extends CommonDao {
 	//select user order count 
 	public int countUserOrder(User user,String times,Integer delivery,String name){
-		StringBuffer buffer =  new StringBuffer("Select Count(*) from Orderr o where o.isorder=:isorder and o.user=:user");
+		StringBuffer buffer =  new StringBuffer("Select Count(*) from Orderr o where o.isorder!= 0 and o.user=:user");
 		Map<String,Object> params= new HashMap<>();
 		params.put("user", user);
-		params.put("isorder", 1);
+	
 		if(!"".equals(times)&&times!=null){
 			buffer.append(" and o.times=:times ");
 			params.put("times", times);
@@ -40,9 +40,14 @@ public class UserOrderDao extends CommonDao {
 		List<Object> query = (List<Object>) this.query(sql, params);
 		return Integer.parseInt(query.get(0).toString());
 	}
+	//delete oeder by id 
+	@Transactional
+	public boolean deleteOrder(int id ){
+		return this.delete(id, Orderr.class);
+	}
 	//select order
 	 public List<Orderr> selectUserOrder(Page page,String times,Integer delivery,User user,String name ){
-		 StringBuffer buffer =  new StringBuffer("Select o from Orderr o where o.isorder=1 and o.user=:user");
+		 StringBuffer buffer =  new StringBuffer("Select o from Orderr o where o.isorder != 0 and o.user=:user");
 			Map<String,Object> params= new HashMap<>();
 			params.put("user", user);
 			if(!"".equals(times)&&times!=null){
@@ -96,10 +101,11 @@ public class UserOrderDao extends CommonDao {
 	 }
 	//uodate 	updateShoppingCar  只是修改单个
 	 @Transactional
-	 public int updateShoppingCar(int id){
-		 String sql="update Orderr o set o.isorder=1 where o.id=:id";
+	 public int updateShoppingCar(int id,int productsum){
+		 String sql="update Orderr o set o.isorder=1,o.productsum=:productsum where o.id=:id";
 		 Map< String ,Object> params = new HashMap<>();
 		 params.put("id", id);
+		 params.put("productsum", productsum);
 		 int execRawSql = this.execRawSql(sql, params);
 		 if(execRawSql>0){
 			 return execRawSql;

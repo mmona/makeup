@@ -88,6 +88,12 @@ $(function() {
 					document.form1.age.focus();
 					return false;
 				}
+				if (document.form1.age.value > 150 )  
+				{
+					alert("年龄输入不合法!");
+					document.form1.age.focus();
+					return false;
+				}
 				if (document.form1.card.value == ""  )  
 				{
 					alert("身份证不能为空!");

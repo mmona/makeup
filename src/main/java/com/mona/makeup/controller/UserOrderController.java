@@ -1,6 +1,7 @@
 package com.mona.makeup.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -114,7 +115,30 @@ public class UserOrderController extends BaseController {
 		}
 		return modelAndView;
 	}
-
+	@RequestMapping(value="deleteOrder")
+	public ModelAndView deleteOrder(String id, HttpSession session) {
+		ModelAndView modelAndView = new ModelAndView();
+		boolean deleteOrder = userOrderService.deleteOrder(Integer.parseInt(id));
+		if (deleteOrder) {
+			User user = (User) session.getAttribute("user");
+			int count = userOrderDao.countUserOrder(user, null, null, null);
+			String curPage = (String) session.getAttribute("curPage");
+			int pageSize = (int) session.getAttribute("pageSize");
+			if (count % pageSize == 0) {
+				int a = Integer.parseInt(curPage) - 1;
+				curPage = String.valueOf(a);
+			} else {
+				if(null== curPage ){
+					curPage="1";
+				}else{
+					curPage = curPage;
+				}
+			}
+			modelAndView.setViewName("selectuserorder.do?curPage=" + curPage + "");
+			modelAndView.addObject("update", "<script>alert('订单删除成功!')</script>");
+		}
+		return modelAndView;
+	}
 	@RequestMapping(value = "selectShopping")
 	public ModelAndView selectShopping(HttpSession session, String curPage) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -163,9 +187,11 @@ public class UserOrderController extends BaseController {
 		return modelAndView;
 	}
 	@RequestMapping(value="updateShoppingCar")
-	public ModelAndView updateShoppingCar(HttpSession session,String id){
+	@ResponseBody
+	public void updateShoppingCar(HttpSession session,String id,HttpServletRequest request,HttpServletResponse response) throws IOException{
 		ModelAndView modelAndView = new ModelAndView();
-		boolean updateShoppingCar = userOrderService.updateShoppingCar(Integer.parseInt(id));
+		String productsum = request.getParameter("productsum");
+		boolean updateShoppingCar = userOrderService.updateShoppingCar(Integer.parseInt(id),Integer.parseInt(productsum));
 		if( updateShoppingCar){
 			String curPage = (String) session.getAttribute("curPage");
 			if(null== curPage ){
@@ -174,10 +200,15 @@ public class UserOrderController extends BaseController {
 				curPage = curPage;
 			}
 			modelAndView.setViewName("selectShopping.do?curPage=" + curPage + "");
+			response.getWriter().print("{\"res\": 1, \"data\":\"订单提交成功\",\"curPage\": "+ curPage +"}");
+			
 			modelAndView.addObject("deleteshoppingcar", "<script>alert('订单提交成功!')</script>");
+		}else{
+			response.getWriter().print("{\"res\": 0, \"data\":\"订单提交失败\"}");
 		}
 		
-		return modelAndView;
+		
+		
 	}
 	@RequestMapping(value="deleteShoppingindex")
 	public ModelAndView deleteShoppingindex(HttpSession session,String id ){

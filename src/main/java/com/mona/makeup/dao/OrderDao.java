@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.engine.jdbc.spi.ResultSetReturn;
 import org.springframework.aop.framework.autoproxy.target.QuickTargetSourceCreator;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -88,6 +89,22 @@ public class OrderDao extends CommonDao{
 	@Transactional
 	public boolean deleteOrder(int id){
 		return this.delete(id, Orderr.class);
+	}
+	//update order
+	@Transactional
+	public boolean updateOrderr(Orderr orderr){
+		return this.update(orderr);
+	}
+	//select order by id 
+	public Orderr selectOrderById(int id ){
+		String sql="Select o from Orderr o where o.id =:id";
+		Map<String,Object> params = new HashMap<>();
+		params.put("id", id);
+		List<Orderr> query = this.query(sql, Orderr.class, params);
+		if(query!=null){
+			return query.get(0);
+		}
+		return null;
 	}
 	//select order by times
 	public List<Orderr> selectOrderByTimes(String times){

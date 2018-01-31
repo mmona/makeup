@@ -124,16 +124,16 @@ body {
 									<td class="line_table" align="center">
 									<c:choose>
 									<c:when test="${order.delivery==1&&order.reach==1}">
-										<a href="deleteOrder.do?id=${order.id}">删除</a></td>
+										<a href="updateIsOrder.do?id=${order.id}">删除</a>
 											</c:when>
 										<c:when test="${order.delivery==1&&order.reach==0}">
-										<a href="updatedelivery.do?id=${order.id}">取消</a></td>
+										<a href="updatedelivery.do?id=${order.id}">取消</a>
 											</c:when>
 											<c:otherwise>
-													<a href="deleteOrder.do?id=${order.id}">取消</a></td>
+													<a href="updateIsOrder.do?id=${order.id}">取消</a>
 											</c:otherwise>
 									</c:choose>
-								
+								</td>
 								</tr>
 							</c:forEach>
 					</table>

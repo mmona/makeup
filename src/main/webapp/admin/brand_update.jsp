@@ -7,7 +7,7 @@
 	function check11() {
 		if (document.form1.bname.value == "") {
 			alert("品牌名称不能为空!");
-			document.form1.name.focus();
+			document.form1.bname.focus();
 			return false;
 		}
 	}
