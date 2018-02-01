@@ -112,6 +112,19 @@ public class UserOrderDao extends CommonDao {
 		 }
 		 return 0;
 	 }
+	 //update productsum \
+	 @Transactional
+	 public boolean updateProductsum(int id,int productsum){
+		String sql = "update Orderr o set o.productsum=:productsum where o.id=:id";
+		 Map< String ,Object> params = new HashMap<>();
+		 params.put("id", id);
+		 params.put("productsum", productsum);
+		 int execRawSql = this.execRawSql(sql, params);
+		 if(execRawSql>0){
+			 return true;
+		 }
+		 return false;
+	 }
 	 //update shopping 
 	 @Transactional
 	 public int updateshopping(User user,String times){
@@ -166,5 +179,17 @@ public class UserOrderDao extends CommonDao {
 	 @Transactional
 	 public boolean addShoppingCar(Orderr orderr ){
 		 return this.save(orderr);
+	 }
+	 //select shopping orderr by product 
+	 public Orderr selectShoppingByProduct(Product product,User user ){
+		String sql = "Select o from Orderr o where o.product=:product and o.isorder=0 and o.user=:user "; 
+		Map<String,Object> params= new HashMap<>();
+		params.put("product", product);
+		params.put("user", user);
+		List<Orderr> query = this.query(sql, Orderr.class, params);
+		if(query!=null&&!query.isEmpty()){
+			return query.get(0);
+		}
+		return null;
 	 }
 }

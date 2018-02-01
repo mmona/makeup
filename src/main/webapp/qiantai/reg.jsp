@@ -53,7 +53,7 @@ $(function() {
 				 var patrn= /^[0-9a-zA-Z]{5,16}$/;
 				if (!patrn.exec(document.form1.pwd.value))  
 				{
-					alert("密码只能为英语字和数字组合!");
+					alert("密码格式不正确!");
 					document.form1.pwd.focus();
 					return false;
 				}

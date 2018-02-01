@@ -24,20 +24,20 @@
 			return false;
 		}
 		if(document.form1.username.value.length<6){
-			alert("用户名长度必须在6位以上!");
+			alert("用户名错误!");
 			document.form1.name.focus();
 			return false;
 		}
-		if (document.form1.password.value.length<5||document.form1.password.value.length>16)  
+		 var patrn=/^([a-z]|[A-Z]|[0-9]){5,16}$/;
+		if (!patrn.exec(document.form1.password.value))  
 		{
-			alert("密码长度要在5-16位之间!");
+			alert("密码格式不对!");
 			document.form1.password.focus();
 			return false;
 		}
-		 var patrn=/^([a-z]|[A-Z]|[0-9]){5}$/;
-		if (!patrn.exec(document.form1.password.value))  
+		if (!patrn.exec(document.form1.password.value==""))  
 		{
-			alert("密码只能为英语字和数字组合!");
+			alert("密码格不能为空!");
 			document.form1.password.focus();
 			return false;
 		}

@@ -3,13 +3,14 @@
 <html>
 <head>
 <script language="JavaScript">
-	function check11() {
-		if (document.form1.tname.value == "") {
-			alert("类别名称不能为空!");
-			document.form1.name.focus();
-			return false;
-		}
+function check11() {
+
+	if (document.form1.tname.value == "") {
+		alert("类别名称不能为空!");
+		document.form1.tname.focus();
+		return false;
 	}
+}
 </script>
 <link href="images/skin.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

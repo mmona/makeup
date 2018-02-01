@@ -104,16 +104,28 @@ public class IndexController extends BaseController {
 	public ModelAndView addShoppingCar(String id, HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView();
 		Product selectProductById = productService.selectProductById(Integer.parseInt(id));
+		
 		User user = (User) session.getAttribute("user");
+		Orderr orderr = userOrderService.selectShoppingByProduct(selectProductById,user);
 		Date now = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");// 可以方便地修改日期格式
 		String times = dateFormat.format(now);
-		Orderr orderr = new Orderr();
-		orderr.setProduct(selectProductById);
-		orderr.setUser(user);
-		orderr.setTimes(times);
-		orderr.setProductsum(1);
-		boolean addShoppingCar = userOrderService.addShoppingCar(orderr);
+		boolean addShoppingCar=false;
+		if(orderr!=null){
+			int sum = orderr.getProductsum();
+			int productsum = sum+1;
+			addShoppingCar = userOrderService.updateProductsum(orderr.getId(), productsum);
+		}else{
+			orderr = new Orderr();
+			int productsum =1;
+			orderr.setProductsum(productsum);
+			orderr.setProduct(selectProductById);
+			orderr.setUser(user);
+			orderr.setTimes(times);
+			addShoppingCar = userOrderService.addShoppingCar(orderr);
+		}
+		
+		
 		if (addShoppingCar) {
 			modelAndView.setViewName("indexInfo.do");
 			modelAndView.addObject("deleteshoppingcar", "<script>alert('加入购物车!')</script>");

@@ -14,7 +14,7 @@
 
 		if (document.form1.bname.value == "") {
 			alert("类别名称不能为空!");
-			document.form1.name.focus();
+			document.form1.bname.focus();
 			return false;
 		}
 

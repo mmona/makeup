@@ -64,6 +64,10 @@ public class UserOrderService extends BaseService {
 		}
 		return false;
 	}
+	//update productsum
+	public boolean updateProductsum(int id,int productsum){
+		return userOrderDao.updateProductsum(id, productsum);
+	}
 	//update shopping 
 	public boolean updateShopping(User user,String times){
 		int updateshopping = userOrderDao.updateshopping(user,times);
@@ -95,4 +99,9 @@ public class UserOrderService extends BaseService {
 	 public boolean addShoppingCar(Orderr orderr ){
 		 return userOrderDao.addShoppingCar(orderr);
 	 }
+	 // selectShoppingByProduct
+	 public Orderr  selectShoppingByProduct(Product product,User user ){
+		 return userOrderDao.selectShoppingByProduct(product,user);
+	 }
 }
+

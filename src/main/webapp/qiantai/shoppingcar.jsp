@@ -10,11 +10,51 @@
 <meta content="" name=description />
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/skin.css" rel="stylesheet" type="text/css" />
-<script src="/jquery/jquery-2.2.4.min.js"
-	type="text/javascript"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/makeup/jquery/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="../system.js"></script>
 <script type="text/javascript">
+	function jian(id){	
+		var n=$("input[id ="+ id +"]").val();
+		   var num=parseInt(n)-1;
+		   if(num==0){ return}
+		   else{
+			   $("input[id ="+ id +"]").val(num);
+			   $.ajax({
+					url : "updateProductsum.do",
+					type : "post",
+					dataType : "json",
+					data:{"id":id,"productsum":num},
+					success : function(data) {
+							if(data.res==1){
+								window.location="selectShopping.do?curPage=" + data.curPage + "";
+							}
+							
+					} 
+				});
+		   }
+		      
+	}
+	function add(id){
+		  var n=$("input[id ="+ id +"]").val();
+		  //alert(n)
+		   var num=parseInt(n)+1;
+		 $("input[id="+ id +"]").val(num);
+			$.ajax({
+				url : "updateProductsum.do",
+				type : "post",
+				dataType : "json",
+				data:{"id":id,"productsum":num},
+				success : function(data) {
+					if(data.res==1){
+						window.location="selectShopping.do?curPage=" + data.curPage + "";
+					}
+				}	
+				
+			});
+		}
+
 function selectsum(id){
-	var productsum = $("select[name='productsum']").val();
+	var productsum = $("input[name='productsum']").val();
 	$.ajax({
 		url : "updateShoppingCar.do",
 		type : "post",
@@ -35,6 +75,12 @@ function selectsum(id){
 
 
 </script>
+<style type="text/css">
+.gw_num{border: 1px solid #dbdbdb;width: 110px;line-height: 26px;overflow: hidden;}
+.gw_num em{display: block;height: 26px;width: 26px;float: left;color: #7A7979;border-right: 1px solid #dbdbdb;text-align: center;cursor: pointer;}
+.gw_num .num{display: block;float: left;text-align: center;width: 52px;font-style: normal;font-size: 14px;line-height: 24px;border: 0;}
+.gw_num em.add{float: right;border-right: 0;border-left: 1px solid #dbdbdb;}
+</style>
 </head>
 <body style='background: transparent'>
 	<table width="900" border="0" align="center" cellpadding="0"
@@ -84,19 +130,15 @@ function selectsum(id){
 													class="left_txt">${order.product.name }</span></td>
 												<td class="line_table" align="center" width="20%"><span
 													class="left_txt">${order.product.price2 }</span></td>
-												<td class="line_table" align="center" width="20%">
-												<select name="productsum">
-												<option value="1" <c:if test="${1 eq order.productsum}"> selected="selected"</c:if>>1</option>
-												<option value="2" <c:if test="${2 eq order.productsum}"> selected="selected"</c:if>>2</option>
-												<option value="3" <c:if test="${3 eq order.productsum}"> selected="selected"</c:if>>3</option>
-												<option value="4" <c:if test="${4 eq order.productsum}"> selected="selected"</c:if>>4</option>
-												<option value="5" <c:if test="${5 eq order.productsum}"> selected="selected"</c:if>>5</option>
-												<option value="6" <c:if test="${6 eq order.productsum}"> selected="selected"</c:if>>6</option>
-												<option value="7" <c:if test="${7 eq order.productsum}"> selected="selected"</c:if>>7</option>
-												<option value="8" <c:if test="${8 eq order.productsum}"> selected="selected"</c:if>>8</option>
-												</select>
+												<td class="line_table" align="center" width="20%"> 
+													<div class="gw_num">
+														<em class="jian" onclick="jian(${order.id})">-</em> 
+														<input type="text" value="${order.productsum}"
+														 class="num" name="productsum" id="${order.id}"/> 
+														<em class="add" onclick="add(${order.id})">+</em>
+													</div>
+
 												</td>
-		
 												<c:set
 													value="${sum + order.product.price2*order.productsum}"
 													var="sum" />
@@ -104,7 +146,7 @@ function selectsum(id){
 												<td class="line_table" align="center" width="10%"><a
 													href="deleteShoppingCar.do?id=${order.id }">取消</a></td>
 												<td class="line_table" align="center" width="10%"><a
-													href="#" onclick="selectsum(${order.id })" >提交</a></td>
+													onclick="selectsum(${order.id })">提交</a></td>
 											</tr>
 
 										</c:forEach>
@@ -112,31 +154,31 @@ function selectsum(id){
 										<tr>
 											<td class="line_table" align="center" colspan="5"><span
 												class="left_bt2">小&nbsp;&nbsp;计：</span>&nbsp; <span
-												style="color: #ff0000;">${sum }</span>&nbsp;&nbsp; <span
+												style="color: #ff0000;" class="sum">${sum }</span>&nbsp;&nbsp; <span
 												class="left_bt2">元</span>
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												<span class="left_bt2">共：</span>&nbsp; <span
-												style="color: #ff0000;">${sum1 }</span>&nbsp; <span
+												style="color: #ff0000;" class="sum1">${sum1 }</span>&nbsp; <span
 												class="left_bt2">份</span></td>
 
 										</tr>
 										<tr>
-										<c:if test="${result.list!=null }">
-										
-										<tr>
-											<td class="line_table" align="center" colspan="5"
-												valign="center"><a href="updateshopping.do"><img
-													src="images/canche_submit.gif" border="0" /></a>
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<c:if test="${result.list!=null }">
 
-												<a href="deleteshopping.do"><img
-													src="images/quxiao2.gif" border="0" /></a></td>
+												<tr>
+													<td class="line_table" align="center" colspan="5"
+														valign="center"><a
+														href="updateshopping.do"><img
+															src="images/canche_submit.gif" border="0" /></a>
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-										</tr>
-										
-										
-										</c:if>
-										
+														<a href="deleteshopping.do"><img
+															src="images/quxiao2.gif" border="0" /></a></td>
+
+												</tr>
+
+
+											</c:if>
 								</table>
 				</table>
 				<table width="90%" border="0" align="center" cellpadding="0"
