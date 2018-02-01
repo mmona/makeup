@@ -111,6 +111,8 @@ public class UserOrderController extends BaseController {
 			selectUserOrder = userOrderService.selectUserOrder(cPage, times, null, user, name);
 		}
 		if (selectUserOrder != null) {
+		
+			session.setAttribute("curPage", curPage);
 			modelAndView.setViewName("order.jsp");
 			modelAndView.addObject("result", selectUserOrder);
 		}
