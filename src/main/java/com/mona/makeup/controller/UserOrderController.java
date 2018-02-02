@@ -259,7 +259,7 @@ public class UserOrderController extends BaseController {
 		String times = dateFormat.format(now);
 		boolean updateShopping = userOrderService.updateShopping(user, times);
 		if (updateShopping) {
-			modelAndView.setViewName("selectShopping.do");
+			modelAndView.setViewName("selectuserorder.do");
 			modelAndView.addObject("deleteshoppingcar", "<script>alert('订单全部提交成功!')</script>");
 		}
 		return modelAndView;
@@ -271,7 +271,7 @@ public class UserOrderController extends BaseController {
 		User user = (User) session.getAttribute("user");
 		boolean deteleShopping = userOrderService.deteleShopping(user);
 		if (deteleShopping) {
-			modelAndView.setViewName("selectShopping.do");
+			modelAndView.setViewName("indexInfo.do");
 			modelAndView.addObject("deleteshoppingcar", "<script>alert('全部取消成功!')</script>");
 		}
 		return modelAndView;

@@ -47,19 +47,19 @@ public class UserController extends BaseController{
 	}
 	@RequestMapping(value="updateUserById")
 	@Transactional
-	public ModelAndView updateUserById(HttpSession session,	String username,String password,String realname,String age,String address,String card,String telephone,String email,String code,String id){
+	public ModelAndView updateUserById(HttpSession session,	String name,String pwd,String realname,String age,String address,String card,String phone,String email,String code,String id){
 		ModelAndView modelAndView = new ModelAndView();
 		User user  = new User();
 		user.setId(Integer.parseInt(id));
-		user.setUsername(username);
-		user.setPassword(password);
+		user.setUsername(name);
+		user.setPassword(pwd);
 		user.setRealname(realname);
 		user.setAge(age);
 		user.setAddress(address);
 		user.setCard(card);
 		user.setCode(code);
 		user.setEmail(email);
-		user.setTelephone(telephone);
+		user.setTelephone(phone);
 		boolean idUpdate = userService.updateUserById(user);
 		if(idUpdate){
 			String  curPage  = (String) session.getAttribute("curPage");
