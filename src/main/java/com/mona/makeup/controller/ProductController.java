@@ -113,7 +113,7 @@ public class ProductController extends BaseController{
 		ModelAndView modelAndView = new ModelAndView();
 		boolean deleteProduct = productService.deleteProduct(Integer.parseInt(id));
 		if(deleteProduct){
-			int count = productDao.countProduct(null);
+			int count = productDao.countProduct(null,null);
 		
 			String  curPage  = (String)session.getAttribute("curPage");
 			int  pageSize = (int) session.getAttribute("pageSize");

@@ -19,7 +19,7 @@ public class ProductService extends BaseService {
 	// select product
 	public Result<Product> selectProduct(int curPage,String name,Type type ) {
 		Result<Product> result = new Result<>();
-		int count = productDao.countProduct(name);
+		int count = productDao.countProduct(name,type);
 		Page page = new Page();
 		page.setBeginIndex((curPage - 1) * 10);
 		page.setCurrentPage(curPage);

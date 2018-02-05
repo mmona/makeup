@@ -17,12 +17,16 @@ import com.mona.makeup.pojo.Type;
 @Repository
 public class ProductDao extends CommonDao {
 	//count product
-	public int countProduct(String name){
+	public int countProduct(String name,Type type){
 		StringBuffer buffer =  new StringBuffer("select count(*) from Product p where 1=1");
 		Map<String,Object> params= new HashMap<>();
 		if(!"".equals(name)&&name!=null){
 			buffer.append("  and p.name like :name");
 			params.put("name",  "%" +name + "%");
+		}
+		if(!"".equals(type)&&type!=null){
+			buffer.append(" and p.type = :type ");
+			params.put("type", type);
 		}
 		String sql = buffer.toString();
 		List<Object> query =(List<Object>) this.query(sql,params);
