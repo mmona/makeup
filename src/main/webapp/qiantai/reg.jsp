@@ -50,7 +50,7 @@ $(function() {
 					return false;
 				}
 		
-				 var patrn= /^[0-9a-zA-Z]{5,16}$/;
+				var patrn=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{5,16}$/;
 				if (!patrn.exec(document.form1.pwd.value))  
 				{
 					alert("密码格式不正确!");

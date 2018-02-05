@@ -18,17 +18,42 @@
 
 <script language="JavaScript">
 	function check11() {
-		if (document.form1.pwd.value == "") {
+		
+		if (document.form1.username.value == "" ) 
+		{
+			alert("用户名不能为空!");
+			document.form1.username.focus();
+			return false;
+		}
+		if(document.form1.username.value.length<6){
+			alert("用户名长度必须在6位以上!");
+			document.form1.name.focus();
+			return false;
+		}
+		
+		
+		if (document.form1.pwd.value == ""  )  
+		{
 			alert("密码不能为空!");
 			document.form1.pwd.focus();
 			return false;
 		}
-		if (document.form1.qpwd.value == "") {
+
+		 var patrn=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{5,16}$/;
+		if (!patrn.exec(document.form1.pwd.value))  
+		{
+			alert("密码格式不正确!");
+			document.form1.pwd.focus();
+			return false;
+		}
+		if (document.form1.qpwd.value == ""  )  
+		{
 			alert("确认密码不能为空!");
 			document.form1.qpwd.focus();
 			return false;
 		}
-		if (document.form1.qpwd.value != document.form1.pwd.value) {
+		if (document.form1.qpwd.value != document.form1.pwd.value  )  
+		{
 			alert("两次密码不一致!");
 			document.form1.qpwd.focus();
 			return false;
