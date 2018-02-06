@@ -23,7 +23,6 @@ import com.mona.makeup.bean.jsonresponse.JSONResponseBody;
 import com.mona.makeup.pojo.Admin;
 import com.mona.makeup.pojo.User;
 
-
 @Controller
 @RequestMapping(value="/admin")
 public class AdminController extends BaseController {

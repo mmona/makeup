@@ -28,13 +28,13 @@
 			document.form1.name.focus();
 			return false;
 		}
-		var patrn=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{5,16}$/;
-		if (!patrn.exec(document.form1.password.value))  
-		{
-			alert("密码格式不对!");
-			document.form1.password.focus();
-			return false;
-		}
+		 var patrn=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{5,16}$/;
+			if (!patrn.exec(document.form1.pwd.value))  
+			{
+				alert("密码格式不正确!");
+				document.form1.pwd.focus();
+				return false;
+			}
 		if (!patrn.exec(document.form1.password.value==""))  
 		{
 			alert("密码格不能为空!");
