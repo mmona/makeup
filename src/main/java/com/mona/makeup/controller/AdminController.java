@@ -28,6 +28,7 @@ import com.mona.makeup.pojo.User;
 public class AdminController extends BaseController {
 	@RequestMapping(value="/login")
 	public ModelAndView login(String name,String pwd,HttpServletRequest request,HttpSession session){
+		session.removeAttribute("user");
 		String method = request.getMethod();
 		Admin admin  = new Admin();
 		admin.setName(name);;

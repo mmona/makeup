@@ -28,7 +28,7 @@ import com.mona.makeup.utils.StringUtils;
 @Controller
 @RequestMapping(value = "/qiantai")
 public class IndexController extends BaseController {
-	@RequestMapping(value = "indexInfo")
+	@RequestMapping(value = "/indexInfo")
 	public ModelAndView indexInf(HttpSession session, String curPage, String name, String tid,
 			HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();

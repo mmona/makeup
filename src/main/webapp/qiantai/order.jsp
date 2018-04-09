@@ -9,7 +9,7 @@
 <meta content="" name=description />
 <link href="css/common.css" rel="stylesheet" type="text/css" />
 <link href="css/skin.css" rel="stylesheet" type="text/css" />
-<script src="js/date.js" type="text/javascript"></script>
+<script src="js/WdatePicker.js" type="text/javascript"></script>
 </head>
 
 <body style='background: transparent'>
@@ -43,7 +43,7 @@
 													class="left_bt2">按购买日期查询</span></td>
 												<td class="line_table" align="left" width="60%"><input
 													type="text" name="times" value="${times }" size="20"
-													readOnly onClick="setDay(this);"></input></td>
+													readOnly  class="Wdate" onfocus="WdatePicker({maxDate:'%y-%M-%d'})"></input></td>
 											</tr>
 											<tr>
 												<td class="line_table" align="right" width="40%"><span

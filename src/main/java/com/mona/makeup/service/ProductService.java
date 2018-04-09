@@ -21,11 +21,11 @@ public class ProductService extends BaseService {
 		Result<Product> result = new Result<>();
 		int count = productDao.countProduct(name,type);
 		Page page = new Page();
-		page.setBeginIndex((curPage - 1) * 10);
+		page.setBeginIndex((curPage - 1) * 3);
 		page.setCurrentPage(curPage);
-		page.setPageSize(10);
+		page.setPageSize(3);
 		page.setTotalCount(count);
-		page.setTotalPage((count % 10 == 0) ? (count / 10) : (count / 10 + 1));
+		page.setTotalPage((count % 3 == 0) ? (count / 3) : (count / 3 + 1));
 		List<Product> selectProduct = productDao.selectProduct(page,name,type);
 		result.setList(selectProduct);
 		result.setPage(page);

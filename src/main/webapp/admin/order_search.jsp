@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="admin/images/skin.css" rel="stylesheet" type="text/css" />
-<script src="admin/js/date.js" type="text/javascript"></script>
+<script src="admin/js/WdatePicker.js" type="text/javascript"></script>
 <style type="text/css">
 <!--
 body {
@@ -39,7 +39,7 @@ body {
 									<td class="line_table" align="left" width="60%">
 									<input
 										type="text" name="times" size="20" value="${times }" readOnly
-										onClick="setDay(this);"></input></td>
+										class="Wdate" onfocus="WdatePicker({maxDate:'%y-%M-%d'})" ></input></td>
 								</tr>
 									<tr>
 									<td class="line_table" align="right" width="40%"><span
