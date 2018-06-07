@@ -144,7 +144,7 @@
 														</c:otherwise>
 													</c:choose></td>
 												<td class="line_table" align="center"><c:if
-														test="${order.delivery==0&&order.reach==0 }">
+														test="${order.delivery==0&&order.reach==0 || order.delivery==1&&order.reach==1}">
 														<a class="left_txt" href="deleteOrder.do?id=${order.id}">删除</a>
 													</c:if></td>
 											</tr>

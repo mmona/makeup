@@ -155,7 +155,7 @@ public class UserLoginController  extends BaseController{
 		ModelAndView modelAndView = new ModelAndView();
 		String username = request.getParameter("name");
 		String password = request.getParameter("pwd");
-	
+	System.out.println(password);
 		String sex = request.getParameter("sex");
 		String realname = request.getParameter("realname");
 		String age = request.getParameter("age");
@@ -165,6 +165,7 @@ public class UserLoginController  extends BaseController{
 		String email = request.getParameter("email");
 		String code= request.getParameter("code");
 		String id= request.getParameter("id");
+		
 		User user  = new User();
 		user.setUsername(username);
 		user.setPassword(password);
@@ -179,7 +180,7 @@ public class UserLoginController  extends BaseController{
 		user.setId(Integer.parseInt(id));
 		boolean updateUser = userService.updateUser(user);
 		if(updateUser){
-			modelAndView.setViewName("selectUserByIds.do");
+			modelAndView.setViewName("login.jsp");
 			modelAndView.addObject("isupdate","<script>alert('个人信息修改成功请登录!')</script>");
 		}else {
 			modelAndView.addObject("unupdate","<script>alert('个人信息修改失败!')</script>");
